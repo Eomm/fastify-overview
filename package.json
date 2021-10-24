@@ -21,7 +21,11 @@
   },
   "homepage": "https://github.com/Eomm/<CHANGE ME>#readme",
   "devDependencies": {
+    "fastify": "^3.22.1",
     "standard": "^16.0.3",
     "tap": "^15.0.9"
+  },
+  "dependencies": {
+    "fastify-plugin": "^3.0.0"
   }
 }
