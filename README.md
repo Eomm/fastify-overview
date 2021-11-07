@@ -1,14 +1,16 @@
 # fastify-overview
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![ci](https://github.com/Eomm/fastify-overview/actions/workflows/ci.yml/badge.svg)](https://github.com/Eomm/fastify-overview/actions/workflows/ci.yml)
 
-Get a complete overview of your fastify application!
+Get a complete overview of your fastify application!  
 It gives you a tree structure to understand all the relations between your routes and plugins.
 
 It tracks:
 
-- Server decorators
-- ALL the instance hooks
+- **ALL** the Fastify plugins
+- **ALL** the Fastify decorators
+- **ALL** the Fastify hooks
 
 Doing so you will get a complete overview of your application and you can:
 
@@ -28,7 +30,7 @@ npm install fastify-overview
 
 ## Usage
 
-This plugin is super simple, just add it to your fastify instance and you will get a `overview()` method that will return a tree structure of your application.
+This plugin is super simple, just add it to your fastify instance and you will get a `overview()` method that will return a tree structure of your application:
 
 ```js
 const fastify = require('fastify')
@@ -36,6 +38,7 @@ const fastify = require('fastify')
 async function run() {
   const app = fastify()
 
+  // await the plugin registration!
   await app.register(require('fastify-overview'))
 
   // create your application as usual
@@ -49,7 +52,7 @@ async function run() {
     next()
   })
 
-  // read your application structure
+  // read your application structure when fastify is ready
   app.addHook('onReady', function showStructure (done) {
     const appStructure = app.overview()
     console.log(JSON.stringify(appStructure, null, 2))
@@ -64,10 +67,10 @@ run()
 To use this plugin there are 3 things to know:
 
 1. It starts tracking your application after the `await register()` of the plugin:
-  - what happens before, it is **not** tracked.
-  - it the `register` is not awaited, the structure will be **not** tracked.
-1. The application structure can be accessed **after** the Fastify instance is `ready`. If you try to get it before the `ready` status, you will get an error.
-1. The structure tracks hooks' name and decorators' name. If you use arrow functions the structure will be useless/unreadable.
+    - what happens before, it is **not** tracked.
+    - it the `register` is not awaited, the structure will be **not** tracked.
+2. The application structure can be accessed **after** the Fastify instance is `ready`. If you try to get it before the `ready` status, you will get an error.
+3. The structure tracks hooks' name and decorators' name. If you use arrow functions the structure will be useless/unreadable.
 
 ### Structure
 
