@@ -80,7 +80,9 @@ The JSON structure returned by the `overview` method is like the following:
     // it contains the same structure we are describing
   ], 
   "decorators": { // all the instance decorators | app.decorate('foo-bar', 42)
-    "decorate": [ "foo-bar" ] // the decorators' name
+    "decorate": [ "foo-bar" ], // the decorators' name
+    "decorateRequest": [], // app.decorateRequest('foo-bar', 42)
+    "decorateReply": [] // app.decorateReply('foo-bar', 42)
   },
   "hooks": { // all the instance hooks
     "onRequest": [ "hook1" ], // app.addHook('onRequest', function hook1 (){})
@@ -116,7 +118,9 @@ For example, the previous code returns:
           "name": "register2",
           "children": [],
           "decorators": {
-            "decorate": []
+            "decorate": [],
+            "decorateRequest": [],
+            "decorateReply": []
           },
           "hooks": {
             "onRequest": [
@@ -138,7 +142,9 @@ For example, the previous code returns:
         }
       ],
       "decorators": {
-        "decorate": []
+        "decorate": [],
+        "decorateRequest": [],
+        "decorateReply": []
       },
       "hooks": {
         "onRequest": [
@@ -160,7 +166,9 @@ For example, the previous code returns:
     }
   ],
   "decorators": {
-    "decorate": []
+    "decorate": [],
+    "decorateRequest": [],
+    "decorateReply": []
   },
   "hooks": {
     "onRequest": [],

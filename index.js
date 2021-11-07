@@ -60,16 +60,22 @@ function fastifyOverview (fastify, opts, next) {
  * The key here is to use the this[kStructure] property to get the right structure to update.
  */
 function wrapFastify (instance) {
-  const originalDecorate = instance.decorate
-  instance.decorate = function wrapDecorate (name, value) {
-    this[kStructure].decorators.decorate.push(name)
-    return originalDecorate.call(this, name, value)
-  }
+  wrapDecorator(instance, 'decorate')
+  wrapDecorator(instance, 'decorateRequest')
+  wrapDecorator(instance, 'decorateReply')
 
   const originalHook = instance.addHook
   instance.addHook = function wrapAddHook (name, hook) {
     this[kStructure].hooks[name].push(hook.toString()) // todo get function name
     return originalHook.call(this, name, hook)
+  }
+}
+
+function wrapDecorator (instance, type) {
+  const originalDecorate = instance[type]
+  instance[type] = function wrapDecorate (name, value) {
+    this[kStructure].decorators[type].push(name)
+    return originalDecorate.call(this, name, value)
   }
 }
 
