@@ -17,6 +17,8 @@ Doing so you will get a complete overview of your application and you can:
 - find out the application structure (expecially if you have joined a new team)
 - automate some documentation tasks
 
+This plugin is intended to be run only for _development_ purposes.
+
 ## Install
 
 ```
@@ -47,17 +49,23 @@ async function run() {
     next()
   })
 
-  await app.ready()
+  // read your application structure
+  app.addHook('onReady', function showStructure (done) {
+    const appStructure = app.overview()
+    console.log(JSON.stringify(appStructure, null, 2))
+    done(null)
+  })
 
-  const appStructure = app.overview()
-  console.log(JSON.stringify(appStructure, null, 2))
+  await app.listen(3000)
 }
 run()
 ```
 
 To use this plugin there are 3 things to know:
 
-1. It starts tracking your application after the `await register` of the plugin: what happens before, it is **not** tracked.
+1. It starts tracking your application after the `await register()` of the plugin:
+  - what happens before, it is **not** tracked.
+  - it the `register` is not awaited, the structure will be **not** tracked.
 1. The application structure can be accessed **after** the Fastify instance is `ready`. If you try to get it before the `ready` status, you will get an error.
 1. The structure tracks hooks' name and decorators' name. If you use arrow functions the structure will be useless/unreadable.
 
@@ -174,8 +182,9 @@ For example, the previous code returns:
 
 ## Roadmap
 
-- [ ] decorateRequest
-- [ ] decorateReply
+What this plugin should track that is missing:
+
+- [ ] routes
 - [ ] errorHandler
 - [ ] 404 handler
 
