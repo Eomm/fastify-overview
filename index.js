@@ -68,7 +68,7 @@ function wrapFastify (instance) {
 
   const originalHook = instance.addHook
   instance.addHook = function wrapAddHook (name, hook) {
-    this[kStructure].hooks[name].push(hook.toString())
+    this[kStructure].hooks[name].push(hook.toString()) // todo get function name
     return originalHook.call(this, name, hook)
   }
 }

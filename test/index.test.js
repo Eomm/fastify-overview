@@ -50,7 +50,10 @@ test('basic test', async t => {
 
 test('register', async t => {
   const app = fastify()
-  app.register(plugin)
+  await app.register(plugin)
+
+  app.addHook('onSend', function hookRoot () {})
+  app.decorate('foo-bar', function testFunction () {})
 
   app.register(function register1 (instance, opts, next) {
     instance.addHook('onRequest', function hook1 () {})
@@ -66,16 +69,17 @@ test('register', async t => {
 
   await app.ready()
   const root = app.overview()
+
   t.equal(root.children.length, 1)
   t.equal(root.children[0].name, 'register1')
-  t.same(root.decorators.decorate, [])
+  t.same(root.decorators.decorate, ['foo-bar'])
   t.equal(root.hooks.onRequest.length, 0)
   t.equal(root.hooks.preParsing.length, 0)
   t.equal(root.hooks.preValidation.length, 0)
   t.equal(root.hooks.preHandler.length, 0)
   t.equal(root.hooks.preSerialization.length, 0)
   t.equal(root.hooks.onError.length, 0)
-  t.equal(root.hooks.onSend.length, 0)
+  t.equal(root.hooks.onSend.length, 1)
   t.equal(root.hooks.onResponse.length, 0)
   t.equal(root.hooks.onTimeout.length, 0)
 
