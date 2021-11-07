@@ -1,92 +1,78 @@
 'use strict'
 
 const fp = require('fastify-plugin')
-const trackerMe = Symbol('fastify-overview.track-me')
+const kTrackerMe = Symbol('fastify-overview.track-me')
+const kStructure = Symbol('fastify-overview.structure')
+
+const { getEmptyTree } = require('./lib/utils')
 
 function fastifyOverview (fastify, opts, next) {
   const contextMap = new Map()
   let structure
 
-  fastify.addHook('onRegister', function hook (instance, opts) {
+  fastify.addHook('onRegister', function markInstance (instance) {
     const parent = Object.getPrototypeOf(instance)
-    manInTheMiddle(instance, parent[trackerMe])
+    manInTheMiddle(instance, parent[kTrackerMe])
   })
 
-  // fastify.addHook('onReady', function hook (done) {
-  //   const root = contextMap.get(this)
-  //   structure = root
-  //   contextMap.clear()
-  //   done(null)
-  // })
+  fastify.addHook('onReady', function hook (done) {
+    const root = contextMap.get(rootToken)
+    structure = root
+    contextMap.clear()
+    done(null)
+  })
 
   fastify.decorate('overview', function getOverview () {
     if (!structure) {
-      const root = contextMap.get(rootTrack)
-      structure = root
-      contextMap.clear()
+      throw new Error('Fastify must be in ready status to access the overview')
     }
-
     return structure
   })
 
-  const rootTrack = manInTheMiddle(fastify)
+  const rootToken = manInTheMiddle(fastify)
+  wrapFastify(fastify)
 
   next()
 
   function manInTheMiddle (instance, parentId) {
     const trackingToken = Math.random()
-    instance[trackerMe] = trackingToken
+    instance[kTrackerMe] = trackingToken
 
-    const trackStructure = getEmptyTree()
+    const trackStructure = getEmptyTree(instance.pluginName)
     if (parentId) {
       contextMap.get(parentId).children.push(trackStructure)
     }
 
     contextMap.set(trackingToken, trackStructure)
-
-    const originalDecorate = instance.decorate
-    // const originalDecorateRequest = instance.decorateRequest // TODO
-    // const originalDecorateReply = instance.decorateReply // TODO
-    instance.decorate = function wrapDecorate (name, value) {
-      contextMap.get(trackingToken).decorators.decorate.push(name)
-      return originalDecorate.call(this, name, value)
-    }
-
-    const originalHook = instance.addHook
-    instance.addHook = function wrapAddHook (name, hook) {
-      contextMap.get(trackingToken).hooks[name].push(hook.toString())
-      return originalHook.call(this, name, hook)
-    }
+    instance[kStructure] = trackStructure
 
     return trackingToken
+  }
+}
+
+/**
+ * this function is executed only once: when the plugin is registered.
+ * if it is executed more than once, the output structure will have duplicated
+ * entries.
+ * this is caused by the fact that the wrapDecorate will call wrapDecorate again and so on.
+ * Running the code only the first time relies on the Fastify prototype chain.
+ *
+ * The key here is to use the this[kStructure] property to get the right structure to update.
+ */
+function wrapFastify (instance) {
+  const originalDecorate = instance.decorate
+  instance.decorate = function wrapDecorate (name, value) {
+    this[kStructure].decorators.decorate.push(name)
+    return originalDecorate.call(this, name, value)
+  }
+
+  const originalHook = instance.addHook
+  instance.addHook = function wrapAddHook (name, hook) {
+    this[kStructure].hooks[name].push(hook.toString())
+    return originalHook.call(this, name, hook)
   }
 }
 
 module.exports = fp(fastifyOverview, {
   name: 'fastify-overview'
 })
-
-function getEmptyTree (nodeFunction) {
-  return {
-    name: nodeFunction.name,
-    children: [],
-    decorators: {
-      decorate: []
-    },
-    hooks: {
-      onRequest: [],
-      preParsing: [],
-      preValidation: [],
-      preHandler: [],
-      preSerialization: [],
-      onError: [],
-      onSend: [],
-      onResponse: [],
-      onTimeout: [],
-      onReady: [],
-      onClose: [],
-      onRoute: [],
-      onRegister: []
-    }
-  }
-}

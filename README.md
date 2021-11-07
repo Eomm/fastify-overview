@@ -37,6 +37,13 @@ You can pass the following options during the registration:
 |--------|---------|-------------|
 |`change`| `me`  | What does this opt?
 
+## Roadmap
+
+- [ ] decorateRequest
+- [ ] decorateReply
+- [ ] errorHandler
+- [ ] 404 handler
+
 
 ## License
 
