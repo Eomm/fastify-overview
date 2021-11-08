@@ -66,8 +66,18 @@ function wrapFastify (instance) {
 
   const originalHook = instance.addHook
   instance.addHook = function wrapAddHook (name, hook) {
-    this[kStructure].hooks[name].push(hook.toString()) // todo get function name
+    this[kStructure].hooks[name].push(getFuncTitle(hook.toString()))
     return originalHook.call(this, name, hook)
+  }
+}
+
+function getFuncTitle (func) {
+  const funcReg = /\s*function\s*(\S+)\s*\(.*\)\s*{.*/gi
+  const m = funcReg.exec(func)
+  if (m && m.length >= 1) {
+    return m[1]
+  } else {
+    return 'Anonymous function'
   }
 }
 
