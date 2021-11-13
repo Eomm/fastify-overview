@@ -4,7 +4,11 @@ const fp = require('fastify-plugin')
 const kTrackerMe = Symbol('fastify-overview.track-me')
 const kStructure = Symbol('fastify-overview.structure')
 
-const { getEmptyTree } = require('./lib/utils')
+const {
+  getFunctionName,
+  transformRoute,
+  getEmptyTree
+} = require('./lib/utils')
 
 function fastifyOverview (fastify, opts, next) {
   const contextMap = new Map()
@@ -13,6 +17,10 @@ function fastifyOverview (fastify, opts, next) {
   fastify.addHook('onRegister', function markInstance (instance) {
     const parent = Object.getPrototypeOf(instance)
     manInTheMiddle(instance, parent[kTrackerMe])
+  })
+
+  fastify.addHook('onRoute', function markRoute (routeOptions) {
+    this[kStructure].routes.push(transformRoute(routeOptions))
   })
 
   fastify.addHook('onReady', function hook (done) {
@@ -66,18 +74,8 @@ function wrapFastify (instance) {
 
   const originalHook = instance.addHook
   instance.addHook = function wrapAddHook (name, hook) {
-    this[kStructure].hooks[name].push(getFuncTitle(hook.toString()))
+    this[kStructure].hooks[name].push(getFunctionName(hook.toString()))
     return originalHook.call(this, name, hook)
-  }
-}
-
-function getFuncTitle (func) {
-  const funcReg = /\s*function\s*(\S+)\s*\(.*\)\s*{.*/gi
-  const m = funcReg.exec(func)
-  if (m && m.length >= 1) {
-    return m[1]
-  } else {
-    return 'Anonymous function'
   }
 }
 
@@ -90,5 +88,6 @@ function wrapDecorator (instance, type) {
 }
 
 module.exports = fp(fastifyOverview, {
-  name: 'fastify-overview'
+  name: 'fastify-overview',
+  fastify: '>=3.x'
 })
