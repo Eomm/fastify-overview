@@ -107,3 +107,6 @@ dist
 package-lock.json
 
 example.js
+.vscode
+
+**/store/**/data*
