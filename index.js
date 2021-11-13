@@ -1,5 +1,7 @@
 'use strict'
 
+const fs = require('fs/promises')
+const path = require('path')
 const fp = require('fastify-plugin')
 const getSource = require('./lib/source-code')
 
@@ -22,6 +24,17 @@ function fastifyOverview (fastify, options, next) {
 
   const contextMap = new Map()
   let structure
+
+  const options = Object.assign({
+    route: false
+  }, opts)
+
+  if (options.route) {
+    fastify.get(options.route, (request, reply) => {
+      reply.type('text/html')
+      return fs.readFile(path.join(__dirname, './assets/index.html'))
+    })
+  }
 
   fastify.addHook('onRegister', function markInstance (instance) {
     const parent = Object.getPrototypeOf(instance)
