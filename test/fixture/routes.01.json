@@ -1,0 +1,50 @@
+[
+  {
+    "method": "GET",
+    "url": "/prefix/get",
+    "prefix": "/prefix",
+    "hooks": {
+      "onRequest": [],
+      "preParsing": [],
+      "preValidation": [],
+      "preHandler": [],
+      "preSerialization": [],
+      "onError": [],
+      "onSend": [],
+      "onResponse": [],
+      "onTimeout": []
+    }
+  },
+  {
+    "method": "POST",
+    "url": "/prefix/post",
+    "prefix": "/prefix",
+    "hooks": {
+      "onRequest": [],
+      "preParsing": [],
+      "preValidation": [],
+      "preHandler": [],
+      "preSerialization": [],
+      "onError": [],
+      "onSend": [],
+      "onResponse": [],
+      "onTimeout": []
+    }
+  },
+  {
+    "method": "PUT",
+    "url": "/prefix/put",
+    "prefix": "/prefix",
+    "hooks": {
+      "onRequest": [],
+      "preParsing": [],
+      "preValidation": [],
+      "preHandler": [],
+      "preSerialization": [],
+      "onError": [],
+      "onSend": [],
+      "onResponse": [],
+      "onTimeout": []
+    }
+  }
+]

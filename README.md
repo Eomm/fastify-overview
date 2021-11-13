@@ -2,15 +2,17 @@
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![ci](https://github.com/Eomm/fastify-overview/actions/workflows/ci.yml/badge.svg)](https://github.com/Eomm/fastify-overview/actions/workflows/ci.yml)
+[![runkit](https://img.shields.io/badge/try%20on-runkit-blue)](https://runkit.com/eomm/fastify-overview-readme)
 
 Get a complete overview of your fastify application!  
 It gives you a tree structure to understand all the relations between your routes and plugins.
 
 It tracks:
 
-- **ALL** the Fastify plugins
-- **ALL** the Fastify decorators
-- **ALL** the Fastify hooks
+- 🛣 **ALL** the Fastify routes
+- 🍱 **ALL** the Fastify plugins
+- 🎨 **ALL** the Fastify decorators
+- 🪝 **ALL** the Fastify hooks
 
 Doing so you will get a complete overview of your application and you can:
 
@@ -101,103 +103,36 @@ The JSON structure returned by the `overview` method is like the following:
     "onClose": [],
     "onRoute": [],
     "onRegister": []
-  }
+  },
+  "routes": [ // an array within all the routes in that fastify context
+    {
+      "method": "GET",
+      "url": "/prefix/hello", // the complete route's url
+      "prefix": "/prefix", // the plugin prefix
+      "hooks": { // the hooks that are registered in that single route using the route's options
+        "onRequest": [],
+        "preParsing": [],
+        "preValidation": [
+          "Anonymous function"
+        ],
+        "preHandler": [
+          "hook1"
+        ],
+        "preSerialization": [],
+        "onError": [],
+        "onSend": [],
+        "onResponse": [],
+        "onTimeout": []
+      }
+    }
+  ]
 }
 ```
 
 Notice that an hook that appears in the parent node, is inherited by the children but it is not listed in the 
 children's hooks node.
 
-For example, the previous code returns:
-
-```json
-{
-  "name": "fastify-overview",
-  "children": [
-    {
-      "name": "register1",
-      "children": [
-        {
-          "name": "register2",
-          "children": [],
-          "decorators": {
-            "decorate": [],
-            "decorateRequest": [],
-            "decorateReply": []
-          },
-          "hooks": {
-            "onRequest": [
-              "function hook2 () {}"
-            ],
-            "preParsing": [],
-            "preValidation": [],
-            "preHandler": [],
-            "preSerialization": [],
-            "onError": [],
-            "onSend": [],
-            "onResponse": [],
-            "onTimeout": [],
-            "onReady": [],
-            "onClose": [],
-            "onRoute": [],
-            "onRegister": []
-          }
-        }
-      ],
-      "decorators": {
-        "decorate": [],
-        "decorateRequest": [],
-        "decorateReply": []
-      },
-      "hooks": {
-        "onRequest": [
-          "function hook1 () {}"
-        ],
-        "preParsing": [],
-        "preValidation": [],
-        "preHandler": [],
-        "preSerialization": [],
-        "onError": [],
-        "onSend": [],
-        "onResponse": [],
-        "onTimeout": [],
-        "onReady": [],
-        "onClose": [],
-        "onRoute": [],
-        "onRegister": []
-      }
-    }
-  ],
-  "decorators": {
-    "decorate": [],
-    "decorateRequest": [],
-    "decorateReply": []
-  },
-  "hooks": {
-    "onRequest": [],
-    "preParsing": [],
-    "preValidation": [],
-    "preHandler": [],
-    "preSerialization": [],
-    "onError": [],
-    "onSend": [ "hookRoot" ],
-    "onResponse": [],
-    "onTimeout": [],
-    "onReady": [],
-    "onClose": [],
-    "onRoute": [],
-    "onRegister": []
-  }
-}
-```
-
-## Roadmap
-
-What this plugin should track that is missing:
-
-- [ ] routes
-- [ ] errorHandler
-- [ ] 404 handler
+You can see the previous code output running it on RunKit: [![runkit](https://img.shields.io/badge/try%20on-runkit-blue)](https://runkit.com/eomm/fastify-overview-readme)
 
 
 ## License

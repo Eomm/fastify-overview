@@ -1,0 +1,41 @@
+[
+  {
+    "method": "GET",
+    "url": "/prefix/sub/hooks",
+    "prefix": "/prefix/sub",
+    "hooks": {
+      "onRequest": [],
+      "preParsing": [],
+      "preValidation": [],
+      "preHandler": [
+        "hook1",
+        "hook2"
+      ],
+      "preSerialization": [],
+      "onError": [],
+      "onSend": [],
+      "onResponse": [],
+      "onTimeout": []
+    }
+  },
+  {
+    "method": "OPTIONS",
+    "url": "/prefix/sub/options",
+    "prefix": "/prefix/sub",
+    "hooks": {
+      "onRequest": [],
+      "preParsing": [],
+      "preValidation": [
+        "Anonymous function"
+      ],
+      "preHandler": [
+        "hook1"
+      ],
+      "preSerialization": [],
+      "onError": [],
+      "onSend": [],
+      "onResponse": [],
+      "onTimeout": []
+    }
+  }
+]
