@@ -82,7 +82,7 @@ function wrapFastify (instance) {
 function wrapDecorator (instance, type) {
   const originalDecorate = instance[type]
   instance[type] = function wrapDecorate (name, value) {
-    this[kStructure].decorators[type].push(name)
+    this[kStructure].decorators[type].push({ name })
     return originalDecorate.call(this, name, value)
   }
 }

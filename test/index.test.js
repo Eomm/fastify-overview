@@ -39,7 +39,11 @@ test('basic test', async t => {
   const structure = app.overview()
   t.type(structure.id, 'number')
   t.equal(structure.children.length, 3)
-  t.same(structure.decorators.decorate, ['test', 'testObject', 'testArray'])
+  t.same(structure.decorators.decorate, [
+    { name: 'test' },
+    { name: 'testObject' },
+    { name: 'testArray' }
+  ])
   t.same(structure.hooks, require('./fixture/index.00.json'))
 })
 
@@ -67,7 +71,7 @@ test('register', async t => {
 
   t.equal(root.children.length, 1)
   t.equal(root.children[0].name, 'register1')
-  t.same(root.decorators.decorate, ['foo-bar'])
+  t.same(root.decorators.decorate, [{ name: 'foo-bar' }])
   t.equal(root.hooks.onRequest.length, 0)
   t.equal(root.hooks.preParsing.length, 0)
   t.equal(root.hooks.preValidation.length, 0)

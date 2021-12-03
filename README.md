@@ -88,7 +88,7 @@ The JSON structure returned by the `overview` method is like the following:
     // it contains the same structure we are describing
   ], 
   "decorators": { // all the instance decorators | app.decorate('foo-bar', 42)
-    "decorate": [ "foo-bar" ], // the decorators' name
+    "decorate": [ { "name": "foo-bar" } ], // the decorators' name
     "decorateRequest": [], // app.decorateRequest('foo-bar', 42)
     "decorateReply": [] // app.decorateReply('foo-bar', 42)
   },
