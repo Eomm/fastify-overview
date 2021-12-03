@@ -8,8 +8,14 @@
       "preParsing": [],
       "preValidation": [],
       "preHandler": [
-        "hook1",
-        "hook2"
+        {
+          "name": "hook1",
+          "hash": "31d31d981f412085927efb5e9f36be8ba905516a"
+        },
+        {
+          "name": "hook2",
+          "hash": "07f8fc52f2a92adc80881b4c11ee61ab56ea42d1"
+        }
       ],
       "preSerialization": [],
       "onError": [],
@@ -26,10 +32,16 @@
       "onRequest": [],
       "preParsing": [],
       "preValidation": [
-        "Anonymous function"
+        {
+          "name": "Anonymous function",
+          "hash": "be7cc9b39f55888e403234868fc52a632dbae242"
+        }
       ],
       "preHandler": [
-        "hook1"
+        {
+          "name": "hook1",
+          "hash": "31d31d981f412085927efb5e9f36be8ba905516a"
+        }
       ],
       "preSerialization": [],
       "onError": [],

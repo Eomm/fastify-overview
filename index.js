@@ -5,9 +5,9 @@ const kTrackerMe = Symbol('fastify-overview.track-me')
 const kStructure = Symbol('fastify-overview.structure')
 
 const {
-  getFunctionName,
   transformRoute,
-  getEmptyTree
+  getPluginNode,
+  getHookNode
 } = require('./lib/utils')
 
 function fastifyOverview (fastify, options, next) {
@@ -46,7 +46,7 @@ function fastifyOverview (fastify, options, next) {
     const trackingToken = Math.random()
     instance[kTrackerMe] = trackingToken
 
-    const trackStructure = getEmptyTree(trackingToken, instance.pluginName)
+    const trackStructure = getPluginNode(trackingToken, instance.pluginName)
     if (parentId) {
       contextMap.get(parentId).children.push(trackStructure)
     }
@@ -74,7 +74,7 @@ function wrapFastify (instance) {
 
   const originalHook = instance.addHook
   instance.addHook = function wrapAddHook (name, hook) {
-    this[kStructure].hooks[name].push(getFunctionName(hook.toString()))
+    this[kStructure].hooks[name].push(getHookNode(hook))
     return originalHook.call(this, name, hook)
   }
 }

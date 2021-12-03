@@ -40,15 +40,7 @@ test('basic test', async t => {
   t.type(structure.id, 'number')
   t.equal(structure.children.length, 3)
   t.same(structure.decorators.decorate, ['test', 'testObject', 'testArray'])
-  t.same(structure.hooks.onRequest, ['hook1'])
-  t.same(structure.hooks.preParsing, ['hook2'])
-  t.same(structure.hooks.preValidation, ['hook3'])
-  t.same(structure.hooks.preHandler, ['hook4'])
-  t.same(structure.hooks.preSerialization, ['hook5'])
-  t.same(structure.hooks.onError, ['hookSix'])
-  t.same(structure.hooks.onSend, ['hook_7'])
-  t.same(structure.hooks.onResponse, ['hook8'])
-  t.same(structure.hooks.onTimeout, ['Anonymous function'])
+  t.same(structure.hooks, require('./fixture/index.00.json'))
 })
 
 test('register', async t => {
