@@ -1,16 +1,23 @@
 'use strict'
 
 const fp = require('fastify-plugin')
+const getSource = require('./lib/source-code')
+
 const kTrackerMe = Symbol('fastify-overview.track-me')
 const kStructure = Symbol('fastify-overview.structure')
 
 const {
   transformRoute,
+  getDecoratorNode,
   getPluginNode,
   getHookNode
 } = require('./lib/utils')
 
 function fastifyOverview (fastify, options, next) {
+  // const opts = Object.assign({
+  //   addSource: false
+  // }, options)
+
   const contextMap = new Map()
   let structure
 
@@ -47,12 +54,12 @@ function fastifyOverview (fastify, options, next) {
     instance[kTrackerMe] = trackingToken
 
     const trackStructure = getPluginNode(trackingToken, instance.pluginName)
+    contextMap.set(trackingToken, trackStructure)
+    instance[kStructure] = trackStructure
+
     if (parentId) {
       contextMap.get(parentId).children.push(trackStructure)
     }
-
-    contextMap.set(trackingToken, trackStructure)
-    instance[kStructure] = trackStructure
 
     return trackingToken
   }
@@ -74,7 +81,9 @@ function wrapFastify (instance) {
 
   const originalHook = instance.addHook
   instance.addHook = function wrapAddHook (name, hook) {
-    this[kStructure].hooks[name].push(getHookNode(hook))
+    const hookNode = getHookNode(hook)
+    hookNode.souce = getSource()
+    this[kStructure].hooks[name].push(hookNode)
     return originalHook.call(this, name, hook)
   }
 }
@@ -82,7 +91,9 @@ function wrapFastify (instance) {
 function wrapDecorator (instance, type) {
   const originalDecorate = instance[type]
   instance[type] = function wrapDecorate (name, value) {
-    this[kStructure].decorators[type].push({ name })
+    const decorNode = getDecoratorNode(name)
+    decorNode.souce = getSource()
+    this[kStructure].decorators[type].push(decorNode)
     return originalDecorate.call(this, name, value)
   }
 }
