@@ -37,6 +37,7 @@ test('basic test', async t => {
 
   await app.ready()
   const structure = app.overview()
+  t.type(structure.id, 'number')
   t.equal(structure.children.length, 3)
   t.same(structure.decorators.decorate, ['test', 'testObject', 'testArray'])
   t.same(structure.hooks.onRequest, ['hook1'])
@@ -86,6 +87,7 @@ test('register', async t => {
   t.equal(root.hooks.onTimeout.length, 0)
 
   const reg1 = root.children[0]
+  t.type(reg1.id, 'number')
   t.equal(reg1.children.length, 2)
   t.equal(reg1.children[0].name, 'register2')
   t.equal(reg1.children[1].name, 'register3')

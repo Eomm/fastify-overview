@@ -10,7 +10,7 @@ const {
   getEmptyTree
 } = require('./lib/utils')
 
-function fastifyOverview (fastify, opts, next) {
+function fastifyOverview (fastify, options, next) {
   const contextMap = new Map()
   let structure
 
@@ -46,7 +46,7 @@ function fastifyOverview (fastify, opts, next) {
     const trackingToken = Math.random()
     instance[kTrackerMe] = trackingToken
 
-    const trackStructure = getEmptyTree(instance.pluginName)
+    const trackStructure = getEmptyTree(trackingToken, instance.pluginName)
     if (parentId) {
       contextMap.get(parentId).children.push(trackStructure)
     }

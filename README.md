@@ -80,6 +80,7 @@ The JSON structure returned by the `overview` method is like the following:
 
 ```js
 {
+  "id": 0.331, // an internal id number. You can use it to identify the node
   "name": "pluginName", // the name of the plugin | app.register(function pluginName (){})
   "children": [ // the children of the fastify instance | instance.register(function subPlugin (){})
     // it contains the same structure we are describing
