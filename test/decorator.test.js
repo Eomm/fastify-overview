@@ -36,23 +36,23 @@ test('decorator', async t => {
   t.equal(root.children.length, 2)
   t.equal(root.children[0].name, 'register1')
   t.equal(root.children[1].name, 'sibling')
-  t.same(root.decorators.decorate, ['root-func'])
-  t.same(root.decorators.decorateRequest, ['root-req', 'root-req-two'])
-  t.same(root.decorators.decorateReply, ['root-reply'])
+  t.same(root.decorators.decorate, [{ name: 'root-func' }])
+  t.same(root.decorators.decorateRequest, [{ name: 'root-req' }, { name: 'root-req-two' }])
+  t.same(root.decorators.decorateReply, [{ name: 'root-reply' }])
 
   const reg1 = root.children[0]
   t.same(reg1.decorators.decorate, [])
-  t.same(reg1.decorators.decorateRequest, ['child-1'])
+  t.same(reg1.decorators.decorateRequest, [{ name: 'child-1' }])
   t.same(reg1.decorators.decorateReply, [])
   t.equal(reg1.children.length, 2)
 
   const reg2 = reg1.children[0]
   t.same(reg2.decorators.decorate, [])
   t.same(reg2.decorators.decorateRequest, [])
-  t.same(reg2.decorators.decorateReply, ['sub'])
+  t.same(reg2.decorators.decorateReply, [{ name: 'sub' }])
 
   const reg3 = reg1.children[1]
-  t.same(reg3.decorators.decorate, ['sub-instance'])
+  t.same(reg3.decorators.decorate, [{ name: 'sub-instance' }])
   t.same(reg3.decorators.decorateRequest, [])
-  t.same(reg3.decorators.decorateReply, ['sub'])
+  t.same(reg3.decorators.decorateReply, [{ name: 'sub' }])
 })

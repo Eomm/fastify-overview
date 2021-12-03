@@ -37,17 +37,14 @@ test('basic test', async t => {
 
   await app.ready()
   const structure = app.overview()
+  t.type(structure.id, 'number')
   t.equal(structure.children.length, 3)
-  t.same(structure.decorators.decorate, ['test', 'testObject', 'testArray'])
-  t.same(structure.hooks.onRequest, ['hook1'])
-  t.same(structure.hooks.preParsing, ['hook2'])
-  t.same(structure.hooks.preValidation, ['hook3'])
-  t.same(structure.hooks.preHandler, ['hook4'])
-  t.same(structure.hooks.preSerialization, ['hook5'])
-  t.same(structure.hooks.onError, ['hookSix'])
-  t.same(structure.hooks.onSend, ['hook_7'])
-  t.same(structure.hooks.onResponse, ['hook8'])
-  t.same(structure.hooks.onTimeout, ['Anonymous function'])
+  t.same(structure.decorators.decorate, [
+    { name: 'test' },
+    { name: 'testObject' },
+    { name: 'testArray' }
+  ])
+  t.same(structure.hooks, require('./fixture/index.00.json'))
 })
 
 test('register', async t => {
@@ -74,7 +71,7 @@ test('register', async t => {
 
   t.equal(root.children.length, 1)
   t.equal(root.children[0].name, 'register1')
-  t.same(root.decorators.decorate, ['foo-bar'])
+  t.same(root.decorators.decorate, [{ name: 'foo-bar' }])
   t.equal(root.hooks.onRequest.length, 0)
   t.equal(root.hooks.preParsing.length, 0)
   t.equal(root.hooks.preValidation.length, 0)
@@ -86,6 +83,7 @@ test('register', async t => {
   t.equal(root.hooks.onTimeout.length, 0)
 
   const reg1 = root.children[0]
+  t.type(reg1.id, 'number')
   t.equal(reg1.children.length, 2)
   t.equal(reg1.children[0].name, 'register2')
   t.equal(reg1.children[1].name, 'register3')

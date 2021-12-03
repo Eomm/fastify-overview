@@ -1,0 +1,60 @@
+{
+  "onRequest": [
+    {
+      "name": "hook1",
+      "hash": "31d31d981f412085927efb5e9f36be8ba905516a"
+    }
+  ],
+  "preParsing": [
+    {
+      "name": "hook2",
+      "hash": "07f8fc52f2a92adc80881b4c11ee61ab56ea42d1"
+    }
+  ],
+  "preValidation": [
+    {
+      "name": "hook3",
+      "hash": "92b002434cd5d8481e7e5562b51df679e2f8d586"
+    }
+  ],
+  "preHandler": [
+    {
+      "name": "hook4",
+      "hash": "ade00501a7c8607ba74bf5e13d751da2139c4e60"
+    }
+  ],
+  "preSerialization": [
+    {
+      "name": "hook5",
+      "hash": "b9e63b1b61cda28d6f1c8a341fddba8196d6be0d"
+    }
+  ],
+  "onError": [
+    {
+      "name": "hookSix",
+      "hash": "9398f5df01879094095221d86a544179e62cee12"
+    }
+  ],
+  "onSend": [
+    {
+      "name": "hook_7",
+      "hash": "d3cd1cc0cf04b9fda85a84decae619851c739f7e"
+    }
+  ],
+  "onResponse": [
+    {
+      "name": "hook8",
+      "hash": "62e68924a1b57f5950068c398fa3d231f1a0280f"
+    }
+  ],
+  "onTimeout": [
+    {
+      "name": "Anonymous function",
+      "hash": "eddae38f899bec68b598177766919cfbb91bb520"
+    }
+  ],
+  "onReady": [],
+  "onClose": [],
+  "onRoute": [],
+  "onRegister": []
+}

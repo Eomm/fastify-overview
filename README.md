@@ -32,7 +32,17 @@ npm install fastify-overview
 
 ## Usage
 
-This plugin is super simple, just add it to your fastify instance and you will get a `overview()` method that will return a tree structure of your application:
+This plugin is super simple, just add it to your fastify instance and you will get a `overview()` method that will return a tree structure of your application.
+
+There are 3 things to know:
+
+1. It starts tracking your application after the `await register()` of the plugin:
+    - what happens before, it is **not** tracked. So **this plugin must be the first one** to be registered.
+    - it the `register` is not awaited, the structure will **not** be tracked.
+2. The application structure can be accessed **after** the Fastify instance is `ready`. If you try to get it before the `ready` status, you will get an error.
+3. The structure tracks hooks' name and decorators' name. If you use arrow functions the structure will be useless/unreadable.
+
+Here the code:
 
 ```js
 const fastify = require('fastify')
@@ -66,31 +76,29 @@ async function run() {
 run()
 ```
 
-To use this plugin there are 3 things to know:
-
-1. It starts tracking your application after the `await register()` of the plugin:
-    - what happens before, it is **not** tracked.
-    - it the `register` is not awaited, the structure will be **not** tracked.
-2. The application structure can be accessed **after** the Fastify instance is `ready`. If you try to get it before the `ready` status, you will get an error.
-3. The structure tracks hooks' name and decorators' name. If you use arrow functions the structure will be useless/unreadable.
-
 ### Structure
 
 The JSON structure returned by the `overview` method is like the following:
 
 ```js
 {
+  "id": 0.331, // an internal id number. You can use it to identify the node
   "name": "pluginName", // the name of the plugin | app.register(function pluginName (){})
   "children": [ // the children of the fastify instance | instance.register(function subPlugin (){})
     // it contains the same structure we are describing
   ], 
   "decorators": { // all the instance decorators | app.decorate('foo-bar', 42)
-    "decorate": [ "foo-bar" ], // the decorators' name
+    "decorate": [ { "name": "foo-bar" } ], // the decorators' name
     "decorateRequest": [], // app.decorateRequest('foo-bar', 42)
     "decorateReply": [] // app.decorateReply('foo-bar', 42)
   },
   "hooks": { // all the instance hooks
-    "onRequest": [ "hook1" ], // app.addHook('onRequest', function hook1 (){})
+    "onRequest": [
+      {
+        "name": "hook1" // the function name: app.addHook('onRequest', function hook1 (){})
+        "hash": "92b002434cd5d8481e7e5562b51df679e2f8d586" // the function hash. Useful to identify optimizations
+      }
+    ],
     "preParsing": [],
     "preValidation": [],
     "preHandler": [],
@@ -113,10 +121,16 @@ The JSON structure returned by the `overview` method is like the following:
         "onRequest": [],
         "preParsing": [],
         "preValidation": [
-          "Anonymous function"
+          {
+            "name": "Anonymous function",
+            "hash": "ade00501a7c8607ba74bf5e13d751da2139c4e60"
+          }
         ],
         "preHandler": [
-          "hook1"
+          {
+            "name": "hook1",
+            "hash": "9398f5df01879094095221d86a544179e62cee12"
+          }
         ],
         "preSerialization": [],
         "onError": [],
