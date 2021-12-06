@@ -1,14 +1,9 @@
 import * as d3 from 'd3';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useWindowSize } from '../hooks/useWindowSize';
-import { ChartNode, DataNode, DECORATOR, HOOK, ROUTE } from '../types';
-import { zoomScale } from '../utils/d3';
-import { selectOverview } from '../store/overviewSlice';
-import { compact } from '../utils/strings';
-import { colors, getColor } from '../utils/theme';
+
 import useGraphData from '../hooks/useGraphData';
-import PlotterFilterButton from './PlotterFilterButton';
+import { useWindowSize } from '../hooks/useWindowSize';
 import {
   attachZoom,
   drawLabels,
@@ -19,6 +14,12 @@ import {
   shutdown,
   updateSizes,
 } from '../plotter/radialTree';
+import { selectOverview } from '../store/overviewSlice';
+import { ChartNode, DataNode, DECORATOR, HOOK, ROUTE } from '../types';
+import { zoomScale } from '../utils/d3';
+import { compact } from '../utils/strings';
+import { colors, getColor } from '../utils/theme';
+import PlotterFilterButton from './PlotterFilterButton';
 
 const LINK_SIZE = 500;
 const TEXT_SIZE = 24;
@@ -55,8 +56,8 @@ export default function RadialTree({ className }) {
 
   return (
     <>
-      <div className={'flex flex-col ' + className}>
-        <div
+      <div className={'flex flex-col inner-shadow bg-gray-800 ' + className}>
+        {/* <div
           className={
             'bg-gray-100 shadow-inner z-10 p-1 text-xs text-gray-900 font-mono flex justify-between items-center'
           }>
@@ -91,10 +92,43 @@ export default function RadialTree({ className }) {
               inactiveColor=""
             />
           </div>
-        </div>
-        <svg ref={svgRef} className={'flex-grow bg-gray-50'}>
+        </div> */}
+        <svg ref={svgRef} className={'flex-grow bg-gray-50 '}>
+          <defs>
+            <filter id="whiteOutlineEffect" colorInterpolationFilters="sRGB">
+              <feMorphology
+                in="SourceAlpha"
+                result="MORPH"
+                operator="dilate"
+                radius="2"
+              />
+              <feColorMatrix
+                in="MORPH"
+                result="WHITENED"
+                type="matrix"
+                values="-1 0 0 0 1, 0 -1 0 0 1, 0 0 -1 0 1, 0 0 0 1 0"
+              />
+              <feMerge>
+                <feMergeNode in="WHITENED" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <radialGradient
+              id="bg"
+              cx="0"
+              cy="0"
+              r="1"
+              gradientUnits="userSpaceOnUse"
+              gradientTransform="translate(919.5 925) rotate(-90.031) scale(925 919.5)">
+              <stop stopColor="#E3E3E3" />
+              <stop offset="1" stopColor="white" />
+            </radialGradient>
+          </defs>
+
           <g className="main">
-            <g className="canvas"></g>
+            <g className="canvas">
+              <rect fill="bg"></rect>
+            </g>
           </g>
         </svg>
       </div>
