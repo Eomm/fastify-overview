@@ -14,9 +14,9 @@ const {
 } = require('./lib/utils')
 
 function fastifyOverview (fastify, options, next) {
-  // const opts = Object.assign({
-  //   addSource: false
-  // }, options)
+  const opts = Object.assign({
+    addSource: false
+  }, options)
 
   const contextMap = new Map()
   let structure
@@ -27,7 +27,12 @@ function fastifyOverview (fastify, options, next) {
   })
 
   fastify.addHook('onRoute', function markRoute (routeOptions) {
-    this[kStructure].routes.push(transformRoute(routeOptions))
+    const routeNode = transformRoute(routeOptions)
+    // TODO the onRoute hook is executed by Fastify
+    // if (opts.addSource) {
+    //   routeNode.souce = getSource()
+    // }
+    this[kStructure].routes.push(routeNode)
   })
 
   fastify.addHook('onReady', function hook (done) {
@@ -45,7 +50,7 @@ function fastifyOverview (fastify, options, next) {
   })
 
   const rootToken = manInTheMiddle(fastify)
-  wrapFastify(fastify)
+  wrapFastify(fastify, opts)
 
   next()
 
@@ -54,6 +59,9 @@ function fastifyOverview (fastify, options, next) {
     instance[kTrackerMe] = trackingToken
 
     const trackStructure = getPluginNode(trackingToken, instance.pluginName)
+    if (opts.addSource) {
+      trackStructure.source = getSource()
+    }
     contextMap.set(trackingToken, trackStructure)
     instance[kStructure] = trackStructure
 
@@ -74,26 +82,30 @@ function fastifyOverview (fastify, options, next) {
  *
  * The key here is to use the this[kStructure] property to get the right structure to update.
  */
-function wrapFastify (instance) {
-  wrapDecorator(instance, 'decorate')
-  wrapDecorator(instance, 'decorateRequest')
-  wrapDecorator(instance, 'decorateReply')
+function wrapFastify (instance, pluginOpts) {
+  wrapDecorator(instance, 'decorate', pluginOpts)
+  wrapDecorator(instance, 'decorateRequest', pluginOpts)
+  wrapDecorator(instance, 'decorateReply', pluginOpts)
 
   const originalHook = instance.addHook
   instance.addHook = function wrapAddHook (name, hook) {
     const hookNode = getHookNode(hook)
-    hookNode.souce = getSource()
+    if (pluginOpts.addSource) {
+      hookNode.source = getSource()[0]
+    }
     this[kStructure].hooks[name].push(hookNode)
     return originalHook.call(this, name, hook)
   }
 }
 
-function wrapDecorator (instance, type) {
+function wrapDecorator (instance, type, { addSource }) {
   const originalDecorate = instance[type]
   instance[type] = function wrapDecorate (name, value) {
-    const decorNode = getDecoratorNode(name)
-    decorNode.souce = getSource()
-    this[kStructure].decorators[type].push(decorNode)
+    const decoratorNode = getDecoratorNode(name)
+    if (addSource) {
+      decoratorNode.souce = getSource()[0]
+    }
+    this[kStructure].decorators[type].push(decoratorNode)
     return originalDecorate.call(this, name, value)
   }
 }
