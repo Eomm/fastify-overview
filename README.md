@@ -149,6 +149,37 @@ children's hooks node.
 You can see the previous code output running it on RunKit: [![runkit](https://img.shields.io/badge/try%20on-runkit-blue)](https://runkit.com/eomm/fastify-overview-readme)
 
 
+## Options
+
+You can pass the following options to the plugin:
+
+```js
+app.register(require('fastify-overview'), {
+  addSource: true // default: false
+})
+```
+
+### addSource
+
+Optionally the plugin adds a `source` property to each node of the tree.
+Here an example of the structure with the `addSource` option:
+
+```json
+{
+  "name": "hook1",
+  "hash": "31d31d981f412085927efb5e9f36be8ba905516a",
+  "source": {
+    "stackIndex": 0,
+    "fileName": "test/sources/app.js",
+    "lineNumber": 34,
+    "columnNumber": 11,
+    "functionName": "register3",
+    "typeName": null,
+    "methodName": null
+  }
+}
+```
+
 ## License
 
 Copyright [Manuel Spigolon](https://github.com/Eomm), Licensed under [MIT](./LICENSE).
