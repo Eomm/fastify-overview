@@ -30,7 +30,7 @@ test('simple app', async t => {
     functionName: 'buildTheSourceApp',
     typeName: null,
     methodName: null
-  })
+  }, { skip: isWindows })
 
   t.equal(root.children.length, 2)
   t.equal(root.children[0].name, 'register1')
