@@ -5,7 +5,7 @@ module.exports = function fileTwo (instance, opts, next) {
   instance.decorateRequest('fileTwo', 'fileTwo')
   instance.decorateReply('fileTwo', 'fileTwo')
 
-  instance.get('/file-one', {
+  instance.get('/file-two', {
     preHandler: function fileTwoPreHandlerHook (request, reply, done) {
       done(null)
     },

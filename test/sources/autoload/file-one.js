@@ -1,8 +1,9 @@
 'use strict'
 
-const fileTwo = require('./file-two')
+const fileTwo = require('../file-two')
 
-module.exports = function fileOne (instance, opts, next) {
+module.exports = fileOne
+function fileOne (instance, opts, next) {
   instance.decorate('fileOne', 'fileOne')
   instance.decorateRequest('fileOne', 'fileOne')
   instance.decorateReply('fileOne', 'fileOne')
@@ -27,3 +28,5 @@ module.exports = function fileOne (instance, opts, next) {
 
   next()
 }
+
+fileOne[Symbol.for('fastify.display-name')] = 'bazinga'

@@ -71,7 +71,7 @@ function fastifyOverview (fastify, options, next) {
 
     const trackStructure = getPluginNode(trackingToken, instance.pluginName)
     if (opts.addSource && this) {
-      trackStructure.source = this._current[0].func[kSourceRegister]
+      trackStructure.source = this._current.find(loadPipe => loadPipe.func[kSourceRegister] !== undefined).func[kSourceRegister]
     }
     contextMap.set(trackingToken, trackStructure)
     instance[kStructure] = trackStructure
