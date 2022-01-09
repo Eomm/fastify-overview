@@ -1,26 +1,49 @@
 'use strict'
 
 const fp = require('fastify-plugin')
+const getSource = require('./lib/source-code')
+
 const kTrackerMe = Symbol('fastify-overview.track-me')
 const kStructure = Symbol('fastify-overview.structure')
+const kSourceRegister = Symbol('fastify-overview.source.register')
+const kSourceRoute = Symbol('fastify-overview.source.route')
 
 const {
   transformRoute,
+  getDecoratorNode,
   getPluginNode,
   getHookNode
 } = require('./lib/utils')
 
 function fastifyOverview (fastify, options, next) {
+  const opts = Object.assign({
+    addSource: false
+  }, options)
+
   const contextMap = new Map()
   let structure
 
   fastify.addHook('onRegister', function markInstance (instance) {
     const parent = Object.getPrototypeOf(instance)
-    manInTheMiddle(instance, parent[kTrackerMe])
+    // this is the `avvio` instance
+    manInTheMiddle.call(this, instance, parent[kTrackerMe])
   })
 
-  fastify.addHook('onRoute', function markRoute (routeOptions) {
-    this[kStructure].routes.push(transformRoute(routeOptions))
+  fastify.addHook('onRoute', function markRoute (routeOpts) {
+    const routeNode = transformRoute(routeOpts)
+    if (opts.addSource) {
+      routeNode.souce = routeOpts.handler[kSourceRoute]
+
+      // the hooks added using the route options, does not have the `source` property
+      // so we can use the same as the route handler
+      const hooksKey = Object.keys(routeNode.hooks)
+      for (const hookKey of hooksKey) {
+        routeNode.hooks[hookKey].forEach(hookNode => {
+          hookNode.source = routeNode.souce
+        })
+      }
+    }
+    this[kStructure].routes.push(routeNode)
   })
 
   fastify.addHook('onReady', function hook (done) {
@@ -38,7 +61,7 @@ function fastifyOverview (fastify, options, next) {
   })
 
   const rootToken = manInTheMiddle(fastify)
-  wrapFastify(fastify)
+  wrapFastify(fastify, opts)
 
   next()
 
@@ -47,12 +70,15 @@ function fastifyOverview (fastify, options, next) {
     instance[kTrackerMe] = trackingToken
 
     const trackStructure = getPluginNode(trackingToken, instance.pluginName)
+    if (opts.addSource && this) {
+      trackStructure.source = this._current.find(loadPipe => loadPipe.func[kSourceRegister] !== undefined).func[kSourceRegister]
+    }
+    contextMap.set(trackingToken, trackStructure)
+    instance[kStructure] = trackStructure
+
     if (parentId) {
       contextMap.get(parentId).children.push(trackStructure)
     }
-
-    contextMap.set(trackingToken, trackStructure)
-    instance[kStructure] = trackStructure
 
     return trackingToken
   }
@@ -67,24 +93,81 @@ function fastifyOverview (fastify, options, next) {
  *
  * The key here is to use the this[kStructure] property to get the right structure to update.
  */
-function wrapFastify (instance) {
-  wrapDecorator(instance, 'decorate')
-  wrapDecorator(instance, 'decorateRequest')
-  wrapDecorator(instance, 'decorateReply')
+function wrapFastify (instance, pluginOpts) {
+  // *** decorators
+  wrapDecorator(instance, 'decorate', pluginOpts)
+  wrapDecorator(instance, 'decorateRequest', pluginOpts)
+  wrapDecorator(instance, 'decorateReply', pluginOpts)
 
+  // *** register
+  const originalRegister = instance.register
+  instance.register = function wrapRegister (pluginFn, opts) {
+    if (pluginOpts.addSource) {
+      // this Symbol is processed by the `onRegister` hook if necessary
+      pluginFn[kSourceRegister] = getSource()[0]
+    }
+    originalRegister.call(this, pluginFn, opts)
+  }
+
+  // *** routes
+  ;[
+    'delete',
+    'get',
+    'head',
+    'patch',
+    'post',
+    'put',
+    'options',
+    'all'
+  ].forEach(shortcut => {
+    const originalMethod = instance[shortcut]
+    instance[shortcut] = function wrapRoute (url, opts, handler) {
+      if (pluginOpts.addSource) {
+        // this Symbol is processed by the `onRoute` hook
+        getRouteHandler(url, opts, handler)[kSourceRoute] = getSource()[0]
+      }
+      originalMethod.call(this, url, opts, handler)
+    }
+  })
+
+  const originalRoute = instance.route
+  instance.route = function wrapRoute (routeOpts) {
+    if (pluginOpts.addSource) {
+      // this Symbol is processed by the `onRoute` hook
+      routeOpts.handler[kSourceRoute] = getSource()[0]
+    }
+    originalRoute.call(this, routeOpts)
+  }
+
+  // *** hooks
   const originalHook = instance.addHook
   instance.addHook = function wrapAddHook (name, hook) {
-    this[kStructure].hooks[name].push(getHookNode(hook))
+    const hookNode = getHookNode(hook)
+    if (pluginOpts.addSource) {
+      hookNode.source = getSource()[0]
+    }
+    this[kStructure].hooks[name].push(hookNode)
     return originalHook.call(this, name, hook)
   }
 }
 
-function wrapDecorator (instance, type) {
+function wrapDecorator (instance, type, { addSource }) {
   const originalDecorate = instance[type]
   instance[type] = function wrapDecorate (name, value) {
-    this[kStructure].decorators[type].push({ name })
+    const decoratorNode = getDecoratorNode(name)
+    if (addSource) {
+      decoratorNode.souce = getSource()[0]
+    }
+    this[kStructure].decorators[type].push(decoratorNode)
     return originalDecorate.call(this, name, value)
   }
+}
+
+function getRouteHandler (url, options, handler) {
+  if (!handler && typeof options === 'function') {
+    handler = options
+  }
+  return handler || (options && options.handler)
 }
 
 module.exports = fp(fastifyOverview, {

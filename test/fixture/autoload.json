@@ -1,0 +1,963 @@
+{
+  "id": 42,
+  "name": "fastify-overview",
+  "children": [
+    {
+      "id": 42,
+      "name": "/file-one.js",
+      "children": [
+        {
+          "id": 42,
+          "name": "/file-two.js",
+          "children": [],
+          "routes": [
+            {
+              "method": "GET",
+              "url": "/file-two",
+              "prefix": "",
+              "hooks": {
+                "onRequest": [],
+                "preParsing": [],
+                "preValidation": [],
+                "preHandler": [
+                  {
+                    "name": "fileTwoPreHandlerHook",
+                    "hash": "bb6750fd5fc177ddb49f17bad4e6d424cc85ce6e",
+                    "source": {
+                      "stackIndex": 0,
+                      "fileName": "test/sources/file-two.js",
+                      "lineNumber": 8,
+                      "columnNumber": 12,
+                      "functionName": "fileTwo",
+                      "typeName": null,
+                      "methodName": null
+                    }
+                  }
+                ],
+                "preSerialization": [],
+                "onError": [],
+                "onSend": [
+                  {
+                    "name": "fileTwoOnSendHook",
+                    "hash": "4ff76096b8efc08d61d8c670c7e0690822dc34ae",
+                    "source": {
+                      "stackIndex": 0,
+                      "fileName": "test/sources/file-two.js",
+                      "lineNumber": 8,
+                      "columnNumber": 12,
+                      "functionName": "fileTwo",
+                      "typeName": null,
+                      "methodName": null
+                    }
+                  }
+                ],
+                "onResponse": [],
+                "onTimeout": []
+              },
+              "souce": {
+                "stackIndex": 0,
+                "fileName": "test/sources/file-two.js",
+                "lineNumber": 8,
+                "columnNumber": 12,
+                "functionName": "fileTwo",
+                "typeName": null,
+                "methodName": null
+              }
+            }
+          ],
+          "decorators": {
+            "decorate": [
+              {
+                "name": "fileTwo",
+                "souce": {
+                  "stackIndex": 0,
+                  "fileName": "test/sources/file-two.js",
+                  "lineNumber": 4,
+                  "columnNumber": 12,
+                  "functionName": "fileTwo",
+                  "typeName": null,
+                  "methodName": null
+                }
+              }
+            ],
+            "decorateRequest": [
+              {
+                "name": "fileTwo",
+                "souce": {
+                  "stackIndex": 0,
+                  "fileName": "test/sources/file-two.js",
+                  "lineNumber": 5,
+                  "columnNumber": 12,
+                  "functionName": "fileTwo",
+                  "typeName": null,
+                  "methodName": null
+                }
+              }
+            ],
+            "decorateReply": [
+              {
+                "name": "fileTwo",
+                "souce": {
+                  "stackIndex": 0,
+                  "fileName": "test/sources/file-two.js",
+                  "lineNumber": 6,
+                  "columnNumber": 12,
+                  "functionName": "fileTwo",
+                  "typeName": null,
+                  "methodName": null
+                }
+              }
+            ]
+          },
+          "hooks": {
+            "onRequest": [],
+            "preParsing": [],
+            "preValidation": [],
+            "preHandler": [
+              {
+                "name": "hook",
+                "hash": "5ad61c04d5f0783eb4917f4f9ebb8f1c0886ec91",
+                "source": {
+                  "stackIndex": 0,
+                  "fileName": "test/sources/file-two.js",
+                  "lineNumber": 20,
+                  "columnNumber": 12,
+                  "functionName": "fileTwo",
+                  "typeName": null,
+                  "methodName": null
+                }
+              }
+            ],
+            "preSerialization": [],
+            "onError": [],
+            "onSend": [],
+            "onResponse": [],
+            "onTimeout": [],
+            "onReady": [],
+            "onClose": [],
+            "onRoute": [],
+            "onRegister": []
+          },
+          "source": {
+            "stackIndex": 0,
+            "fileName": "test/sources/autoload/file-one.js",
+            "lineNumber": 27,
+            "columnNumber": 12,
+            "functionName": "fileOne",
+            "typeName": null,
+            "methodName": null
+          }
+        }
+      ],
+      "routes": [
+        {
+          "method": "GET",
+          "url": "/file-one",
+          "prefix": "",
+          "hooks": {
+            "onRequest": [],
+            "preParsing": [],
+            "preValidation": [],
+            "preHandler": [
+              {
+                "name": "fileOnePreHandlerHook",
+                "hash": "2e3798c8b4e8ca5fd57913f29812aee547164294",
+                "source": {
+                  "stackIndex": 0,
+                  "fileName": "test/sources/autoload/file-one.js",
+                  "lineNumber": 11,
+                  "columnNumber": 12,
+                  "functionName": "fileOne",
+                  "typeName": null,
+                  "methodName": null
+                }
+              }
+            ],
+            "preSerialization": [],
+            "onError": [],
+            "onSend": [
+              {
+                "name": "fileOneOnSendHook",
+                "hash": "a66da5d839649832f19fb2313e7639b723af8e7d",
+                "source": {
+                  "stackIndex": 0,
+                  "fileName": "test/sources/autoload/file-one.js",
+                  "lineNumber": 11,
+                  "columnNumber": 12,
+                  "functionName": "fileOne",
+                  "typeName": null,
+                  "methodName": null
+                }
+              }
+            ],
+            "onResponse": [],
+            "onTimeout": []
+          },
+          "souce": {
+            "stackIndex": 0,
+            "fileName": "test/sources/autoload/file-one.js",
+            "lineNumber": 11,
+            "columnNumber": 12,
+            "functionName": "fileOne",
+            "typeName": null,
+            "methodName": null
+          }
+        }
+      ],
+      "decorators": {
+        "decorate": [
+          {
+            "name": "fileOne",
+            "souce": {
+              "stackIndex": 0,
+              "fileName": "test/sources/autoload/file-one.js",
+              "lineNumber": 7,
+              "columnNumber": 12,
+              "functionName": "fileOne",
+              "typeName": null,
+              "methodName": null
+            }
+          }
+        ],
+        "decorateRequest": [
+          {
+            "name": "fileOne",
+            "souce": {
+              "stackIndex": 0,
+              "fileName": "test/sources/autoload/file-one.js",
+              "lineNumber": 8,
+              "columnNumber": 12,
+              "functionName": "fileOne",
+              "typeName": null,
+              "methodName": null
+            }
+          }
+        ],
+        "decorateReply": [
+          {
+            "name": "fileOne",
+            "souce": {
+              "stackIndex": 0,
+              "fileName": "test/sources/autoload/file-one.js",
+              "lineNumber": 9,
+              "columnNumber": 12,
+              "functionName": "fileOne",
+              "typeName": null,
+              "methodName": null
+            }
+          }
+        ]
+      },
+      "hooks": {
+        "onRequest": [],
+        "preParsing": [],
+        "preValidation": [],
+        "preHandler": [
+          {
+            "name": "hook",
+            "hash": "5ad61c04d5f0783eb4917f4f9ebb8f1c0886ec91",
+            "source": {
+              "stackIndex": 0,
+              "fileName": "test/sources/autoload/file-one.js",
+              "lineNumber": 23,
+              "columnNumber": 12,
+              "functionName": "fileOne",
+              "typeName": null,
+              "methodName": null
+            }
+          }
+        ],
+        "preSerialization": [],
+        "onError": [],
+        "onSend": [],
+        "onResponse": [],
+        "onTimeout": [],
+        "onReady": [],
+        "onClose": [],
+        "onRoute": [],
+        "onRegister": []
+      },
+      "source": {
+        "stackIndex": 0,
+        "fileName": "test/sources/autoload.js",
+        "lineNumber": 16,
+        "columnNumber": 7,
+        "functionName": "buildTheSourceApp",
+        "typeName": null,
+        "methodName": null
+      }
+    },
+    {
+      "id": 42,
+      "name": "function (f, opts, next) { -- f.get('/a', (request, reply) => {",
+      "children": [],
+      "routes": [
+        {
+          "method": "GET",
+          "url": "/a",
+          "prefix": "",
+          "hooks": {
+            "onRequest": [],
+            "preParsing": [],
+            "preValidation": [],
+            "preHandler": [],
+            "preSerialization": [],
+            "onError": [],
+            "onSend": [],
+            "onResponse": [],
+            "onTimeout": []
+          },
+          "souce": {
+            "stackIndex": 0,
+            "fileName": "test/sources/autoload/plugin-a.js",
+            "lineNumber": 4,
+            "columnNumber": 5,
+            "functionName": "module.exports.default",
+            "typeName": null,
+            "methodName": null
+          }
+        }
+      ],
+      "decorators": {
+        "decorate": [],
+        "decorateRequest": [],
+        "decorateReply": []
+      },
+      "hooks": {
+        "onRequest": [],
+        "preParsing": [],
+        "preValidation": [],
+        "preHandler": [],
+        "preSerialization": [],
+        "onError": [],
+        "onSend": [],
+        "onResponse": [],
+        "onTimeout": [],
+        "onReady": [],
+        "onClose": [],
+        "onRoute": [],
+        "onRegister": []
+      },
+      "source": {
+        "stackIndex": 0,
+        "fileName": "test/sources/autoload.js",
+        "lineNumber": 16,
+        "columnNumber": 7,
+        "functionName": "buildTheSourceApp",
+        "typeName": null,
+        "methodName": null
+      }
+    },
+    {
+      "id": 42,
+      "name": "/plugin-b.js",
+      "children": [],
+      "routes": [
+        {
+          "method": "GET",
+          "url": "/sub-dir/b",
+          "prefix": "/sub-dir",
+          "hooks": {
+            "onRequest": [],
+            "preParsing": [],
+            "preValidation": [],
+            "preHandler": [],
+            "preSerialization": [],
+            "onError": [],
+            "onSend": [],
+            "onResponse": [],
+            "onTimeout": []
+          },
+          "souce": {
+            "stackIndex": 0,
+            "fileName": "test/sources/autoload/sub-dir/plugin-b.js",
+            "lineNumber": 4,
+            "columnNumber": 5,
+            "functionName": "pluginB",
+            "typeName": null,
+            "methodName": null
+          }
+        }
+      ],
+      "decorators": {
+        "decorate": [],
+        "decorateRequest": [],
+        "decorateReply": []
+      },
+      "hooks": {
+        "onRequest": [],
+        "preParsing": [],
+        "preValidation": [],
+        "preHandler": [],
+        "preSerialization": [],
+        "onError": [],
+        "onSend": [],
+        "onResponse": [],
+        "onTimeout": [],
+        "onReady": [],
+        "onClose": [],
+        "onRoute": [],
+        "onRegister": []
+      },
+      "source": {
+        "stackIndex": 0,
+        "fileName": "test/sources/autoload.js",
+        "lineNumber": 16,
+        "columnNumber": 7,
+        "functionName": "buildTheSourceApp",
+        "typeName": null,
+        "methodName": null
+      }
+    },
+    {
+      "id": 42,
+      "name": "/plugin-c.js",
+      "children": [],
+      "routes": [
+        {
+          "method": "GET",
+          "url": "/sub-dir/c",
+          "prefix": "/sub-dir",
+          "hooks": {
+            "onRequest": [],
+            "preParsing": [],
+            "preValidation": [],
+            "preHandler": [],
+            "preSerialization": [],
+            "onError": [],
+            "onSend": [],
+            "onResponse": [],
+            "onTimeout": []
+          },
+          "souce": {
+            "stackIndex": 0,
+            "fileName": "test/sources/autoload/sub-dir/plugin-c.js",
+            "lineNumber": 4,
+            "columnNumber": 5,
+            "functionName": "pluginC",
+            "typeName": null,
+            "methodName": null
+          }
+        }
+      ],
+      "decorators": {
+        "decorate": [],
+        "decorateRequest": [],
+        "decorateReply": []
+      },
+      "hooks": {
+        "onRequest": [],
+        "preParsing": [],
+        "preValidation": [],
+        "preHandler": [],
+        "preSerialization": [],
+        "onError": [],
+        "onSend": [],
+        "onResponse": [],
+        "onTimeout": [],
+        "onReady": [],
+        "onClose": [],
+        "onRoute": [],
+        "onRegister": []
+      },
+      "source": {
+        "stackIndex": 0,
+        "fileName": "test/sources/autoload.js",
+        "lineNumber": 16,
+        "columnNumber": 7,
+        "functionName": "buildTheSourceApp",
+        "typeName": null,
+        "methodName": null
+      }
+    },
+    {
+      "id": 42,
+      "name": "register1",
+      "children": [
+        {
+          "id": 42,
+          "name": "register3",
+          "children": [],
+          "routes": [
+            {
+              "method": "GET",
+              "url": "/prefix/sub/hooks",
+              "prefix": "/prefix/sub",
+              "hooks": {
+                "onRequest": [],
+                "preParsing": [],
+                "preValidation": [],
+                "preHandler": [
+                  {
+                    "name": "hook1",
+                    "hash": "31d31d981f412085927efb5e9f36be8ba905516a",
+                    "source": {
+                      "stackIndex": 0,
+                      "fileName": "test/sources/autoload.js",
+                      "lineNumber": 38,
+                      "columnNumber": 11,
+                      "functionName": "register3",
+                      "typeName": null,
+                      "methodName": null
+                    }
+                  },
+                  {
+                    "name": "hook2",
+                    "hash": "07f8fc52f2a92adc80881b4c11ee61ab56ea42d1",
+                    "source": {
+                      "stackIndex": 0,
+                      "fileName": "test/sources/autoload.js",
+                      "lineNumber": 38,
+                      "columnNumber": 11,
+                      "functionName": "register3",
+                      "typeName": null,
+                      "methodName": null
+                    }
+                  }
+                ],
+                "preSerialization": [],
+                "onError": [],
+                "onSend": [],
+                "onResponse": [],
+                "onTimeout": []
+              },
+              "souce": {
+                "stackIndex": 0,
+                "fileName": "test/sources/autoload.js",
+                "lineNumber": 38,
+                "columnNumber": 11,
+                "functionName": "register3",
+                "typeName": null,
+                "methodName": null
+              }
+            },
+            {
+              "method": "OPTIONS",
+              "url": "/prefix/sub/options",
+              "prefix": "/prefix/sub",
+              "hooks": {
+                "onRequest": [],
+                "preParsing": [],
+                "preValidation": [
+                  {
+                    "name": "Anonymous function",
+                    "hash": "be7cc9b39f55888e403234868fc52a632dbae242",
+                    "source": {
+                      "stackIndex": 0,
+                      "fileName": "test/sources/autoload.js",
+                      "lineNumber": 41,
+                      "columnNumber": 11,
+                      "functionName": "register3",
+                      "typeName": null,
+                      "methodName": null
+                    }
+                  }
+                ],
+                "preHandler": [
+                  {
+                    "name": "hook1",
+                    "hash": "31d31d981f412085927efb5e9f36be8ba905516a",
+                    "source": {
+                      "stackIndex": 0,
+                      "fileName": "test/sources/autoload.js",
+                      "lineNumber": 41,
+                      "columnNumber": 11,
+                      "functionName": "register3",
+                      "typeName": null,
+                      "methodName": null
+                    }
+                  }
+                ],
+                "preSerialization": [],
+                "onError": [],
+                "onSend": [],
+                "onResponse": [],
+                "onTimeout": []
+              },
+              "souce": {
+                "stackIndex": 0,
+                "fileName": "test/sources/autoload.js",
+                "lineNumber": 41,
+                "columnNumber": 11,
+                "functionName": "register3",
+                "typeName": null,
+                "methodName": null
+              }
+            }
+          ],
+          "decorators": {
+            "decorate": [],
+            "decorateRequest": [],
+            "decorateReply": []
+          },
+          "hooks": {
+            "onRequest": [],
+            "preParsing": [],
+            "preValidation": [],
+            "preHandler": [],
+            "preSerialization": [],
+            "onError": [],
+            "onSend": [],
+            "onResponse": [],
+            "onTimeout": [],
+            "onReady": [],
+            "onClose": [],
+            "onRoute": [],
+            "onRegister": []
+          },
+          "source": {
+            "stackIndex": 0,
+            "fileName": "test/sources/autoload.js",
+            "lineNumber": 37,
+            "columnNumber": 14,
+            "functionName": "register1",
+            "typeName": null,
+            "methodName": null
+          }
+        }
+      ],
+      "routes": [
+        {
+          "method": "GET",
+          "url": "/prefix/get",
+          "prefix": "/prefix",
+          "hooks": {
+            "onRequest": [],
+            "preParsing": [],
+            "preValidation": [],
+            "preHandler": [],
+            "preSerialization": [],
+            "onError": [],
+            "onSend": [],
+            "onResponse": [],
+            "onTimeout": []
+          },
+          "souce": {
+            "stackIndex": 0,
+            "fileName": "test/sources/autoload.js",
+            "lineNumber": 34,
+            "columnNumber": 14,
+            "functionName": "register1",
+            "typeName": null,
+            "methodName": null
+          }
+        },
+        {
+          "method": "POST",
+          "url": "/prefix/post",
+          "prefix": "/prefix",
+          "hooks": {
+            "onRequest": [],
+            "preParsing": [],
+            "preValidation": [],
+            "preHandler": [],
+            "preSerialization": [],
+            "onError": [],
+            "onSend": [],
+            "onResponse": [],
+            "onTimeout": []
+          },
+          "souce": {
+            "stackIndex": 0,
+            "fileName": "test/sources/autoload.js",
+            "lineNumber": 35,
+            "columnNumber": 14,
+            "functionName": "register1",
+            "typeName": null,
+            "methodName": null
+          }
+        },
+        {
+          "method": "PUT",
+          "url": "/prefix/put",
+          "prefix": "/prefix",
+          "hooks": {
+            "onRequest": [],
+            "preParsing": [],
+            "preValidation": [],
+            "preHandler": [],
+            "preSerialization": [],
+            "onError": [],
+            "onSend": [],
+            "onResponse": [],
+            "onTimeout": []
+          },
+          "souce": {
+            "stackIndex": 0,
+            "fileName": "test/sources/autoload.js",
+            "lineNumber": 36,
+            "columnNumber": 14,
+            "functionName": "register1",
+            "typeName": null,
+            "methodName": null
+          }
+        }
+      ],
+      "decorators": {
+        "decorate": [],
+        "decorateRequest": [],
+        "decorateReply": []
+      },
+      "hooks": {
+        "onRequest": [],
+        "preParsing": [],
+        "preValidation": [],
+        "preHandler": [],
+        "preSerialization": [],
+        "onError": [],
+        "onSend": [],
+        "onResponse": [],
+        "onTimeout": [],
+        "onReady": [],
+        "onClose": [],
+        "onRoute": [],
+        "onRegister": []
+      },
+      "source": {
+        "stackIndex": 0,
+        "fileName": "test/sources/autoload.js",
+        "lineNumber": 33,
+        "columnNumber": 7,
+        "functionName": "buildTheSourceApp",
+        "typeName": null,
+        "methodName": null
+      }
+    },
+    {
+      "id": 42,
+      "name": "sibling",
+      "children": [],
+      "routes": [
+        {
+          "method": "DELETE",
+          "url": "/delete",
+          "prefix": "",
+          "hooks": {
+            "onRequest": [],
+            "preParsing": [],
+            "preValidation": [],
+            "preHandler": [],
+            "preSerialization": [],
+            "onError": [],
+            "onSend": [],
+            "onResponse": [],
+            "onTimeout": []
+          },
+          "souce": {
+            "stackIndex": 0,
+            "fileName": "test/sources/autoload.js",
+            "lineNumber": 51,
+            "columnNumber": 14,
+            "functionName": "sibling",
+            "typeName": null,
+            "methodName": null
+          }
+        }
+      ],
+      "decorators": {
+        "decorate": [],
+        "decorateRequest": [],
+        "decorateReply": []
+      },
+      "hooks": {
+        "onRequest": [],
+        "preParsing": [],
+        "preValidation": [],
+        "preHandler": [],
+        "preSerialization": [],
+        "onError": [],
+        "onSend": [],
+        "onResponse": [],
+        "onTimeout": [],
+        "onReady": [],
+        "onClose": [],
+        "onRoute": [],
+        "onRegister": []
+      },
+      "source": {
+        "stackIndex": 0,
+        "fileName": "test/sources/autoload.js",
+        "lineNumber": 50,
+        "columnNumber": 7,
+        "functionName": "buildTheSourceApp",
+        "typeName": null,
+        "methodName": null
+      }
+    }
+  ],
+  "routes": [
+    {
+      "method": "GET",
+      "url": "/get",
+      "prefix": "",
+      "hooks": {
+        "onRequest": [],
+        "preParsing": [],
+        "preValidation": [],
+        "preHandler": [],
+        "preSerialization": [],
+        "onError": [],
+        "onSend": [],
+        "onResponse": [],
+        "onTimeout": []
+      },
+      "souce": {
+        "stackIndex": 0,
+        "fileName": "test/sources/autoload.js",
+        "lineNumber": 20,
+        "columnNumber": 7,
+        "functionName": "buildTheSourceApp",
+        "typeName": null,
+        "methodName": null
+      }
+    },
+    {
+      "method": "POST",
+      "url": "/post",
+      "prefix": "",
+      "hooks": {
+        "onRequest": [],
+        "preParsing": [],
+        "preValidation": [],
+        "preHandler": [],
+        "preSerialization": [],
+        "onError": [],
+        "onSend": [],
+        "onResponse": [],
+        "onTimeout": []
+      },
+      "souce": {
+        "stackIndex": 0,
+        "fileName": "test/sources/autoload.js",
+        "lineNumber": 27,
+        "columnNumber": 7,
+        "functionName": "buildTheSourceApp",
+        "typeName": null,
+        "methodName": null
+      }
+    },
+    {
+      "method": "PUT",
+      "url": "/put",
+      "prefix": "",
+      "hooks": {
+        "onRequest": [],
+        "preParsing": [],
+        "preValidation": [],
+        "preHandler": [],
+        "preSerialization": [],
+        "onError": [],
+        "onSend": [],
+        "onResponse": [],
+        "onTimeout": []
+      },
+      "souce": {
+        "stackIndex": 0,
+        "fileName": "test/sources/autoload.js",
+        "lineNumber": 30,
+        "columnNumber": 7,
+        "functionName": "buildTheSourceApp",
+        "typeName": null,
+        "methodName": null
+      }
+    },
+    {
+      "method": "OPTIONS",
+      "url": "/options",
+      "prefix": "",
+      "hooks": {
+        "onRequest": [],
+        "preParsing": [],
+        "preValidation": [],
+        "preHandler": [],
+        "preSerialization": [],
+        "onError": [],
+        "onSend": [],
+        "onResponse": [],
+        "onTimeout": []
+      },
+      "souce": {
+        "stackIndex": 0,
+        "fileName": "test/sources/autoload.js",
+        "lineNumber": 31,
+        "columnNumber": 7,
+        "functionName": "buildTheSourceApp",
+        "typeName": null,
+        "methodName": null
+      }
+    }
+  ],
+  "decorators": {
+    "decorate": [
+      {
+        "name": "decorApp",
+        "souce": {
+          "stackIndex": 0,
+          "fileName": "test/sources/autoload.js",
+          "lineNumber": 21,
+          "columnNumber": 7,
+          "functionName": "buildTheSourceApp",
+          "typeName": null,
+          "methodName": null
+        }
+      }
+    ],
+    "decorateRequest": [
+      {
+        "name": "decorApp",
+        "souce": {
+          "stackIndex": 0,
+          "fileName": "test/sources/autoload.js",
+          "lineNumber": 22,
+          "columnNumber": 7,
+          "functionName": "buildTheSourceApp",
+          "typeName": null,
+          "methodName": null
+        }
+      }
+    ],
+    "decorateReply": [
+      {
+        "name": "decorApp",
+        "souce": {
+          "stackIndex": 0,
+          "fileName": "test/sources/autoload.js",
+          "lineNumber": 23,
+          "columnNumber": 7,
+          "functionName": "buildTheSourceApp",
+          "typeName": null,
+          "methodName": null
+        }
+      }
+    ]
+  },
+  "hooks": {
+    "onRequest": [],
+    "preParsing": [],
+    "preValidation": [],
+    "preHandler": [
+      {
+        "name": "appPreHandlerHook",
+        "hash": "b2f606d7c5fd1548667ae36b500f43ba68fb2751",
+        "source": {
+          "stackIndex": 0,
+          "fileName": "test/sources/autoload.js",
+          "lineNumber": 24,
+          "columnNumber": 7,
+          "functionName": "buildTheSourceApp",
+          "typeName": null,
+          "methodName": null
+        }
+      }
+    ],
+    "preSerialization": [],
+    "onError": [],
+    "onSend": [],
+    "onResponse": [],
+    "onTimeout": [],
+    "onReady": [],
+    "onClose": [],
+    "onRoute": [],
+    "onRegister": []
+  }
+}
