@@ -33,6 +33,6 @@
   },
   "dependencies": {
     "fastify-plugin": "^3.0.0",
-    "object-hash": "^2.2.0"
+    "object-hash": "^3.0.0"
   }
 }
