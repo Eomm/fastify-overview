@@ -57,7 +57,7 @@ export default function RadialTree({ className }) {
   return (
     <>
       <div className={'flex flex-col inner-shadow bg-gray-800 ' + className}>
-        {/* <div
+        <div
           className={
             'bg-gray-100 shadow-inner z-10 p-1 text-xs text-gray-900 font-mono flex justify-between items-center'
           }>
@@ -92,7 +92,7 @@ export default function RadialTree({ className }) {
               inactiveColor=""
             />
           </div>
-        </div> */}
+        </div>
         <svg ref={svgRef} className={'flex-grow bg-gray-50 '}>
           <defs>
             <filter id="whiteOutlineEffect" colorInterpolationFilters="sRGB">
