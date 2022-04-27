@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { DECORATOR, HOOK, ROUTE } from '../types';
+import { colors } from '../utils/theme';
 import IconDecorator from './IconDecorator';
 import IconHook from './IconHook';
 import IconRoutes from './IconRoutes';
@@ -33,13 +35,13 @@ export default function Header({ filters, setFilters }) {
       <nav className={'border-t border-gray-100 p-4'}>
         <div className={'flex justify-end'}>
           <PlotterFilterButton
-            color="text-sky-600"
+            color={colors[HOOK]}
             active={filters.showHooks}
             onClick={() => setFilters({ ...filters, showHooks: !filters.showHooks })}>
             <IconHook /> Hooks
           </PlotterFilterButton>
           <PlotterFilterButton
-            color="text-lime-600"
+            color={colors[DECORATOR]}
             active={filters.showDecorators}
             onClick={() =>
               setFilters({ ...filters, showDecorators: !filters.showDecorators })
@@ -47,7 +49,7 @@ export default function Header({ filters, setFilters }) {
             <IconDecorator /> Decorators
           </PlotterFilterButton>
           <PlotterFilterButton
-            color="text-rose-600"
+            color={colors[ROUTE]}
             active={filters.showRoutes}
             onClick={() => setFilters({ ...filters, showRoutes: !filters.showRoutes })}>
             <IconRoutes /> Routes

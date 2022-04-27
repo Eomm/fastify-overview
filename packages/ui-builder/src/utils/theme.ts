@@ -1,12 +1,12 @@
 import {
   ChartNode,
-  HOOK,
-  HOOKTYPE,
+  CONNECTION,
   DECORATOR,
   DECORATORTYPE,
-  ROUTE,
+  HOOK,
+  HOOKTYPE,
   NODE,
-  CONNECTION,
+  ROUTE,
 } from '../types';
 
 export const colors = {

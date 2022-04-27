@@ -124,8 +124,8 @@ export function drawLabels(
       d.data.name === "Anonymous function"
         ? "λ"
         : d.data.children.length
-          ? compact(d.data.name, textSize)
-          : d.data.name
+        ? compact(d.data.name, textSize)
+        : d.data.name
     )
     .attr(
       "transform",
