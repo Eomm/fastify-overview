@@ -1,8 +1,6 @@
 import * as d3 from 'd3';
-import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useRef } from 'react';
 
-import useGraphData from '../hooks/useGraphData';
 import { useWindowSize } from '../hooks/useWindowSize';
 import {
   attachZoom,
@@ -14,21 +12,17 @@ import {
   shutdown,
   updateSizes,
 } from '../plotter/radialTree';
-import { selectOverview } from '../store/overviewSlice';
-import { ChartNode, DataNode, DECORATOR, HOOK, ROUTE } from '../types';
-import { zoomScale } from '../utils/d3';
-import { compact } from '../utils/strings';
-import { colors, getColor } from '../utils/theme';
-import PlotterFilterButton from './PlotterFilterButton';
 
 const LINK_SIZE = 500;
 const TEXT_SIZE = 24;
 
-export default function RadialTree({ className }) {
+export default function RadialTree({
+  className,
+  chartData,
+  currentNode,
+  setCurrentNode,
+}) {
   const svgRef = useRef(null);
-  const [currentNode, setCurrentNode] = useState('');
-  const data: DataNode = useSelector(selectOverview);
-  const { chartData, filters, setFilters } = useGraphData(data);
   const size = useWindowSize();
 
   useEffect(() => {
@@ -57,41 +51,8 @@ export default function RadialTree({ className }) {
   return (
     <>
       <div className={'flex flex-col inner-shadow bg-gray-800 ' + className}>
-        <div
-          className={
-            'bg-gray-100 shadow-inner z-10 p-1 text-xs text-gray-900 font-mono flex justify-between items-center'
-          }>
-          <div>
-            {currentNode?.name} {JSON.stringify(currentNode.type)}
-          </div>
-          <div className="inline-flex">
-            <PlotterFilterButton
-              text="Routes"
-              active={filters.showRoutes}
-              onClick={() => setFilters({ ...filters, showRoutes: !filters.showRoutes })}
-              kind="first"
-              activeColor={colors[ROUTE]}
-              inactiveColor=""
-            />
-            <PlotterFilterButton
-              text="Decorators"
-              active={filters.showDecorators}
-              onClick={() =>
-                setFilters({ ...filters, showDecorators: !filters.showDecorators })
-              }
-              kind="middle"
-              activeColor={colors[DECORATOR]}
-              inactiveColor=""
-            />
-            <PlotterFilterButton
-              text="Hooks"
-              active={filters.showHooks}
-              onClick={() => setFilters({ ...filters, showHooks: !filters.showHooks })}
-              kind="last"
-              activeColor={colors[HOOK]}
-              inactiveColor=""
-            />
-          </div>
+        <div className={'absolute bottom-0 bg-current p-1'}>
+          {currentNode?.name} {JSON.stringify(currentNode.type)}
         </div>
         <svg ref={svgRef} className={'flex-grow bg-gray-50 '}>
           <defs>

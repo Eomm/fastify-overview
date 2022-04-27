@@ -1,15 +1,26 @@
-import DetailsBar from './components/DetailsBar';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import { DataNode } from '../types';
+// import DetailsBar from './components/DetailsBar';
 import Header from './components/Header';
-import LogoFastify from './components/LogoFastify';
 import RadialTree from './components/RadialTree';
+import useGraphData from './hooks/useGraphData';
+import { selectOverview } from './store/overviewSlice';
 
 function App() {
+  const data: DataNode = useSelector(selectOverview);
+  const { chartData, filters, setFilters } = useGraphData(data);
+  const [currentNode, setCurrentNode] = useState('');
+
   return (
     <div className="w-screen h-screen flex-col">
-      <Header></Header>
-      {/* <LogoFastify className="absolute top-0 left-0 w-16 mt-2 ml-2 text-gray-800" /> */}
+      <Header {...{ filters, setFilters, currentNode }}></Header>
       {/* <DetailsBar className="w-4/12 lg:w-4/12" /> */}
-      <RadialTree className="w-full shadow-inner h-full" />
+      <RadialTree
+        {...{ chartData, currentNode, setCurrentNode }}
+        className="w-full shadow-inner h-full"
+      />
     </div>
   );
 }
