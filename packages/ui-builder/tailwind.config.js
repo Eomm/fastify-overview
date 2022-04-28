@@ -14,6 +14,7 @@ module.exports = {
   variants: {
     extend: {
       outline: ['hover', 'active'],
+      margin: ['last'],
     },
   },
   plugins: [require('@tailwindcss/forms')],
