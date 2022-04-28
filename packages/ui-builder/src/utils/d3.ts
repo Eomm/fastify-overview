@@ -92,8 +92,6 @@ export function zoomScale(svgEl, rootNode, size) {
       .on('zoom.wheel', zoomed),
   );
 
-  console.log(size);
-
   function zoomed(e) {
     e.sourceEvent.preventDefault();
     rootNode.attr('transform', e.transform);

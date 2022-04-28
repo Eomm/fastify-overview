@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { convertDataNode } from '../types';
 import data from './data';
 
 export const overviewSlice = createSlice({
