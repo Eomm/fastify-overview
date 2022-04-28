@@ -14,7 +14,7 @@ function App() {
   const [currentNode, setCurrentNode] = useState('');
 
   return (
-    <div className="w-screen h-screen flex-col">
+    <div className="flex w-screen h-screen flex-col">
       <Header {...{ filters, setFilters, currentNode }}></Header>
       {/* <DetailsBar className="w-4/12 lg:w-4/12" /> */}
       <RadialTree
