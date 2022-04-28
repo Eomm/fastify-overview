@@ -16,7 +16,7 @@ export default function PlotterFilterButton({
       ${active ? '' : 'opacity-30'}`}
       style={{ color }}
       onClick={onClick}>
-      {children} a
+      {children}
     </button>
   );
 }

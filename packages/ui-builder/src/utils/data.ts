@@ -40,7 +40,7 @@ function convertHooks(hooks: Hooks) {
       name: key,
       children: hooks[key as keyof Hooks].map((name) => ({
         type: HOOK,
-        name,
+        name: name.name ?? name, // Victim of current data structure: Hooks are returned as array of strings and array of objects
         children: [],
       })),
     }))

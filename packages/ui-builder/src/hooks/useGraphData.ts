@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
-import { ChartNode, DataNode, ChartNodeFilters } from '../types';
+import React, { useMemo, useState } from 'react';
+
+import { ChartNode, ChartNodeFilters, DataNode } from '../types';
 import { transformData } from '../utils/data';
 
 interface UseGraphResult {
