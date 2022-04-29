@@ -1,7 +1,7 @@
 'use strict'
 
 const fastify = require('fastify')
-const autoload = require('fastify-autoload')
+const autoload = require('@fastify/autoload')
 const path = require('path')
 
 const plugin = require('../../index')
