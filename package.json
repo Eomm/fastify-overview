@@ -27,7 +27,7 @@
   "homepage": "https://github.com/Eomm/fastify-overview#readme",
   "devDependencies": {
     "fastify": "^3.23.1",
-    "fastify-autoload": "^3.10.0",
+    "@fastify/autoload": "^4.0.0",
     "standard": "^17.0.0",
     "tap": "^16.0.1"
   },
