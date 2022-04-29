@@ -54,7 +54,7 @@ function convertDecorators(decorators: Decorators) {
       name: key,
       children: decorators[key as keyof Decorators].map((name) => ({
         type: DECORATOR,
-        name,
+        name: name.name ?? name,
         children: [],
       })),
     }))
