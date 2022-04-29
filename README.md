@@ -191,6 +191,9 @@ Optionally, you can expose a route that will return the JSON structure.
 This parameter accepts a boolean value.
 By default the route is exposed at `GET /json-overview`.
 
+> Note that if you need to call the route when the host is not localhost, you will need to setup 
+> the [`@fastify/cors`](https://github.com/fastify/fastify-cors/) plugin.
+
 ### exposeRouteOptions
 
 You can customize the route's options when `exposeRoute` is set to `true`.
