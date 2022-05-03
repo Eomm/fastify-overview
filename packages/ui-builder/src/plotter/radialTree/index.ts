@@ -173,6 +173,7 @@ export function drawNodes(
     .selectAll("circle")
     .data(tree.descendants())
     .join("circle")
+    .attr("r", 4)
     .attr("opacity", 0)
     .transition()
     .duration(100)
@@ -188,12 +189,9 @@ export function drawNodes(
       translate(${d.y},0)
     `
     )
-    // .attr('fill', (d) => (d.children ? '#555' : '#999'))
     .attr("fill", (d) => {
       return getColor(d.data as ChartNode);
-    })
-
-    .attr("r", 4);
+    });
 }
 
 export function attachZoom(
