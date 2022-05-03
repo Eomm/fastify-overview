@@ -32,14 +32,14 @@ function fastifyOverview (fastify, options, next) {
   fastify.addHook('onRoute', function markRoute (routeOpts) {
     const routeNode = transformRoute(routeOpts)
     if (opts.addSource) {
-      routeNode.souce = routeOpts.handler[kSourceRoute]
+      routeNode.source = routeOpts.handler[kSourceRoute]
 
       // the hooks added using the route options, does not have the `source` property
       // so we can use the same as the route handler
       const hooksKey = Object.keys(routeNode.hooks)
       for (const hookKey of hooksKey) {
         routeNode.hooks[hookKey].forEach(hookNode => {
-          hookNode.source = routeNode.souce
+          hookNode.source = routeNode.source
         })
       }
     }
@@ -156,7 +156,7 @@ function wrapDecorator (instance, type, { addSource }) {
   instance[type] = function wrapDecorate (name, value) {
     const decoratorNode = getDecoratorNode(name)
     if (addSource) {
-      decoratorNode.souce = getSource()[0]
+      decoratorNode.source = getSource()[0]
     }
     this[kStructure].decorators[type].push(decoratorNode)
     return originalDecorate.call(this, name, value)
