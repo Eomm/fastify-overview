@@ -155,7 +155,12 @@ You can pass the following options to the plugin:
 
 ```js
 app.register(require('fastify-overview'), {
-  addSource: true // default: false
+  addSource: true, // default: false
+  exposeRoute: true, // default: false
+  exposeRouteOptions: {
+    method: 'POST', // default: 'GET'
+    url: '/customUrl', // default: '/json-overview'
+  }
 })
 ```
 
@@ -179,6 +184,20 @@ Here an example of the structure with the `addSource` option:
   }
 }
 ```
+
+### exposeRoute
+
+Optionally, you can expose a route that will return the JSON structure.
+This parameter accepts a boolean value.
+By default the route is exposed at `GET /json-overview`.
+
+> Note that if you need to call the route when the host is not localhost, you will need to setup 
+> the [`@fastify/cors`](https://github.com/fastify/fastify-cors/) plugin.
+
+### exposeRouteOptions
+
+You can customize the route's options when `exposeRoute` is set to `true`.
+You can provide all the [fastify route's options](https://www.fastify.io/docs/latest/Reference/Routes/#routes-options) except the `handler`.
 
 ## License
 

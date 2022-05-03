@@ -63,6 +63,17 @@ function fastifyOverview (fastify, options, next) {
   const rootToken = manInTheMiddle(fastify)
   wrapFastify(fastify, opts)
 
+  if (opts.exposeRoute === true) {
+    const routeConfig = Object.assign(
+      {
+        method: 'GET',
+        url: '/json-overview'
+      },
+      opts.exposeRouteOptions,
+      { handler: getJsonOverview })
+    fastify.route(routeConfig)
+  }
+
   next()
 
   function manInTheMiddle (instance, parentId) {
@@ -168,6 +179,10 @@ function getRouteHandler (url, options, handler) {
     handler = options
   }
   return handler || (options && options.handler)
+}
+
+function getJsonOverview (request, reply) {
+  return this.overview()
 }
 
 module.exports = fp(fastifyOverview, {
