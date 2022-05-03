@@ -53,7 +53,7 @@
                 "onResponse": [],
                 "onTimeout": []
               },
-              "souce": {
+              "source": {
                 "stackIndex": 0,
                 "fileName": "test/sources/app.js",
                 "lineNumber": 31,
@@ -106,7 +106,7 @@
                 "onResponse": [],
                 "onTimeout": []
               },
-              "souce": {
+              "source": {
                 "stackIndex": 0,
                 "fileName": "test/sources/app.js",
                 "lineNumber": 34,
@@ -164,7 +164,7 @@
             "onResponse": [],
             "onTimeout": []
           },
-          "souce": {
+          "source": {
             "stackIndex": 0,
             "fileName": "test/sources/app.js",
             "lineNumber": 27,
@@ -189,7 +189,7 @@
             "onResponse": [],
             "onTimeout": []
           },
-          "souce": {
+          "source": {
             "stackIndex": 0,
             "fileName": "test/sources/app.js",
             "lineNumber": 28,
@@ -214,7 +214,7 @@
             "onResponse": [],
             "onTimeout": []
           },
-          "souce": {
+          "source": {
             "stackIndex": 0,
             "fileName": "test/sources/app.js",
             "lineNumber": 29,
@@ -275,7 +275,7 @@
             "onResponse": [],
             "onTimeout": []
           },
-          "souce": {
+          "source": {
             "stackIndex": 0,
             "fileName": "test/sources/app.js",
             "lineNumber": 44,
@@ -333,7 +333,7 @@
         "onResponse": [],
         "onTimeout": []
       },
-      "souce": {
+      "source": {
         "stackIndex": 0,
         "fileName": "test/sources/app.js",
         "lineNumber": 13,
@@ -358,7 +358,7 @@
         "onResponse": [],
         "onTimeout": []
       },
-      "souce": {
+      "source": {
         "stackIndex": 0,
         "fileName": "test/sources/app.js",
         "lineNumber": 20,
@@ -383,7 +383,7 @@
         "onResponse": [],
         "onTimeout": []
       },
-      "souce": {
+      "source": {
         "stackIndex": 0,
         "fileName": "test/sources/app.js",
         "lineNumber": 23,
@@ -408,7 +408,7 @@
         "onResponse": [],
         "onTimeout": []
       },
-      "souce": {
+      "source": {
         "stackIndex": 0,
         "fileName": "test/sources/app.js",
         "lineNumber": 24,
@@ -423,7 +423,7 @@
     "decorate": [
       {
         "name": "decorApp",
-        "souce": {
+        "source": {
           "stackIndex": 0,
           "fileName": "test/sources/app.js",
           "lineNumber": 14,
@@ -437,7 +437,7 @@
     "decorateRequest": [
       {
         "name": "decorApp",
-        "souce": {
+        "source": {
           "stackIndex": 0,
           "fileName": "test/sources/app.js",
           "lineNumber": 15,
@@ -451,7 +451,7 @@
     "decorateReply": [
       {
         "name": "decorApp",
-        "souce": {
+        "source": {
           "stackIndex": 0,
           "fileName": "test/sources/app.js",
           "lineNumber": 16,

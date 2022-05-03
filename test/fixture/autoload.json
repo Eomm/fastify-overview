@@ -54,7 +54,7 @@
                 "onResponse": [],
                 "onTimeout": []
               },
-              "souce": {
+              "source": {
                 "stackIndex": 0,
                 "fileName": "test/sources/file-two.js",
                 "lineNumber": 8,
@@ -69,7 +69,7 @@
             "decorate": [
               {
                 "name": "fileTwo",
-                "souce": {
+                "source": {
                   "stackIndex": 0,
                   "fileName": "test/sources/file-two.js",
                   "lineNumber": 4,
@@ -83,7 +83,7 @@
             "decorateRequest": [
               {
                 "name": "fileTwo",
-                "souce": {
+                "source": {
                   "stackIndex": 0,
                   "fileName": "test/sources/file-two.js",
                   "lineNumber": 5,
@@ -97,7 +97,7 @@
             "decorateReply": [
               {
                 "name": "fileTwo",
-                "souce": {
+                "source": {
                   "stackIndex": 0,
                   "fileName": "test/sources/file-two.js",
                   "lineNumber": 6,
@@ -193,7 +193,7 @@
             "onResponse": [],
             "onTimeout": []
           },
-          "souce": {
+          "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload/file-one.js",
             "lineNumber": 11,
@@ -208,7 +208,7 @@
         "decorate": [
           {
             "name": "fileOne",
-            "souce": {
+            "source": {
               "stackIndex": 0,
               "fileName": "test/sources/autoload/file-one.js",
               "lineNumber": 7,
@@ -222,7 +222,7 @@
         "decorateRequest": [
           {
             "name": "fileOne",
-            "souce": {
+            "source": {
               "stackIndex": 0,
               "fileName": "test/sources/autoload/file-one.js",
               "lineNumber": 8,
@@ -236,7 +236,7 @@
         "decorateReply": [
           {
             "name": "fileOne",
-            "souce": {
+            "source": {
               "stackIndex": 0,
               "fileName": "test/sources/autoload/file-one.js",
               "lineNumber": 9,
@@ -307,7 +307,7 @@
             "onResponse": [],
             "onTimeout": []
           },
-          "souce": {
+          "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload/plugin-a.js",
             "lineNumber": 4,
@@ -368,7 +368,7 @@
             "onResponse": [],
             "onTimeout": []
           },
-          "souce": {
+          "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload/sub-dir/plugin-b.js",
             "lineNumber": 4,
@@ -429,7 +429,7 @@
             "onResponse": [],
             "onTimeout": []
           },
-          "souce": {
+          "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload/sub-dir/plugin-c.js",
             "lineNumber": 4,
@@ -521,7 +521,7 @@
                 "onResponse": [],
                 "onTimeout": []
               },
-              "souce": {
+              "source": {
                 "stackIndex": 0,
                 "fileName": "test/sources/autoload.js",
                 "lineNumber": 38,
@@ -574,7 +574,7 @@
                 "onResponse": [],
                 "onTimeout": []
               },
-              "souce": {
+              "source": {
                 "stackIndex": 0,
                 "fileName": "test/sources/autoload.js",
                 "lineNumber": 41,
@@ -632,7 +632,7 @@
             "onResponse": [],
             "onTimeout": []
           },
-          "souce": {
+          "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload.js",
             "lineNumber": 34,
@@ -657,7 +657,7 @@
             "onResponse": [],
             "onTimeout": []
           },
-          "souce": {
+          "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload.js",
             "lineNumber": 35,
@@ -682,7 +682,7 @@
             "onResponse": [],
             "onTimeout": []
           },
-          "souce": {
+          "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload.js",
             "lineNumber": 36,
@@ -743,7 +743,7 @@
             "onResponse": [],
             "onTimeout": []
           },
-          "souce": {
+          "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload.js",
             "lineNumber": 51,
@@ -801,7 +801,7 @@
         "onResponse": [],
         "onTimeout": []
       },
-      "souce": {
+      "source": {
         "stackIndex": 0,
         "fileName": "test/sources/autoload.js",
         "lineNumber": 20,
@@ -826,7 +826,7 @@
         "onResponse": [],
         "onTimeout": []
       },
-      "souce": {
+      "source": {
         "stackIndex": 0,
         "fileName": "test/sources/autoload.js",
         "lineNumber": 27,
@@ -851,7 +851,7 @@
         "onResponse": [],
         "onTimeout": []
       },
-      "souce": {
+      "source": {
         "stackIndex": 0,
         "fileName": "test/sources/autoload.js",
         "lineNumber": 30,
@@ -876,7 +876,7 @@
         "onResponse": [],
         "onTimeout": []
       },
-      "souce": {
+      "source": {
         "stackIndex": 0,
         "fileName": "test/sources/autoload.js",
         "lineNumber": 31,
@@ -891,7 +891,7 @@
     "decorate": [
       {
         "name": "decorApp",
-        "souce": {
+        "source": {
           "stackIndex": 0,
           "fileName": "test/sources/autoload.js",
           "lineNumber": 21,
@@ -905,7 +905,7 @@
     "decorateRequest": [
       {
         "name": "decorApp",
-        "souce": {
+        "source": {
           "stackIndex": 0,
           "fileName": "test/sources/autoload.js",
           "lineNumber": 22,
@@ -919,7 +919,7 @@
     "decorateReply": [
       {
         "name": "decorApp",
-        "souce": {
+        "source": {
           "stackIndex": 0,
           "fileName": "test/sources/autoload.js",
           "lineNumber": 23,
