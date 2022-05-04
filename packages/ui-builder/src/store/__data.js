@@ -7,7 +7,7 @@ export default {
       decorators: {
         decorate: [],
         decorateRequest: [],
-        decorateReply: ['sendFile', 'download'],
+        decorateReply: ['sendFile', 'download']
       },
       hooks: {
         onRequest: [],
@@ -22,9 +22,9 @@ export default {
         onReady: ['Anonymous function'],
         onClose: [],
         onRoute: [],
-        onRegister: [],
-      },
-    },
+        onRegister: []
+      }
+    }
   ],
   decorators: {
     decorate: ['swagger', 'swaggerCSP', 'jwt', 'pg'],
@@ -34,9 +34,9 @@ export default {
       'user',
       'jwtVerify',
       'pg',
-      'verify',
+      'verify'
     ],
-    decorateReply: ['jwtSign'],
+    decorateReply: ['jwtSign']
   },
   hooks: {
     onRequest: ['Anonymous function', 'Anonymous function'],
@@ -51,6 +51,6 @@ export default {
     onReady: ['hook'],
     onClose: ['Anonymous function', 'Anonymous function'],
     onRoute: ['Anonymous function', 'Anonymous function', 'Anonymous function'],
-    onRegister: ['Anonymous function'],
-  },
-};
+    onRegister: ['Anonymous function']
+  }
+}

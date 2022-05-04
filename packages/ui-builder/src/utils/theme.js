@@ -1,13 +1,12 @@
 import {
-  ChartNode,
   CONNECTION,
   DECORATOR,
   DECORATORTYPE,
   HOOK,
   HOOKTYPE,
   NODE,
-  ROUTE,
-} from '../types';
+  ROUTE
+} from '../utils/data'
 
 export const colors = {
   [HOOK]: '#BF616A',
@@ -16,10 +15,10 @@ export const colors = {
   [DECORATORTYPE]: '#A3BE8C',
   [ROUTE]: '#5E81AC',
   [NODE]: '#334155',
-  [CONNECTION]: '#CBD5E1',
-} as const;
+  [CONNECTION]: '#CBD5E1'
+}
 
 // COLOR AND STYLE
-export function getColor(node: ChartNode) {
-  return colors[node.type || NODE];
+export function getColor (node) {
+  return colors[node.type || NODE]
 }
