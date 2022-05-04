@@ -138,7 +138,7 @@ export function drawLabels(
     .attr("dy", "0.31em")
     .attr("x", (d) => (d.x < Math.PI ? 6 : -6))
     .attr("opacity", 0)
-    .on("mouseleave", function (this, e, d) {
+    .on("mouseleave", function () {
       setCurrentNode("");
       d3.select(this).transition().duration(100).attr("opacity", 1);
     })
