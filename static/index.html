@@ -48,8 +48,7 @@
 
       function importDependencies() {
         const link = document.createElement("link");
-        link.href =
-          "https://unpkg.com/fastify-overview-ui@0.1.10/src/index.css";
+        link.href = "https://unpkg.com/fastify-overview-ui@0.2.0/src/index.css";
         link.type = "text/css";
         link.rel = "stylesheet";
         link.media = "screen,print";
@@ -58,7 +57,7 @@
 
         return importer.urls([
           "https://unpkg.com/react@16.8.0/umd/react.production.min.js",
-          "https://unpkg.com/fastify-overview-ui@0.1.10/dist/fastify-overview-ui.umd.js",
+          "https://unpkg.com/fastify-overview-ui@0.2.0/dist/fastify-overview-ui.umd.js",
           "https://unpkg.com/react-dom@16.8.0/umd/react-dom.production.min.js",
         ]);
       }
