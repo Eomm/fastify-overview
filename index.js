@@ -8,6 +8,9 @@ const kStructure = Symbol('fastify-overview.structure')
 const kSourceRegister = Symbol('fastify-overview.source.register')
 const kSourceRoute = Symbol('fastify-overview.source.route')
 
+const Static = require('fastify-static')
+const { join } = require('path')
+
 const {
   transformRoute,
   getDecoratorNode,
@@ -19,7 +22,7 @@ function fastifyOverview (fastify, options, next) {
   const opts = Object.assign({
     addSource: false
   }, options)
-  
+
   fastify.register(Static, {
     root: join(__dirname, './static'),
     wildcard: false,
