@@ -8,7 +8,7 @@ const kStructure = Symbol('fastify-overview.structure')
 const kSourceRegister = Symbol('fastify-overview.source.register')
 const kSourceRoute = Symbol('fastify-overview.source.route')
 
-const Static = require('fastify-static')
+const Static = require('@fastify/static')
 const { join } = require('path')
 
 const {
