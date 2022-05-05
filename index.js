@@ -19,6 +19,16 @@ function fastifyOverview (fastify, options, next) {
   const opts = Object.assign({
     addSource: false
   }, options)
+  
+  fastify.register(Static, {
+    root: join(__dirname, './static'),
+    wildcard: false,
+    serve: false
+  })
+
+  fastify.get(`${options.graphUrl ?? '/overview'}`, (req, reply) => {
+    reply.sendFile('index.html')
+  })
 
   const contextMap = new Map()
   let structure
