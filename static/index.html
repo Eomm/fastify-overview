@@ -14,27 +14,16 @@
         height: 100vh;
       }
     </style>
+    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+    <link rel="stylesheet" type="text/css" href="/src/index.css" media="screen,print"/>
+    
+    <script src="https://unpkg.com/react@17.0.0/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="/dist/fastify-overview-ui.umd.js"></script>
   </head>
   <body>
     <div id="main"></div>
     <script>
-      const importer = {
-        url: (url) => {
-          return new Promise((resolve, reject) => {
-            const script = document.createElement("script");
-            script.type = "text/javascript";
-            script.src = url;
-            script.crossOrigin = "anonymous";
-            script.addEventListener("load", () => resolve(script), false);
-            script.addEventListener("error", (err) => reject(err), false);
-            document.body.appendChild(script);
-          });
-        },
-        urls: (urls) => {
-          return Promise.all(urls.map(importer.url));
-        },
-      };
-
       function render() {
         const host = window.location.host;
 
@@ -46,23 +35,7 @@
         );
       }
 
-      function importDependencies() {
-        const link = document.createElement("link");
-        link.href = "https://unpkg.com/fastify-overview-ui/src/index.css";
-        link.type = "text/css";
-        link.rel = "stylesheet";
-        link.media = "screen,print";
-        link.crossOrigin = "anonymous";
-        document.getElementsByTagName("head")[0].appendChild(link);
-
-        return importer.urls([
-          "https://unpkg.com/react@16.8.0/umd/react.production.min.js",
-          "https://unpkg.com/fastify-overview-ui/dist/fastify-overview-ui.umd.js",
-          "https://unpkg.com/react-dom@16.8.0/umd/react-dom.production.min.js",
-        ]);
-      }
-
-      importDependencies().then(render);
+      render();
     </script>
   </body>
 </html>

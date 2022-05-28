@@ -10,6 +10,7 @@ const kSourceRoute = Symbol('fastify-overview.source.route')
 
 const Static = require('@fastify/static')
 const { join } = require('path')
+const fs = require('fs')
 
 const {
   transformRoute,
@@ -24,13 +25,20 @@ function fastifyOverview (fastify, options, next) {
   }, options)
 
   fastify.register(Static, {
-    root: join(__dirname, './static'),
+    root: join(__dirname, './node_modules/fastify-overview-ui'),
     wildcard: false,
     serve: false
   })
 
   fastify.get(`${options.graphUrl ?? '/overview'}`, (req, reply) => {
-    reply.sendFile('index.html')
+    const mainPage = join(__dirname, './static/index.html')
+    reply.type('text/html').send(fs.createReadStream(mainPage))
+  })
+  fastify.get('/src/*.css', (req, reply) => {
+    reply.sendFile(req.url)
+  })
+  fastify.get('/dist/*.js', (req, reply) => {
+    reply.sendFile(req.url)
   })
 
   const contextMap = new Map()
