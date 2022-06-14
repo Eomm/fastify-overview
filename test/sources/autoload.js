@@ -7,7 +7,7 @@ const path = require('path')
 const plugin = require('../../index')
 
 module.exports = async function buildTheSourceApp (opts) {
-  const app = fastify()
+  const app = fastify({ exposeHeadRoutes: false })
   await app.register(plugin, opts)
 
   function hook1 () {}
