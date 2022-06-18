@@ -29,6 +29,14 @@ This plugin is intended to be run only for _development_ purposes.
 npm install fastify-overview
 ```
 
+### Compatibility
+
+| Plugin version | Fastify version |
+| ------------- |:---------------:|
+| `^1.0.0` | `^3.0.0` |
+| `^2.0.0` | `^3.0.0` |
+| `^3.0.0` | `^4.0.0` |
+
 
 ## Usage
 
