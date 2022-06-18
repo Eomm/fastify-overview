@@ -187,5 +187,5 @@ function getJsonOverview (request, reply) {
 
 module.exports = fp(fastifyOverview, {
   name: 'fastify-overview',
-  fastify: '>=3.x'
+  fastify: '^4.x'
 })

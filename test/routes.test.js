@@ -10,7 +10,7 @@ function hook1 () {}
 function hook2 () {}
 
 test('routes', async t => {
-  const app = fastify()
+  const app = fastify({ exposeHeadRoutes: false })
   await app.register(plugin)
 
   app.get('/get', noop)

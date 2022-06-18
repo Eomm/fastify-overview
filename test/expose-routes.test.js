@@ -10,7 +10,7 @@ test('expose the route to the the json', async t => {
 
   const response = await app.inject('/json-overview')
   t.hasStrict(response.json(), {
-    name: 'fastify-overview',
+    name: 'fastify -> fastify-overview',
     children: [],
     routes: [
       {
@@ -70,7 +70,7 @@ test('expose the route within more options', async t => {
 
   const response = await app.inject('/foo')
   t.hasStrict(response.json(), {
-    name: 'fastify-overview',
+    name: 'fastify -> fastify-overview',
     children: [],
     routes: [
       {
