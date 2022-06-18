@@ -1,8 +1,5 @@
 name: ci
 
-env:
-  CI: true
-
 on:
   push:
     paths-ignore:
