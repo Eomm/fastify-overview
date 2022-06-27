@@ -46,5 +46,69 @@
       "onResponse": [],
       "onTimeout": []
     }
+  },
+  {
+    "method": "GET",
+    "url": "/prefix/get-chain",
+    "prefix": "/prefix",
+    "hooks": {
+      "onRequest": [],
+      "preParsing": [],
+      "preValidation": [],
+      "preHandler": [],
+      "preSerialization": [],
+      "onError": [],
+      "onSend": [],
+      "onResponse": [],
+      "onTimeout": []
+    }
+  },
+  {
+    "method": "POST",
+    "url": "/prefix/post-chain",
+    "prefix": "/prefix",
+    "hooks": {
+      "onRequest": [],
+      "preParsing": [],
+      "preValidation": [],
+      "preHandler": [],
+      "preSerialization": [],
+      "onError": [],
+      "onSend": [],
+      "onResponse": [],
+      "onTimeout": []
+    }
+  },
+  {
+    "method": "GET",
+    "url": "/prefix/route-get-chain",
+    "prefix": "/prefix",
+    "hooks": {
+      "onRequest": [],
+      "preParsing": [],
+      "preValidation": [],
+      "preHandler": [],
+      "preSerialization": [],
+      "onError": [],
+      "onSend": [],
+      "onResponse": [],
+      "onTimeout": []
+    }
+  },
+  {
+    "method": "POST",
+    "url": "/prefix/route-post-chain",
+    "prefix": "/prefix",
+    "hooks": {
+      "onRequest": [],
+      "preParsing": [],
+      "preValidation": [],
+      "preHandler": [],
+      "preSerialization": [],
+      "onError": [],
+      "onSend": [],
+      "onResponse": [],
+      "onTimeout": []
+    }
   }
 ]
