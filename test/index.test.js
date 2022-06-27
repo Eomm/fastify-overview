@@ -62,6 +62,8 @@ test('register', async t => {
     })
     instance.register(function register3 (instance, opts, next) {
       next()
+    }).register(function register4 (instance, opts, next) {
+      next()
     })
     next()
   })
@@ -84,8 +86,9 @@ test('register', async t => {
 
   const reg1 = root.children[0]
   t.type(reg1.id, 'number')
-  t.equal(reg1.children.length, 2)
+  t.equal(reg1.children.length, 3)
   t.equal(reg1.children[0].name, 'register2')
   t.equal(reg1.children[1].name, 'register3')
+  t.equal(reg1.children[2].name, 'register4')
   t.equal(reg1.hooks.onRequest.length, 1)
 })
