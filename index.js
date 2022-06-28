@@ -117,7 +117,7 @@ function wrapFastify (instance, pluginOpts) {
       // this Symbol is processed by the `onRegister` hook if necessary
       pluginFn[kSourceRegister] = getSource()[0]
     }
-    originalRegister.call(this, pluginFn, opts)
+    return originalRegister.call(this, pluginFn, opts)
   }
 
   // *** routes
@@ -137,7 +137,7 @@ function wrapFastify (instance, pluginOpts) {
         // this Symbol is processed by the `onRoute` hook
         getRouteHandler(url, opts, handler)[kSourceRoute] = getSource()[0]
       }
-      originalMethod.call(this, url, opts, handler)
+      return originalMethod.call(this, url, opts, handler)
     }
   })
 
@@ -147,7 +147,7 @@ function wrapFastify (instance, pluginOpts) {
       // this Symbol is processed by the `onRoute` hook
       routeOpts.handler[kSourceRoute] = getSource()[0]
     }
-    originalRoute.call(this, routeOpts)
+    return originalRoute.call(this, routeOpts)
   }
 
   // *** hooks
