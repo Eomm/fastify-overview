@@ -17,11 +17,32 @@ test('routes', async t => {
   app.post('/post', noop)
   app.put('/put', noop)
   app.options('/options', noop)
+  app.get('/get-chain', noop).post('/post-chain', noop)
+  app.route({
+    method: 'GET',
+    url: '/route-get-chain',
+    handler: noop
+  }).route({
+    method: 'POST',
+    url: '/route-post-chain',
+    handler: noop
+  })
 
   app.register(function register1 (instance, opts, next) {
     instance.get('/get', noop)
     instance.post('/post', noop)
     instance.put('/put', noop)
+    instance.get('/get-chain', noop).post('/post-chain', noop)
+    instance.route({
+      method: 'GET',
+      url: '/route-get-chain',
+      handler: noop
+    }).route({
+      method: 'POST',
+      url: '/route-post-chain',
+      handler: noop
+    })
+
     instance.register(function register3 (sub, opts, next) {
       sub.get('/hooks', {
         preHandler: [hook1, hook2]
@@ -45,11 +66,11 @@ test('routes', async t => {
   t.equal(root.children.length, 2)
   t.equal(root.children[0].name, 'register1')
   t.equal(root.children[1].name, 'sibling')
-  t.equal(root.routes.length, 4)
+  t.equal(root.routes.length, 8)
   t.same(root.routes, require('./fixture/routes.00.json'))
 
   const reg1 = root.children[0]
-  t.same(reg1.routes.length, 3)
+  t.same(reg1.routes.length, 7)
   t.same(reg1.routes, require('./fixture/routes.01.json'))
 
   const reg2 = reg1.children[0]
