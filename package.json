@@ -1,6 +1,6 @@
 {
   "name": "fastify-overview",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Get a complete overview of your fastify application",
   "main": "index.js",
   "scripts": {
