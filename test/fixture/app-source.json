@@ -26,6 +26,7 @@
                     "source": {
                       "stackIndex": 0,
                       "fileName": "test/sources/app.js",
+                      "relativeFileName": "test/sources/app.js",
                       "lineNumber": 31,
                       "columnNumber": 11,
                       "functionName": "register3",
@@ -39,6 +40,7 @@
                     "source": {
                       "stackIndex": 0,
                       "fileName": "test/sources/app.js",
+                      "relativeFileName": "test/sources/app.js",
                       "lineNumber": 31,
                       "columnNumber": 11,
                       "functionName": "register3",
@@ -56,6 +58,7 @@
               "source": {
                 "stackIndex": 0,
                 "fileName": "test/sources/app.js",
+                "relativeFileName": "test/sources/app.js",
                 "lineNumber": 31,
                 "columnNumber": 11,
                 "functionName": "register3",
@@ -77,6 +80,7 @@
                     "source": {
                       "stackIndex": 0,
                       "fileName": "test/sources/app.js",
+                      "relativeFileName": "test/sources/app.js",
                       "lineNumber": 34,
                       "columnNumber": 11,
                       "functionName": "register3",
@@ -92,6 +96,7 @@
                     "source": {
                       "stackIndex": 0,
                       "fileName": "test/sources/app.js",
+                      "relativeFileName": "test/sources/app.js",
                       "lineNumber": 34,
                       "columnNumber": 11,
                       "functionName": "register3",
@@ -109,6 +114,7 @@
               "source": {
                 "stackIndex": 0,
                 "fileName": "test/sources/app.js",
+                "relativeFileName": "test/sources/app.js",
                 "lineNumber": 34,
                 "columnNumber": 11,
                 "functionName": "register3",
@@ -140,6 +146,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/app.js",
+            "relativeFileName": "test/sources/app.js",
             "lineNumber": 30,
             "columnNumber": 14,
             "functionName": "register1",
@@ -167,6 +174,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/app.js",
+            "relativeFileName": "test/sources/app.js",
             "lineNumber": 27,
             "columnNumber": 14,
             "functionName": "register1",
@@ -192,6 +200,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/app.js",
+            "relativeFileName": "test/sources/app.js",
             "lineNumber": 28,
             "columnNumber": 14,
             "functionName": "register1",
@@ -217,6 +226,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/app.js",
+            "relativeFileName": "test/sources/app.js",
             "lineNumber": 29,
             "columnNumber": 14,
             "functionName": "register1",
@@ -248,6 +258,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/app.js",
+        "relativeFileName": "test/sources/app.js",
         "lineNumber": 26,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -278,6 +289,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/app.js",
+            "relativeFileName": "test/sources/app.js",
             "lineNumber": 44,
             "columnNumber": 14,
             "functionName": "sibling",
@@ -309,6 +321,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/app.js",
+        "relativeFileName": "test/sources/app.js",
         "lineNumber": 43,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -336,6 +349,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/app.js",
+        "relativeFileName": "test/sources/app.js",
         "lineNumber": 13,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -361,6 +375,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/app.js",
+        "relativeFileName": "test/sources/app.js",
         "lineNumber": 20,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -386,6 +401,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/app.js",
+        "relativeFileName": "test/sources/app.js",
         "lineNumber": 23,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -411,6 +427,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/app.js",
+        "relativeFileName": "test/sources/app.js",
         "lineNumber": 24,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -426,6 +443,7 @@
         "source": {
           "stackIndex": 0,
           "fileName": "test/sources/app.js",
+          "relativeFileName": "test/sources/app.js",
           "lineNumber": 14,
           "columnNumber": 7,
           "functionName": "buildTheSourceApp",
@@ -440,6 +458,7 @@
         "source": {
           "stackIndex": 0,
           "fileName": "test/sources/app.js",
+          "relativeFileName": "test/sources/app.js",
           "lineNumber": 15,
           "columnNumber": 7,
           "functionName": "buildTheSourceApp",
@@ -454,6 +473,7 @@
         "source": {
           "stackIndex": 0,
           "fileName": "test/sources/app.js",
+          "relativeFileName": "test/sources/app.js",
           "lineNumber": 16,
           "columnNumber": 7,
           "functionName": "buildTheSourceApp",
@@ -474,6 +494,7 @@
         "source": {
           "stackIndex": 0,
           "fileName": "test/sources/app.js",
+          "relativeFileName": "test/sources/app.js",
           "lineNumber": 17,
           "columnNumber": 7,
           "functionName": "buildTheSourceApp",

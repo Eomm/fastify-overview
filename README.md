@@ -188,7 +188,8 @@ Here an example of the structure with the `addSource` option:
   "hash": "31d31d981f412085927efb5e9f36be8ba905516a",
   "source": {
     "stackIndex": 0,
-    "fileName": "test/sources/app.js",
+    "fileName": "/user/foo/project/bar/test/sources/app.js",
+    "relativeFileName": "test/sources/app.js",
     "lineNumber": 34,
     "columnNumber": 11,
     "functionName": "register3",
