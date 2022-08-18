@@ -8,7 +8,7 @@
       "children": [
         {
           "id": 42,
-          "name": "fileTwo",
+          "name": "/file-two.js",
           "children": [],
           "routes": [
             {
@@ -368,7 +368,7 @@
     },
     {
       "id": 42,
-      "name": "pluginB",
+      "name": "/plugin-b.js",
       "children": [],
       "routes": [
         {
@@ -431,7 +431,7 @@
     },
     {
       "id": 42,
-      "name": "pluginC",
+      "name": "/plugin-c.js",
       "children": [],
       "routes": [
         {
