@@ -15,9 +15,11 @@ test('simple app', async t => {
 
   const structure = JSON.stringify(root, null, 2)
   const removeLocalPath = /(?<="fileName": ").*(?=test\/sources\/app)/gmi
+  const removeRelativePath = /(?<="relativeFileName": ").*(?=test\/sources\/app)/gmi
   const removeRandomId = /(?<="id": ).*(?=,)/gmi
   const result = structure
     .replace(removeLocalPath, '')
+    .replace(removeRelativePath, '')
     .replace(removeRandomId, '42')
   t.same(JSON.parse(result), require('./fixture/app-source.json'), { skip: isWindows })
 
@@ -65,10 +67,12 @@ test('autoload', async t => {
 
   const structure = JSON.stringify(root, null, 2)
   const removeLocalPath = /(?<="fileName": ").*(?=test\/sources\/.*\.js)/gmi
+  const removeRelativePath = /(?<="relativeFileName": ").*(?=test\/sources\/.*\.js)/gmi
   const removeRandomId = /(?<="id": ).*(?=,)/gmi
   const removeLocalName = /(?<="name": ").*(?=\/.*\.js)/gmi
   const result = structure
     .replace(removeLocalPath, '')
+    .replace(removeRelativePath, '')
     .replace(removeLocalName, '')
     .replace(removeRandomId, '42')
   t.same(JSON.parse(result), require('./fixture/autoload.json'), { skip: isWindows })

@@ -26,6 +26,7 @@
                     "source": {
                       "stackIndex": 0,
                       "fileName": "test/sources/file-two.js",
+                      "relativeFileName": "test/sources/file-two.js",
                       "lineNumber": 8,
                       "columnNumber": 12,
                       "functionName": "fileTwo",
@@ -43,6 +44,7 @@
                     "source": {
                       "stackIndex": 0,
                       "fileName": "test/sources/file-two.js",
+                      "relativeFileName": "test/sources/file-two.js",
                       "lineNumber": 8,
                       "columnNumber": 12,
                       "functionName": "fileTwo",
@@ -57,6 +59,7 @@
               "source": {
                 "stackIndex": 0,
                 "fileName": "test/sources/file-two.js",
+                "relativeFileName": "test/sources/file-two.js",
                 "lineNumber": 8,
                 "columnNumber": 12,
                 "functionName": "fileTwo",
@@ -72,6 +75,7 @@
                 "source": {
                   "stackIndex": 0,
                   "fileName": "test/sources/file-two.js",
+                  "relativeFileName": "test/sources/file-two.js",
                   "lineNumber": 4,
                   "columnNumber": 12,
                   "functionName": "fileTwo",
@@ -86,6 +90,7 @@
                 "source": {
                   "stackIndex": 0,
                   "fileName": "test/sources/file-two.js",
+                  "relativeFileName": "test/sources/file-two.js",
                   "lineNumber": 5,
                   "columnNumber": 12,
                   "functionName": "fileTwo",
@@ -100,6 +105,7 @@
                 "source": {
                   "stackIndex": 0,
                   "fileName": "test/sources/file-two.js",
+                  "relativeFileName": "test/sources/file-two.js",
                   "lineNumber": 6,
                   "columnNumber": 12,
                   "functionName": "fileTwo",
@@ -120,6 +126,7 @@
                 "source": {
                   "stackIndex": 0,
                   "fileName": "test/sources/file-two.js",
+                  "relativeFileName": "test/sources/file-two.js",
                   "lineNumber": 20,
                   "columnNumber": 12,
                   "functionName": "fileTwo",
@@ -141,6 +148,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload/file-one.js",
+            "relativeFileName": "test/sources/autoload/file-one.js",
             "lineNumber": 27,
             "columnNumber": 12,
             "functionName": "fileOne",
@@ -165,6 +173,7 @@
                 "source": {
                   "stackIndex": 0,
                   "fileName": "test/sources/autoload/file-one.js",
+                  "relativeFileName": "test/sources/autoload/file-one.js",
                   "lineNumber": 11,
                   "columnNumber": 12,
                   "functionName": "fileOne",
@@ -182,6 +191,7 @@
                 "source": {
                   "stackIndex": 0,
                   "fileName": "test/sources/autoload/file-one.js",
+                  "relativeFileName": "test/sources/autoload/file-one.js",
                   "lineNumber": 11,
                   "columnNumber": 12,
                   "functionName": "fileOne",
@@ -196,6 +206,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload/file-one.js",
+            "relativeFileName": "test/sources/autoload/file-one.js",
             "lineNumber": 11,
             "columnNumber": 12,
             "functionName": "fileOne",
@@ -211,6 +222,7 @@
             "source": {
               "stackIndex": 0,
               "fileName": "test/sources/autoload/file-one.js",
+              "relativeFileName": "test/sources/autoload/file-one.js",
               "lineNumber": 7,
               "columnNumber": 12,
               "functionName": "fileOne",
@@ -225,6 +237,7 @@
             "source": {
               "stackIndex": 0,
               "fileName": "test/sources/autoload/file-one.js",
+              "relativeFileName": "test/sources/autoload/file-one.js",
               "lineNumber": 8,
               "columnNumber": 12,
               "functionName": "fileOne",
@@ -239,6 +252,7 @@
             "source": {
               "stackIndex": 0,
               "fileName": "test/sources/autoload/file-one.js",
+              "relativeFileName": "test/sources/autoload/file-one.js",
               "lineNumber": 9,
               "columnNumber": 12,
               "functionName": "fileOne",
@@ -259,6 +273,7 @@
             "source": {
               "stackIndex": 0,
               "fileName": "test/sources/autoload/file-one.js",
+              "relativeFileName": "test/sources/autoload/file-one.js",
               "lineNumber": 23,
               "columnNumber": 12,
               "functionName": "fileOne",
@@ -280,6 +295,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/autoload.js",
+        "relativeFileName": "test/sources/autoload.js",
         "lineNumber": 16,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -310,6 +326,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload/plugin-a.js",
+            "relativeFileName": "test/sources/autoload/plugin-a.js",
             "lineNumber": 4,
             "columnNumber": 5,
             "functionName": "module.exports.default",
@@ -341,6 +358,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/autoload.js",
+        "relativeFileName": "test/sources/autoload.js",
         "lineNumber": 16,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -371,6 +389,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload/sub-dir/plugin-b.js",
+            "relativeFileName": "test/sources/autoload/sub-dir/plugin-b.js",
             "lineNumber": 4,
             "columnNumber": 5,
             "functionName": "pluginB",
@@ -402,6 +421,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/autoload.js",
+        "relativeFileName": "test/sources/autoload.js",
         "lineNumber": 16,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -432,6 +452,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload/sub-dir/plugin-c.js",
+            "relativeFileName": "test/sources/autoload/sub-dir/plugin-c.js",
             "lineNumber": 4,
             "columnNumber": 5,
             "functionName": "pluginC",
@@ -463,6 +484,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/autoload.js",
+        "relativeFileName": "test/sources/autoload.js",
         "lineNumber": 16,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -494,6 +516,7 @@
                     "source": {
                       "stackIndex": 0,
                       "fileName": "test/sources/autoload.js",
+                      "relativeFileName": "test/sources/autoload.js",
                       "lineNumber": 38,
                       "columnNumber": 11,
                       "functionName": "register3",
@@ -507,6 +530,7 @@
                     "source": {
                       "stackIndex": 0,
                       "fileName": "test/sources/autoload.js",
+                      "relativeFileName": "test/sources/autoload.js",
                       "lineNumber": 38,
                       "columnNumber": 11,
                       "functionName": "register3",
@@ -524,6 +548,7 @@
               "source": {
                 "stackIndex": 0,
                 "fileName": "test/sources/autoload.js",
+                "relativeFileName": "test/sources/autoload.js",
                 "lineNumber": 38,
                 "columnNumber": 11,
                 "functionName": "register3",
@@ -545,6 +570,7 @@
                     "source": {
                       "stackIndex": 0,
                       "fileName": "test/sources/autoload.js",
+                      "relativeFileName": "test/sources/autoload.js",
                       "lineNumber": 41,
                       "columnNumber": 11,
                       "functionName": "register3",
@@ -560,6 +586,7 @@
                     "source": {
                       "stackIndex": 0,
                       "fileName": "test/sources/autoload.js",
+                      "relativeFileName": "test/sources/autoload.js",
                       "lineNumber": 41,
                       "columnNumber": 11,
                       "functionName": "register3",
@@ -577,6 +604,7 @@
               "source": {
                 "stackIndex": 0,
                 "fileName": "test/sources/autoload.js",
+                "relativeFileName": "test/sources/autoload.js",
                 "lineNumber": 41,
                 "columnNumber": 11,
                 "functionName": "register3",
@@ -608,6 +636,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload.js",
+            "relativeFileName": "test/sources/autoload.js",
             "lineNumber": 37,
             "columnNumber": 14,
             "functionName": "register1",
@@ -635,6 +664,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload.js",
+            "relativeFileName": "test/sources/autoload.js",
             "lineNumber": 34,
             "columnNumber": 14,
             "functionName": "register1",
@@ -660,6 +690,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload.js",
+            "relativeFileName": "test/sources/autoload.js",
             "lineNumber": 35,
             "columnNumber": 14,
             "functionName": "register1",
@@ -685,6 +716,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload.js",
+            "relativeFileName": "test/sources/autoload.js",
             "lineNumber": 36,
             "columnNumber": 14,
             "functionName": "register1",
@@ -716,6 +748,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/autoload.js",
+        "relativeFileName": "test/sources/autoload.js",
         "lineNumber": 33,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -746,6 +779,7 @@
           "source": {
             "stackIndex": 0,
             "fileName": "test/sources/autoload.js",
+            "relativeFileName": "test/sources/autoload.js",
             "lineNumber": 51,
             "columnNumber": 14,
             "functionName": "sibling",
@@ -777,6 +811,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/autoload.js",
+        "relativeFileName": "test/sources/autoload.js",
         "lineNumber": 50,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -804,6 +839,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/autoload.js",
+        "relativeFileName": "test/sources/autoload.js",
         "lineNumber": 20,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -829,6 +865,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/autoload.js",
+        "relativeFileName": "test/sources/autoload.js",
         "lineNumber": 27,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -854,6 +891,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/autoload.js",
+        "relativeFileName": "test/sources/autoload.js",
         "lineNumber": 30,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -879,6 +917,7 @@
       "source": {
         "stackIndex": 0,
         "fileName": "test/sources/autoload.js",
+        "relativeFileName": "test/sources/autoload.js",
         "lineNumber": 31,
         "columnNumber": 7,
         "functionName": "buildTheSourceApp",
@@ -894,6 +933,7 @@
         "source": {
           "stackIndex": 0,
           "fileName": "test/sources/autoload.js",
+          "relativeFileName": "test/sources/autoload.js",
           "lineNumber": 21,
           "columnNumber": 7,
           "functionName": "buildTheSourceApp",
@@ -908,6 +948,7 @@
         "source": {
           "stackIndex": 0,
           "fileName": "test/sources/autoload.js",
+          "relativeFileName": "test/sources/autoload.js",
           "lineNumber": 22,
           "columnNumber": 7,
           "functionName": "buildTheSourceApp",
@@ -922,6 +963,7 @@
         "source": {
           "stackIndex": 0,
           "fileName": "test/sources/autoload.js",
+          "relativeFileName": "test/sources/autoload.js",
           "lineNumber": 23,
           "columnNumber": 7,
           "functionName": "buildTheSourceApp",
@@ -942,6 +984,7 @@
         "source": {
           "stackIndex": 0,
           "fileName": "test/sources/autoload.js",
+          "relativeFileName": "test/sources/autoload.js",
           "lineNumber": 24,
           "columnNumber": 7,
           "functionName": "buildTheSourceApp",
