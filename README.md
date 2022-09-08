@@ -24,6 +24,11 @@ Doing so you will get a complete overview of your application and you can:
 This plugin is intended to be run only for _development_ purposes.
 
 
+### Visualize the structure
+
+This plugin provides a detailed data structure of your application. To be able to visualize it, use this plugin together with [`fastify-overview-ui`](https://github.com/nearform/fastify-overview-ui), be sure to check it out!
+
+
 ## Install
 
 ```
@@ -85,9 +90,6 @@ async function run() {
 run()
 ```
 
-### Visualize the structure
-
-This plugin provides a detailed data structure of your application. To be able to visualize it, use this plugin together with [`fastify-overview-ui`](https://github.com/nearform/fastify-overview-ui).
 
 ### Structure
 
