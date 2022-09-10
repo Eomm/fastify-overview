@@ -110,3 +110,4 @@ example.js
 test/
 .github/
 test-app/
+.eslintrc

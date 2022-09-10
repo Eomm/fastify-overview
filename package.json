@@ -20,6 +20,7 @@
     "draw"
   ],
   "author": "Manuel Spigolon <behemoth89@gmail.com> (https://github.com/Eomm)",
+  "funding": "https://github.com/Eomm/fastify-overview?sponsor=1",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Eomm/fastify-overview/issues"
