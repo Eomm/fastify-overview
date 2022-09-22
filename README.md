@@ -171,6 +171,7 @@ You can pass the following options to the plugin:
 ```js
 app.register(require('fastify-overview'), {
   addSource: true, // default: false
+  hideEmpty: true, // default: false
   exposeRoute: true, // default: false
   exposeRouteOptions: {
     method: 'POST', // default: 'GET'
@@ -200,6 +201,55 @@ Here an example of the structure with the `addSource` option:
   }
 }
 ```
+
+### hideEmpty
+
+To keep the structure light and clean, you can hide the properties that do not contain anything.
+For example, if you do not have any decorator, the `decorators` property will not be present in the structure.
+
+The properties that can be hidden are:
+- `decorators` and/or its children
+- `hooks` and/or its children
+- `routes`
+
+Here an example of the cleaned output:
+
+```json
+{
+  "id": 0.38902288100060645,
+  "name": "fastify -> fastify-overview",
+  "children": [
+    {
+      "id": 0.7086786379705781,
+      "name": "function (instance, opts, next) { next() }"
+    },
+    {
+      "id": 0.6405610832733726,
+      "name": "async function (instance, opts) { -- instance.register(async function (instance, opts) {",
+      "children": [
+        {
+          "id": 0.8200459678409413,
+          "name": "async function (instance, opts) { -- instance.decorateReply('oneRep', {})",
+          "decorators": {
+            "decorateReply": [
+              { "name": "oneRep" }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "hooks": {
+    "onRequest": [
+      {
+        "name": "hook1",
+        "hash": "31d31d981f412085927efb5e9f36be8ba905516a"
+      }
+    ]
+  }
+}
+```
+
 
 ### exposeRoute
 
