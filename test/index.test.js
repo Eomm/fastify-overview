@@ -95,7 +95,7 @@ test('register', async t => {
 
 test('hide empty', async t => {
   const app = fastify()
-  await app.register(plugin, { hideEmptyNodes: true })
+  await app.register(plugin, { hideEmpty: true })
 
   app.decorate('emptyObject', {})
   app.decorate('emptyArray', [])
