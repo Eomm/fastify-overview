@@ -17,6 +17,7 @@ const {
 
 function fastifyOverview (fastify, options, next) {
   const opts = Object.assign({
+    hideEmpty: false,
     addSource: false
   }, options)
 
@@ -57,6 +58,29 @@ function fastifyOverview (fastify, options, next) {
     if (!structure) {
       throw new Error('Fastify must be in ready status to access the overview')
     }
+
+    if (opts.hideEmpty) {
+      const filterStructure = JSON.stringify(structure, (key, value) => {
+        switch (key) {
+          case 'decorators':
+          case 'hooks':
+            if (Object.entries(value).every(([, v]) => {
+              return Array.isArray(v) && v.length === 0
+            })) {
+              return undefined
+            }
+            break
+          default:
+            if (Array.isArray(value) && value.length === 0) {
+              return undefined
+            }
+        }
+
+        return value
+      })
+      return JSON.parse(filterStructure)
+    }
+
     return structure
   })
 
@@ -67,6 +91,7 @@ function fastifyOverview (fastify, options, next) {
     const routeConfig = Object.assign(
       {
         method: 'GET',
+
         url: '/json-overview'
       },
       opts.exposeRouteOptions,

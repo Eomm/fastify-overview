@@ -92,3 +92,57 @@ test('register', async t => {
   t.equal(reg1.children[2].name, 'register4')
   t.equal(reg1.hooks.onRequest.length, 1)
 })
+
+test('hide empty', async t => {
+  const app = fastify()
+  await app.register(plugin, { hideEmpty: true })
+
+  app.decorate('emptyObject', {})
+  app.decorate('emptyArray', [])
+  app.decorateRequest('oneReqDecor', [])
+
+  app.addHook('onRequest', function hook1 () {})
+  app.addHook('preParsing', function hook2 () {})
+  app.addHook('preValidation', function hook3 () {})
+  app.addHook('onError', function hookSix () {})
+
+  app.register(function (instance, opts, next) { next() })
+  app.register(async function (instance, opts) {
+    instance.register(async function (instance, opts) {
+      instance.decorateReply('oneRep', {})
+    })
+  })
+
+  await app.ready()
+  const structure = app.overview()
+
+  t.strictSame(structure.decorators, {
+    decorate: [
+      { name: 'emptyObject' },
+      { name: 'emptyArray' }
+    ],
+    decorateRequest: [
+      { name: 'oneReqDecor' }
+    ]
+  })
+
+  t.strictSame(structure.hooks, {
+    onRequest: [{ name: 'hook1', hash: '31d31d981f412085927efb5e9f36be8ba905516a' }],
+    preParsing: [{ name: 'hook2', hash: '07f8fc52f2a92adc80881b4c11ee61ab56ea42d1' }],
+    preValidation: [{ name: 'hook3', hash: '92b002434cd5d8481e7e5562b51df679e2f8d586' }],
+    onError: [{ name: 'hookSix', hash: '9398f5df01879094095221d86a544179e62cee12' }]
+  })
+
+  t.equal(structure.children.length, 2)
+
+  delete structure.children[0].id
+  t.same(structure.children[0], {
+    name: 'function (instance, opts, next) { next() }'
+  }, 'should have only the name')
+
+  t.strictSame(structure.children[1].children[0].decorators, {
+    decorateReply: [
+      { name: 'oneRep' }
+    ]
+  })
+})
