@@ -17,7 +17,7 @@ const {
 
 function fastifyOverview (fastify, options, next) {
   const opts = Object.assign({
-    hideEmpty: false,
+    hideEmptyNodes: false,
     addSource: false
   }, options)
 
@@ -59,7 +59,7 @@ function fastifyOverview (fastify, options, next) {
       throw new Error('Fastify must be in ready status to access the overview')
     }
 
-    if (opts.hideEmpty) {
+    if (opts.hideEmptyNodes) {
       const filterStructure = JSON.stringify(structure, (key, value) => {
         switch (key) {
           case 'decorators':
