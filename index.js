@@ -91,7 +91,7 @@ function fastifyOverview (fastify, options, next) {
     const routeConfig = Object.assign(
       {
         method: 'GET',
-
+        exposeHeadRoute: false,
         url: '/json-overview'
       },
       opts.exposeRouteOptions,
