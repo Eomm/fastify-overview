@@ -95,7 +95,7 @@ test('register', async t => {
 
 test('hide empty', async t => {
   const app = fastify()
-  await app.register(plugin, { hideEmpty: true })
+  await app.register(plugin)
 
   app.decorate('emptyObject', {})
   app.decorate('emptyArray', [])
@@ -114,7 +114,7 @@ test('hide empty', async t => {
   })
 
   await app.ready()
-  const structure = app.overview()
+  const structure = app.overview({ hideEmpty: true })
 
   t.strictSame(structure.decorators, {
     decorate: [

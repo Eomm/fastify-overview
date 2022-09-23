@@ -80,7 +80,7 @@ async function run() {
 
   // read your application structure when fastify is ready
   app.addHook('onReady', function showStructure (done) {
-    const appStructure = app.overview()
+    const appStructure = app.overview() // 🦄 Here is the magic!
     console.log(JSON.stringify(appStructure, null, 2))
     done(null)
   })
@@ -166,17 +166,20 @@ You can see the previous code output running it on RunKit: [![runkit](https://im
 
 ## Options
 
-You can pass the following options to the plugin:
+You can pass the following options to the plugin or to the decorator:
 
 ```js
 app.register(require('fastify-overview'), {
   addSource: true, // default: false
-  hideEmpty: true, // default: false
   exposeRoute: true, // default: false
   exposeRouteOptions: {
     method: 'POST', // default: 'GET'
     url: '/customUrl', // default: '/json-overview'
   }
+})
+
+const appStructure = app.overview({
+  hideEmpty: true, // default: false
 })
 ```
 
@@ -204,13 +207,22 @@ Here an example of the structure with the `addSource` option:
 
 ### hideEmpty
 
-To keep the structure light and clean, you can hide the properties that do not contain anything.
+To keep the structure light and clean, you can hide empty properties by providing this option to the `overview` decorator.
 For example, if you do not have any decorator, the `decorators` property will not be present in the structure.
 
 The properties that can be hidden are:
 - `decorators` and/or its children
 - `hooks` and/or its children
 - `routes`
+
+You can get both the structure by calling the `overview` method twice:
+
+```js
+const fullStructure = app.overview()
+const lightStructure = app.overview({
+  hideEmpty: true, // default: false
+})
+```
 
 Here an example of the cleaned output:
 
