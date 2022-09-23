@@ -25,6 +25,9 @@
   "bugs": {
     "url": "https://github.com/Eomm/fastify-overview/issues"
   },
+  "engines": {
+    "node": ">=14"
+  },
   "homepage": "https://github.com/Eomm/fastify-overview#readme",
   "devDependencies": {
     "@fastify/autoload": "^5.0.0",
