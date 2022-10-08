@@ -17,7 +17,7 @@ export interface FastifyOverviewOptions {
   /**
    * Customize the route's options when `exposeRoute` is set to `true`
    */
-   exposeRouteOptions?: RouteOptions,
+   exposeRouteOptions?: Partial<RouteOptions>,
 }
 
 export interface FastifyOverviewDecoratorOptions {
