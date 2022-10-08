@@ -1,4 +1,4 @@
-import type { FastifyPluginCallback, RouteOptions } from 'fastify'
+import type { FastifyPluginCallback, RouteOptions, HTTPMethods } from 'fastify'
 
 export interface FastifyOverviewOptions {
   /**
@@ -78,7 +78,7 @@ export interface OverviewStructure {
   },
   hooks?: OverviewStructureHooks,
   routes?: {
-    method: string,
+    method: HTTPMethods,
     url: string,
     prefix: string,
     hooks: OverviewStructureHooks,
