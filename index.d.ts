@@ -5,19 +5,19 @@ export interface FastifyOverviewOptions {
    * Add a `source` property to each node of the tree.
    * @default false
    */
-   addSource?: boolean;
+   addSource?: boolean,
 
   /**
    * Expose a route that will return the JSON structure.
    * By default the route is exposed at `GET /json-overview`.
    * @default false
    */
-   exposeRoute?: boolean;
+   exposeRoute?: boolean,
 
   /**
    * Customize the route's options when `exposeRoute` is set to `true`
    */
-   exposeRouteOptions?: RouteOptions;
+   exposeRouteOptions?: RouteOptions,
 }
 
 export interface FastifyOverviewDecoratorOptions {
@@ -25,28 +25,28 @@ export interface FastifyOverviewDecoratorOptions {
    * To keep the structure light and clean, you can hide empty properties
    * @default false
    */
-   hideEmpty?: boolean;
+   hideEmpty?: boolean,
 }
 
 interface OverviewStructureSource {
-  stackIndex: Number;
-  fileName: String;
-  relativeFileName: String;
-  lineNumber: Number;
-  columnNumber: Number;
-  functionName: String;
-  typeName?: String;
-  methodName?: String;
+  stackIndex: number,
+  fileName: string,
+  relativeFileName: string,
+  lineNumber: number,
+  columnNumber: number,
+  functionName: string,
+  typeName?: string,
+  methodName?: string,
 }
 
 interface OverviewStructureDecorator {
-  name: String;
+  name: string;
   source?: OverviewStructureSource,
 }
 
 interface OverviewStructureHook {
-  name: String;
-  hash: String;
+  name: string;
+  hash: string;
   source?: OverviewStructureSource;
 }
 
@@ -68,7 +68,7 @@ interface OverviewStructureHooks {
 
 export interface OverviewStructure {
   id: Number,
-  name: String,
+  name: string,
   source?: OverviewStructureSource,
   children?: OverviewStructure[],
   decorators?: {
@@ -78,9 +78,9 @@ export interface OverviewStructure {
   },
   hooks?: OverviewStructureHooks,
   routes?: {
-    method: String,
-    url: String,
-    prefix: String,
+    method: string,
+    url: string,
+    prefix: string,
     hooks: OverviewStructureHooks,
     source?: OverviewStructureSource,
   }[]
