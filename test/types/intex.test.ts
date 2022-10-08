@@ -1,10 +1,9 @@
-import { expectType } from "tsd";
+import { expectType } from 'tsd'
 
-import fastify,{ RouteOptions } from 'fastify';
-import fastifyOverview, { OverviewStructure } from '../../index';
+import fastify, { RouteOptions } from 'fastify'
+import fastifyOverview, { OverviewStructure } from '../../index'
 
-
-const app = fastify();
+const app = fastify()
 
 app
   .register(fastifyOverview, {
@@ -14,8 +13,8 @@ app
       url: '/custom'
     } as RouteOptions
   })
-  .after((err) => {
-    const data = app.overview();
-    expectType<OverviewStructure>(data);
+  .after((_) => {
+    const data = app.overview()
+    expectType<OverviewStructure>(data)
   })
-  .ready();
+  .ready()

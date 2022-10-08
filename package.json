@@ -5,8 +5,9 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "lint": "standard",
+    "lint": "standard && npm run lint:typescript",
     "lint:fix": "standard --fix",
+    "lint:typescript": "standard --parser @typescript-eslint/parser --plugin @typescript-eslint/eslint-plugin *.ts test/**/*.ts",
     "test": "tap test/**/*.test.js && npm run test:typescript",
     "test:typescript": "tsd"
   },
@@ -33,6 +34,8 @@
   "devDependencies": {
     "@fastify/autoload": "^5.0.0",
     "@types/node": "^18.8.3",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
     "fastify": "^4.0.2",
     "standard": "^17.0.0",
     "tap": "^16.0.1",

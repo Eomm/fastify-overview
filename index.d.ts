@@ -1,4 +1,4 @@
-import type { FastifyPluginCallback, RouteOptions } from 'fastify';
+import type { FastifyPluginCallback, RouteOptions } from 'fastify'
 
 export interface FastifyOverviewOptions {
   /**
@@ -28,17 +28,6 @@ export interface FastifyOverviewDecoratorOptions {
    hideEmpty?: boolean;
 }
 
-interface OverviewStructureDecorator {
-  name: String;
-  source?: OverviewStructureSource,
-}
-
-interface OverviewStructureHook {
-  name: String;
-  hash: String;
-  source?: OverviewStructureSource;
-}
-
 interface OverviewStructureSource {
   stackIndex: Number;
   fileName: String;
@@ -48,6 +37,17 @@ interface OverviewStructureSource {
   functionName: String;
   typeName?: String;
   methodName?: String;
+}
+
+interface OverviewStructureDecorator {
+  name: String;
+  source?: OverviewStructureSource,
+}
+
+interface OverviewStructureHook {
+  name: String;
+  hash: String;
+  source?: OverviewStructureSource;
 }
 
 interface OverviewStructureHooks {
@@ -87,10 +87,10 @@ export interface OverviewStructure {
 }
 
 declare module 'fastify' {
-  interface FastifyInstance {
+  export interface FastifyInstance {
     overview: (opts?: FastifyOverviewDecoratorOptions) => OverviewStructure;
   }
 }
 
-export const FastifyOverview: FastifyPluginCallback<FastifyOverviewOptions>;
-export default FastifyOverview;
+export const FastifyOverview: FastifyPluginCallback<FastifyOverviewOptions>
+export default FastifyOverview
