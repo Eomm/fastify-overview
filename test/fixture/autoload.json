@@ -141,6 +141,7 @@
             "onResponse": [],
             "onTimeout": [],
             "onReady": [],
+            "preClose": [],
             "onClose": [],
             "onRoute": [],
             "onRegister": []
@@ -288,6 +289,7 @@
         "onResponse": [],
         "onTimeout": [],
         "onReady": [],
+        "preClose": [],
         "onClose": [],
         "onRoute": [],
         "onRegister": []
@@ -351,6 +353,7 @@
         "onResponse": [],
         "onTimeout": [],
         "onReady": [],
+        "preClose": [],
         "onClose": [],
         "onRoute": [],
         "onRegister": []
@@ -414,6 +417,7 @@
         "onResponse": [],
         "onTimeout": [],
         "onReady": [],
+        "preClose": [],
         "onClose": [],
         "onRoute": [],
         "onRegister": []
@@ -477,6 +481,7 @@
         "onResponse": [],
         "onTimeout": [],
         "onReady": [],
+        "preClose": [],
         "onClose": [],
         "onRoute": [],
         "onRegister": []
@@ -629,6 +634,7 @@
             "onResponse": [],
             "onTimeout": [],
             "onReady": [],
+            "preClose": [],
             "onClose": [],
             "onRoute": [],
             "onRegister": []
@@ -741,6 +747,7 @@
         "onResponse": [],
         "onTimeout": [],
         "onReady": [],
+        "preClose": [],
         "onClose": [],
         "onRoute": [],
         "onRegister": []
@@ -804,6 +811,7 @@
         "onResponse": [],
         "onTimeout": [],
         "onReady": [],
+        "preClose": [],
         "onClose": [],
         "onRoute": [],
         "onRegister": []
@@ -999,6 +1007,7 @@
     "onResponse": [],
     "onTimeout": [],
     "onReady": [],
+    "preClose": [],
     "onClose": [],
     "onRoute": [],
     "onRegister": []

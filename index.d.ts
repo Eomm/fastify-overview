@@ -61,6 +61,7 @@ interface OverviewStructureHooks {
   onResponse?: OverviewStructureHook[],
   onTimeout?: OverviewStructureHook[],
   onReady?: OverviewStructureHook[],
+  preClose?: OverviewStructureHook[],
   onClose?: OverviewStructureHook[],
   onRoute?: OverviewStructureHook[],
   onRegister?: OverviewStructureHook[],

@@ -54,6 +54,7 @@
     }
   ],
   "onReady": [],
+  "preClose": [],
   "onClose": [],
   "onRoute": [],
   "onRegister": []
