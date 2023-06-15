@@ -1,0 +1,48 @@
+{
+  "id": 0.4471669761794044,
+  "name": "fastify -> fastify-overview",
+  "hooks": {
+    "onReady": [
+      {
+        "name": "onReady",
+        "hash": "56f76968f76bf621e0bb3d8ae253f66cd5b33e19"
+      },
+      {
+        "name": "onReadyAsync",
+        "hash": "52b0efdc93f5d94bb37724cf135973e4e7e743eb"
+      }
+    ],
+    "preClose": [
+      {
+        "name": "preClose",
+        "hash": "2e546a99fd59296c5ba6c9d686988a109e4290c4"
+      },
+      {
+        "name": "preCloseAsync",
+        "hash": "d06031e55a63f56a2c5be39ccedd6881c38b51f9"
+      }
+    ],
+    "onClose": [
+      {
+        "name": "onClose",
+        "hash": "c4ea7807be0111815311279108e558cef9b5868d"
+      },
+      {
+        "name": "onCloseAsync",
+        "hash": "fdcdc0114406d43e9ee47df5530add31828d210b"
+      }
+    ],
+    "onRoute": [
+      {
+        "name": "onRoute",
+        "hash": "ea96ec1308642abff965550ed4e9108a2a620e15"
+      }
+    ],
+    "onRegister": [
+      {
+        "name": "onRegister",
+        "hash": "fb94ad3ed9a554519eb3ea0354856627538b1c5c"
+      }
+    ]
+  }
+}
