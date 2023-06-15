@@ -5,7 +5,7 @@ const fastify = require('fastify')
 const plugin = require('../index')
 
 test('should track all the application hooks', {
-  skip: process.platform === 'win32' && process.version.startsWith('v16')
+  skip: process.platform === 'win32'
 }, async t => {
   const app = fastify()
   await app.register(plugin)
