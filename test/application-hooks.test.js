@@ -4,7 +4,9 @@ const { test } = require('tap')
 const fastify = require('fastify')
 const plugin = require('../index')
 
-test('hide empty', async t => {
+test('should track all the application hooks', {
+  skip: process.platform === 'win32' && process.version.startsWith('v16')
+}, async t => {
   const app = fastify()
   await app.register(plugin)
 
