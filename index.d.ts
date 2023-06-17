@@ -65,6 +65,7 @@ interface OverviewStructureHooks {
   onClose?: OverviewStructureHook[],
   onRoute?: OverviewStructureHook[],
   onRegister?: OverviewStructureHook[],
+  onRequestAbort?: OverviewStructureHook[],
 }
 
 export interface OverviewStructure {

@@ -54,7 +54,8 @@
                   }
                 ],
                 "onResponse": [],
-                "onTimeout": []
+                "onTimeout": [],
+                "onRequestAbort": []
               },
               "source": {
                 "stackIndex": 0,
@@ -140,6 +141,7 @@
             "onSend": [],
             "onResponse": [],
             "onTimeout": [],
+            "onRequestAbort": [],
             "onReady": [],
             "preClose": [],
             "onClose": [],
@@ -202,7 +204,8 @@
               }
             ],
             "onResponse": [],
-            "onTimeout": []
+            "onTimeout": [],
+            "onRequestAbort": []
           },
           "source": {
             "stackIndex": 0,
@@ -288,6 +291,7 @@
         "onSend": [],
         "onResponse": [],
         "onTimeout": [],
+        "onRequestAbort": [],
         "onReady": [],
         "preClose": [],
         "onClose": [],
@@ -323,7 +327,8 @@
             "onError": [],
             "onSend": [],
             "onResponse": [],
-            "onTimeout": []
+            "onTimeout": [],
+            "onRequestAbort": []
           },
           "source": {
             "stackIndex": 0,
@@ -352,6 +357,7 @@
         "onSend": [],
         "onResponse": [],
         "onTimeout": [],
+        "onRequestAbort": [],
         "onReady": [],
         "preClose": [],
         "onClose": [],
@@ -387,7 +393,8 @@
             "onError": [],
             "onSend": [],
             "onResponse": [],
-            "onTimeout": []
+            "onTimeout": [],
+            "onRequestAbort": []
           },
           "source": {
             "stackIndex": 0,
@@ -416,6 +423,7 @@
         "onSend": [],
         "onResponse": [],
         "onTimeout": [],
+        "onRequestAbort": [],
         "onReady": [],
         "preClose": [],
         "onClose": [],
@@ -451,7 +459,8 @@
             "onError": [],
             "onSend": [],
             "onResponse": [],
-            "onTimeout": []
+            "onTimeout": [],
+            "onRequestAbort": []
           },
           "source": {
             "stackIndex": 0,
@@ -480,6 +489,7 @@
         "onSend": [],
         "onResponse": [],
         "onTimeout": [],
+        "onRequestAbort": [],
         "onReady": [],
         "preClose": [],
         "onClose": [],
@@ -548,7 +558,8 @@
                 "onError": [],
                 "onSend": [],
                 "onResponse": [],
-                "onTimeout": []
+                "onTimeout": [],
+                "onRequestAbort": []
               },
               "source": {
                 "stackIndex": 0,
@@ -604,7 +615,8 @@
                 "onError": [],
                 "onSend": [],
                 "onResponse": [],
-                "onTimeout": []
+                "onTimeout": [],
+                "onRequestAbort": []
               },
               "source": {
                 "stackIndex": 0,
@@ -633,6 +645,7 @@
             "onSend": [],
             "onResponse": [],
             "onTimeout": [],
+            "onRequestAbort": [],
             "onReady": [],
             "preClose": [],
             "onClose": [],
@@ -665,7 +678,8 @@
             "onError": [],
             "onSend": [],
             "onResponse": [],
-            "onTimeout": []
+            "onTimeout": [],
+            "onRequestAbort": []
           },
           "source": {
             "stackIndex": 0,
@@ -691,7 +705,8 @@
             "onError": [],
             "onSend": [],
             "onResponse": [],
-            "onTimeout": []
+            "onTimeout": [],
+            "onRequestAbort": []
           },
           "source": {
             "stackIndex": 0,
@@ -717,7 +732,8 @@
             "onError": [],
             "onSend": [],
             "onResponse": [],
-            "onTimeout": []
+            "onTimeout": [],
+            "onRequestAbort": []
           },
           "source": {
             "stackIndex": 0,
@@ -746,6 +762,7 @@
         "onSend": [],
         "onResponse": [],
         "onTimeout": [],
+        "onRequestAbort": [],
         "onReady": [],
         "preClose": [],
         "onClose": [],
@@ -781,7 +798,8 @@
             "onError": [],
             "onSend": [],
             "onResponse": [],
-            "onTimeout": []
+            "onTimeout": [],
+            "onRequestAbort": []
           },
           "source": {
             "stackIndex": 0,
@@ -810,6 +828,7 @@
         "onSend": [],
         "onResponse": [],
         "onTimeout": [],
+        "onRequestAbort": [],
         "onReady": [],
         "preClose": [],
         "onClose": [],
@@ -842,7 +861,8 @@
         "onError": [],
         "onSend": [],
         "onResponse": [],
-        "onTimeout": []
+        "onTimeout": [],
+        "onRequestAbort": []
       },
       "source": {
         "stackIndex": 0,
@@ -868,7 +888,8 @@
         "onError": [],
         "onSend": [],
         "onResponse": [],
-        "onTimeout": []
+        "onTimeout": [],
+        "onRequestAbort": []
       },
       "source": {
         "stackIndex": 0,
@@ -894,7 +915,8 @@
         "onError": [],
         "onSend": [],
         "onResponse": [],
-        "onTimeout": []
+        "onTimeout": [],
+        "onRequestAbort": []
       },
       "source": {
         "stackIndex": 0,
@@ -920,7 +942,8 @@
         "onError": [],
         "onSend": [],
         "onResponse": [],
-        "onTimeout": []
+        "onTimeout": [],
+        "onRequestAbort": []
       },
       "source": {
         "stackIndex": 0,
@@ -1006,6 +1029,7 @@
     "onSend": [],
     "onResponse": [],
     "onTimeout": [],
+    "onRequestAbort": [],
     "onReady": [],
     "preClose": [],
     "onClose": [],

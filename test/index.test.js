@@ -23,6 +23,7 @@ test('basic test', async t => {
   app.addHook('onSend', function hook_7 () {})
   app.addHook('onResponse', async function hook8 () {})
   app.addHook('onTimeout', () => {})
+  app.addHook('onRequestAbort', async function hookAbort (request) { })
 
   app.register(function (instance, opts, next) { next() })
   app.register(async function (instance, opts) { })

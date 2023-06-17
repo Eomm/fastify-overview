@@ -53,6 +53,12 @@
       "hash": "eddae38f899bec68b598177766919cfbb91bb520"
     }
   ],
+  "onRequestAbort": [
+    {
+      "name": "hookAbort",
+      "hash": "97eb877315c76c90eccaf8fe6fb2015477bbf401"
+    }
+  ],
   "onReady": [],
   "preClose": [],
   "onClose": [],

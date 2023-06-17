@@ -33,7 +33,8 @@
                 "onError": [],
                 "onSend": [],
                 "onResponse": [],
-                "onTimeout": []
+                "onTimeout": [],
+                "onRequestAbort": []
               }
             },
             {
@@ -59,7 +60,8 @@
                 "onError": [],
                 "onSend": [],
                 "onResponse": [],
-                "onTimeout": []
+                "onTimeout": [],
+                "onRequestAbort": []
               }
             }
           ],
@@ -78,6 +80,7 @@
             "onSend": [],
             "onResponse": [],
             "onTimeout": [],
+            "onRequestAbort": [],
             "onReady": [],
             "preClose": [],
             "onClose": [],
@@ -100,7 +103,8 @@
             "onError": [],
             "onSend": [],
             "onResponse": [],
-            "onTimeout": []
+            "onTimeout": [],
+            "onRequestAbort": []
           }
         },
         {
@@ -116,7 +120,8 @@
             "onError": [],
             "onSend": [],
             "onResponse": [],
-            "onTimeout": []
+            "onTimeout": [],
+            "onRequestAbort": []
           }
         },
         {
@@ -132,7 +137,8 @@
             "onError": [],
             "onSend": [],
             "onResponse": [],
-            "onTimeout": []
+            "onTimeout": [],
+            "onRequestAbort": []
           }
         }
       ],
@@ -151,6 +157,7 @@
         "onSend": [],
         "onResponse": [],
         "onTimeout": [],
+        "onRequestAbort": [],
         "onReady": [],
         "preClose": [],
         "onClose": [],
@@ -176,7 +183,8 @@
             "onError": [],
             "onSend": [],
             "onResponse": [],
-            "onTimeout": []
+            "onTimeout": [],
+            "onRequestAbort": []
           }
         }
       ],
@@ -195,6 +203,7 @@
         "onSend": [],
         "onResponse": [],
         "onTimeout": [],
+        "onRequestAbort": [],
         "onReady": [],
         "preClose": [],
         "onClose": [],
@@ -217,7 +226,8 @@
         "onError": [],
         "onSend": [],
         "onResponse": [],
-        "onTimeout": []
+        "onTimeout": [],
+        "onRequestAbort": []
       }
     },
     {
@@ -233,7 +243,8 @@
         "onError": [],
         "onSend": [],
         "onResponse": [],
-        "onTimeout": []
+        "onTimeout": [],
+        "onRequestAbort": []
       }
     },
     {
@@ -249,7 +260,8 @@
         "onError": [],
         "onSend": [],
         "onResponse": [],
-        "onTimeout": []
+        "onTimeout": [],
+        "onRequestAbort": []
       }
     },
     {
@@ -265,7 +277,8 @@
         "onError": [],
         "onSend": [],
         "onResponse": [],
-        "onTimeout": []
+        "onTimeout": [],
+        "onRequestAbort": []
       }
     }
   ],
@@ -301,6 +314,7 @@
     "onSend": [],
     "onResponse": [],
     "onTimeout": [],
+    "onRequestAbort": [],
     "onReady": [],
     "preClose": [],
     "onClose": [],
