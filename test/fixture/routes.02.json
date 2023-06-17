@@ -21,7 +21,8 @@
       "onError": [],
       "onSend": [],
       "onResponse": [],
-      "onTimeout": []
+      "onTimeout": [],
+      "onRequestAbort": []
     }
   },
   {
@@ -47,7 +48,8 @@
       "onError": [],
       "onSend": [],
       "onResponse": [],
-      "onTimeout": []
+      "onTimeout": [],
+      "onRequestAbort": []
     }
   }
 ]
