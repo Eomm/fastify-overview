@@ -34,7 +34,7 @@
   "devDependencies": {
     "@fastify/autoload": "^5.0.0",
     "@types/node": "^20.1.0",
-    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^5.39.0",
     "fastify": "^4.0.2",
     "standard": "^17.0.0",
