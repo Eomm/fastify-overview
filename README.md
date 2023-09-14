@@ -122,6 +122,7 @@ The JSON structure returned by the `overview` method is like the following:
     "onSend": [],
     "onResponse": [],
     "onTimeout": [],
+    "onListen": [],
     "onReady": [],
     "onClose": [],
     "onRoute": [],

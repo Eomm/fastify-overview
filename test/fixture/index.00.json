@@ -59,6 +59,12 @@
       "hash": "97eb877315c76c90eccaf8fe6fb2015477bbf401"
     }
   ],
+  "onListen": [
+    {
+      "name": "onListen",
+      "hash": "9294d9abb602193c9b3cd02624da004b4b9e0da1"
+    }
+  ],
   "onReady": [],
   "preClose": [],
   "onClose": [],
