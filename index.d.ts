@@ -60,6 +60,7 @@ interface OverviewStructureHooks {
   onSend?: OverviewStructureHook[],
   onResponse?: OverviewStructureHook[],
   onTimeout?: OverviewStructureHook[],
+  onListen?: OverviewStructureHook[],
   onReady?: OverviewStructureHook[],
   preClose?: OverviewStructureHook[],
   onClose?: OverviewStructureHook[],
