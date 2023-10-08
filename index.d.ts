@@ -22,6 +22,10 @@ export interface FastifyOverviewOptions {
 
 export interface FastifyOverviewDecoratorOptions {
   /**
+   * Filters routes based on the provided predicate
+   */
+   routesFilter?: (method: HTTPMethods, url: string, prefix: string) => boolean,
+  /**
    * To keep the structure light and clean, you can hide empty properties
    * @default false
    */

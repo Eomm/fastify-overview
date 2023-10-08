@@ -148,3 +148,48 @@ test('hide empty', async t => {
     ]
   })
 })
+
+test('filter routes', async t => {
+  const app = fastify({ exposeHeadRoutes: false })
+  await app.register(plugin)
+
+  function noop () {}
+
+  app.get('/get', noop)
+  app.route({
+    method: 'GET',
+    url: '/route-get',
+    handler: noop
+  }).route({
+    method: 'POST',
+    url: '/route-post',
+    handler: noop
+  })
+  app.get('/to-filter', noop)
+
+  await app.ready()
+  const root = app.overview({
+    hideEmpty: true,
+    routesFilter: function filter (method, url, _) {
+      return method.toLowerCase() !== 'get' || url !== '/to-filter'
+    }
+  })
+
+  t.same(root.routes, [
+    {
+      method: 'GET',
+      prefix: '',
+      url: '/get'
+    },
+    {
+      method: 'GET',
+      prefix: '',
+      url: '/route-get'
+    },
+    {
+      method: 'POST',
+      prefix: '',
+      url: '/route-post'
+    }
+  ])
+})

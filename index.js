@@ -12,7 +12,9 @@ const {
   transformRoute,
   getDecoratorNode,
   getPluginNode,
-  getHookNode
+  getHookNode,
+  withEmptyPropsHidden,
+  withRoutesFiltered
 } = require('./lib/utils')
 
 function fastifyOverview (fastify, options, next) {
@@ -58,29 +60,8 @@ function fastifyOverview (fastify, options, next) {
       throw new Error('Fastify must be in ready status to access the overview')
     }
 
-    if (opts && opts.hideEmpty) {
-      const filterStructure = JSON.stringify(structure, (key, value) => {
-        switch (key) {
-          case 'decorators':
-          case 'hooks':
-            if (Object.entries(value).every(([, v]) => {
-              return Array.isArray(v) && v.length === 0
-            })) {
-              return undefined
-            }
-            break
-          default:
-            if (Array.isArray(value) && value.length === 0) {
-              return undefined
-            }
-        }
-
-        return value
-      })
-      return JSON.parse(filterStructure)
-    }
-
-    return structure
+    structure = opts && opts.hideEmpty ? withEmptyPropsHidden(structure) : structure
+    return opts && opts.routesFilter ? withRoutesFiltered(structure, opts.routesFilter) : structure
   })
 
   const rootToken = manInTheMiddle(fastify)
