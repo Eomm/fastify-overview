@@ -59,9 +59,7 @@ function fastifyOverview (fastify, options, next) {
     if (!structure) {
       throw new Error('Fastify must be in ready status to access the overview')
     }
-
-    structure = opts?.hideEmpty ? withEmptyPropsHidden(structure) : structure
-    return opts && opts.routesFilter ? withRoutesFiltered(structure, opts.routesFilter) : structure
+    return opts?.hideEmpty ? withEmptyPropsHidden(structure, opts) : structure
   })
 
   const rootToken = manInTheMiddle(fastify)

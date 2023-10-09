@@ -165,13 +165,22 @@ test('filter routes', async t => {
     url: '/route-post',
     handler: noop
   })
-  app.get('/to-filter', noop)
+
+  app.register(async function plugin (app) {
+    app.get('/to-filter', noop)
+    app.register(function inner (app, opts, next) {
+      app.get('/to-filter2', noop)
+      app.get('/not-filter', noop)
+      next()
+    })
+  })
 
   await app.ready()
   const root = app.overview({
     hideEmpty: true,
     routesFilter: function filter ({ method, url }) {
-      return method.toLowerCase() !== 'get' || url !== '/to-filter'
+      const regexp = /\/to-filter/
+      return method.toLowerCase() !== 'get' || !regexp.test(url)
     }
   })
 
@@ -192,4 +201,7 @@ test('filter routes', async t => {
       url: '/route-post'
     }
   ])
+
+  t.equal(root.children[0].routes.length, 0)
+  t.equal(root.children[0].children[0].routes.length, 1)
 })
