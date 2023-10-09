@@ -60,7 +60,7 @@ function fastifyOverview (fastify, options, next) {
       throw new Error('Fastify must be in ready status to access the overview')
     }
 
-    structure = opts && opts.hideEmpty ? withEmptyPropsHidden(structure) : structure
+    structure = opts?.hideEmpty ? withEmptyPropsHidden(structure) : structure
     return opts && opts.routesFilter ? withRoutesFiltered(structure, opts.routesFilter) : structure
   })
 
