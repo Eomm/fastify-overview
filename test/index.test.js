@@ -170,7 +170,7 @@ test('filter routes', async t => {
   await app.ready()
   const root = app.overview({
     hideEmpty: true,
-    routesFilter: function filter (method, url, _) {
+    routesFilter: function filter ({ method, url }) {
       return method.toLowerCase() !== 'get' || url !== '/to-filter'
     }
   })

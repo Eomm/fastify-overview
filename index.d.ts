@@ -24,7 +24,7 @@ export interface FastifyOverviewDecoratorOptions {
   /**
    * Filters routes based on the provided predicate
    */
-   routesFilter?: (method: HTTPMethods, url: string, prefix: string) => boolean,
+   routesFilter?: (routeItem: RouteItem) => boolean,
   /**
    * To keep the structure light and clean, you can hide empty properties
    * @default false
@@ -73,6 +73,14 @@ interface OverviewStructureHooks {
   onRequestAbort?: OverviewStructureHook[],
 }
 
+interface RouteItem {
+  method: HTTPMethods,
+  url: string,
+  prefix: string,
+  hooks: OverviewStructureHooks,
+  source?: OverviewStructureSource, 
+}
+
 export interface OverviewStructure {
   id: Number,
   name: string,
@@ -84,13 +92,7 @@ export interface OverviewStructure {
     decorateReply: OverviewStructureDecorator[]
   },
   hooks?: OverviewStructureHooks,
-  routes?: {
-    method: HTTPMethods,
-    url: string,
-    prefix: string,
-    hooks: OverviewStructureHooks,
-    source?: OverviewStructureSource,
-  }[]
+  routes?: RouteItem[]
 }
 
 declare module 'fastify' {

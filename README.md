@@ -271,9 +271,9 @@ Here an example of the cleaned output:
 You can decide which routes to keep based on the predicate provided in the 'routesFilter' property:
 
 ```js
-const lightStructure = app.overview({
+app.overview({
   hideEmpty: true,
-  routesFilter: function (method, url, prefix) {
+  routesFilter: function ({ method, url, prefix, hooks, source }) {
     return method.toLowerCase() !== 'get'
   }
 })
