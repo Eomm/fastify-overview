@@ -181,8 +181,8 @@ app.register(require('fastify-overview'), {
 
 const appStructure = app.overview({
   hideEmpty: true, // default: false
-  routesFilter: function (method, url, prefix) {
-    return method.toLowerCase() !== 'get'
+  routesFilter: function (routeItem) {
+    return routeItem.method.toLowerCase() !== 'get'
   }
 })
 ```
