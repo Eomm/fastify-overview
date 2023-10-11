@@ -273,8 +273,8 @@ You can decide which routes to keep based on the predicate provided in the 'rout
 ```js
 app.overview({
   hideEmpty: true,
-  routesFilter: function ({ method, url, prefix, hooks, source }) {
-    return method.toLowerCase() !== 'get'
+  routesFilter: function (routeItem) {
+    return routeItem.method.toLowerCase() !== 'get'
   }
 })
 ```

@@ -13,8 +13,7 @@ const {
   getDecoratorNode,
   getPluginNode,
   getHookNode,
-  withEmptyPropsHidden,
-  withRoutesFiltered
+  filterStructure
 } = require('./lib/utils')
 
 function fastifyOverview (fastify, options, next) {
@@ -59,7 +58,10 @@ function fastifyOverview (fastify, options, next) {
     if (!structure) {
       throw new Error('Fastify must be in ready status to access the overview')
     }
-    return opts?.hideEmpty ? withEmptyPropsHidden(structure, opts) : structure
+    if (opts?.hideEmpty || opts?.routesFilter) {
+      return filterStructure(structure, opts)
+    }
+    return structure
   })
 
   const rootToken = manInTheMiddle(fastify)

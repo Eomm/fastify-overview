@@ -149,7 +149,7 @@ test('hide empty', async t => {
   })
 })
 
-test('filter routes', async t => {
+test('filter routes with hide', async t => {
   const app = fastify({ exposeHeadRoutes: false })
   await app.register(plugin)
 
@@ -162,7 +162,7 @@ test('filter routes', async t => {
     handler: noop
   }).route({
     method: 'POST',
-    url: '/route-post',
+    url: '/try-to-filter-post',
     handler: noop
   })
 
@@ -198,7 +198,103 @@ test('filter routes', async t => {
     {
       method: 'POST',
       prefix: '',
-      url: '/route-post'
+      url: '/try-to-filter-post'
+    }
+  ])
+
+  t.same(
+    Object.keys(root.children[0]), ['id', 'name', 'children'],
+    'should not have routes key'
+  )
+  t.equal(root.children[0].children[0].routes.length, 1)
+})
+
+test('filter routes without hide', async t => {
+  const app = fastify({ exposeHeadRoutes: false })
+  await app.register(plugin)
+
+  function noop () {}
+
+  app.get('/get', noop)
+  app.route({
+    method: 'GET',
+    url: '/route-get',
+    handler: noop
+  }).route({
+    method: 'POST',
+    url: '/try-to-filter-post',
+    handler: noop
+  })
+
+  app.register(async function plugin (app) {
+    app.get('/to-filter', noop)
+    app.register(function inner (app, opts, next) {
+      app.get('/to-filter2', noop)
+      app.get('/not-filter', noop)
+      next()
+    })
+  })
+
+  await app.ready()
+  const root = app.overview({
+    hideEmpty: false,
+    routesFilter: function filter ({ method, url }) {
+      const regexp = /\/to-filter/
+      return method.toLowerCase() !== 'get' || !regexp.test(url)
+    }
+  })
+
+  t.same(root.routes, [
+    {
+      method: 'GET',
+      prefix: '',
+      url: '/get',
+      hooks: {
+        onRequest: [],
+        preParsing: [],
+        preValidation: [],
+        preHandler: [],
+        preSerialization: [],
+        onError: [],
+        onSend: [],
+        onResponse: [],
+        onTimeout: [],
+        onRequestAbort: []
+      }
+    },
+    {
+      method: 'GET',
+      prefix: '',
+      url: '/route-get',
+      hooks: {
+        onRequest: [],
+        preParsing: [],
+        preValidation: [],
+        preHandler: [],
+        preSerialization: [],
+        onError: [],
+        onSend: [],
+        onResponse: [],
+        onTimeout: [],
+        onRequestAbort: []
+      }
+    },
+    {
+      method: 'POST',
+      prefix: '',
+      url: '/try-to-filter-post',
+      hooks: {
+        onRequest: [],
+        preParsing: [],
+        preValidation: [],
+        preHandler: [],
+        preSerialization: [],
+        onError: [],
+        onSend: [],
+        onResponse: [],
+        onTimeout: [],
+        onRequestAbort: []
+      }
     }
   ])
 
