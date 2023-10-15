@@ -3,6 +3,7 @@
 const { test } = require('tap')
 const fastify = require('fastify')
 const plugin = require('../index')
+const { handleRoutes } = require('../lib/utils')
 
 test('basic test', async t => {
   const app = fastify()
@@ -300,4 +301,13 @@ test('filter routes without hide', async t => {
 
   t.equal(root.children[0].routes.length, 0)
   t.equal(root.children[0].children[0].routes.length, 1)
+})
+
+test('empty routes with no opts', async t => {
+  const opts = { hideEmpty: false, routesFilter: undefined }
+  const value = []
+
+  const result = handleRoutes(value, opts)
+
+  t.equal(result, undefined)
 })
