@@ -78,7 +78,7 @@ interface RouteItem {
   url: string,
   prefix: string,
   hooks: OverviewStructureHooks,
-  source?: OverviewStructureSource, 
+  source?: OverviewStructureSource,
 }
 
 export interface OverviewStructure {
