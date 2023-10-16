@@ -181,6 +181,9 @@ app.register(require('fastify-overview'), {
 
 const appStructure = app.overview({
   hideEmpty: true, // default: false
+  routesFilter: function (routeItem) {
+    return routeItem.method.toLowerCase() !== 'get'
+  }
 })
 ```
 
@@ -261,6 +264,19 @@ Here an example of the cleaned output:
     ]
   }
 }
+```
+
+### routesFilter
+
+You can decide which routes to keep based on the predicate provided in the 'routesFilter' property:
+
+```js
+app.overview({
+  hideEmpty: true,
+  routesFilter: function (routeItem) {
+    return routeItem.method.toLowerCase() !== 'get'
+  }
+})
 ```
 
 

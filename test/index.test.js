@@ -3,6 +3,7 @@
 const { test } = require('tap')
 const fastify = require('fastify')
 const plugin = require('../index')
+const { handleRoutes } = require('../lib/utils')
 
 test('basic test', async t => {
   const app = fastify()
@@ -147,4 +148,166 @@ test('hide empty', async t => {
       { name: 'oneRep' }
     ]
   })
+})
+
+test('filter routes with hide', async t => {
+  const app = fastify({ exposeHeadRoutes: false })
+  await app.register(plugin)
+
+  function noop () {}
+
+  app.get('/get', noop)
+  app.route({
+    method: 'GET',
+    url: '/route-get',
+    handler: noop
+  }).route({
+    method: 'POST',
+    url: '/try-to-filter-post',
+    handler: noop
+  })
+
+  app.register(async function plugin (app) {
+    app.get('/to-filter', noop)
+    app.register(function inner (app, opts, next) {
+      app.get('/to-filter2', noop)
+      app.get('/not-filter', noop)
+      next()
+    })
+  })
+
+  await app.ready()
+  const root = app.overview({
+    hideEmpty: true,
+    routesFilter: function filter ({ method, url }) {
+      const regexp = /\/to-filter/
+      return method.toLowerCase() !== 'get' || !regexp.test(url)
+    }
+  })
+
+  t.same(root.routes, [
+    {
+      method: 'GET',
+      prefix: '',
+      url: '/get'
+    },
+    {
+      method: 'GET',
+      prefix: '',
+      url: '/route-get'
+    },
+    {
+      method: 'POST',
+      prefix: '',
+      url: '/try-to-filter-post'
+    }
+  ])
+
+  t.same(
+    Object.keys(root.children[0]), ['id', 'name', 'children'],
+    'should not have routes key'
+  )
+  t.equal(root.children[0].children[0].routes.length, 1)
+})
+
+test('filter routes without hide', async t => {
+  const app = fastify({ exposeHeadRoutes: false })
+  await app.register(plugin)
+
+  function noop () {}
+
+  app.get('/get', noop)
+  app.route({
+    method: 'GET',
+    url: '/route-get',
+    handler: noop
+  }).route({
+    method: 'POST',
+    url: '/try-to-filter-post',
+    handler: noop
+  })
+
+  app.register(async function plugin (app) {
+    app.get('/to-filter', noop)
+    app.register(function inner (app, opts, next) {
+      app.get('/to-filter2', noop)
+      app.get('/not-filter', noop)
+      next()
+    })
+  })
+
+  await app.ready()
+  const root = app.overview({
+    hideEmpty: false,
+    routesFilter: function filter ({ method, url }) {
+      const regexp = /\/to-filter/
+      return method.toLowerCase() !== 'get' || !regexp.test(url)
+    }
+  })
+
+  t.same(root.routes, [
+    {
+      method: 'GET',
+      prefix: '',
+      url: '/get',
+      hooks: {
+        onRequest: [],
+        preParsing: [],
+        preValidation: [],
+        preHandler: [],
+        preSerialization: [],
+        onError: [],
+        onSend: [],
+        onResponse: [],
+        onTimeout: [],
+        onRequestAbort: []
+      }
+    },
+    {
+      method: 'GET',
+      prefix: '',
+      url: '/route-get',
+      hooks: {
+        onRequest: [],
+        preParsing: [],
+        preValidation: [],
+        preHandler: [],
+        preSerialization: [],
+        onError: [],
+        onSend: [],
+        onResponse: [],
+        onTimeout: [],
+        onRequestAbort: []
+      }
+    },
+    {
+      method: 'POST',
+      prefix: '',
+      url: '/try-to-filter-post',
+      hooks: {
+        onRequest: [],
+        preParsing: [],
+        preValidation: [],
+        preHandler: [],
+        preSerialization: [],
+        onError: [],
+        onSend: [],
+        onResponse: [],
+        onTimeout: [],
+        onRequestAbort: []
+      }
+    }
+  ])
+
+  t.equal(root.children[0].routes.length, 0)
+  t.equal(root.children[0].children[0].routes.length, 1)
+})
+
+test('empty routes with no opts', async t => {
+  const opts = { hideEmpty: false, routesFilter: undefined }
+  const value = []
+
+  const result = handleRoutes(value, opts)
+
+  t.equal(result, undefined)
 })
