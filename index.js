@@ -170,7 +170,7 @@ function wrapFastify (instance, pluginOpts) {
 function wrapDecorator (instance, type, { addSource }) {
   const originalDecorate = instance[type]
   instance[type] = function wrapDecorate (name, value) {
-    const decoratorNode = getDecoratorNode(name)
+    const decoratorNode = getDecoratorNode(name, value)
     if (addSource) {
       decoratorNode.source = getSource()[0]
     }

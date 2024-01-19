@@ -13,6 +13,7 @@ interface OverviewStructureSource {
 
 interface OverviewStructureDecorator {
   name: string;
+  type: 'undefined' | 'object' | 'boolean' | 'number' | 'bigint' | 'string' | 'symbol' | 'function' | 'array'
   source?: OverviewStructureSource,
 }
 
