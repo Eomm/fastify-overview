@@ -73,6 +73,7 @@
             "decorate": [
               {
                 "name": "fileTwo",
+                "type": "string",
                 "source": {
                   "stackIndex": 0,
                   "fileName": "test/sources/file-two.js",
@@ -88,6 +89,7 @@
             "decorateRequest": [
               {
                 "name": "fileTwo",
+                "type": "string",
                 "source": {
                   "stackIndex": 0,
                   "fileName": "test/sources/file-two.js",
@@ -103,6 +105,7 @@
             "decorateReply": [
               {
                 "name": "fileTwo",
+                "type": "string",
                 "source": {
                   "stackIndex": 0,
                   "fileName": "test/sources/file-two.js",
@@ -224,6 +227,7 @@
         "decorate": [
           {
             "name": "fileOne",
+            "type": "string",
             "source": {
               "stackIndex": 0,
               "fileName": "test/sources/autoload/file-one.js",
@@ -239,6 +243,7 @@
         "decorateRequest": [
           {
             "name": "fileOne",
+            "type": "string",
             "source": {
               "stackIndex": 0,
               "fileName": "test/sources/autoload/file-one.js",
@@ -254,6 +259,7 @@
         "decorateReply": [
           {
             "name": "fileOne",
+            "type": "string",
             "source": {
               "stackIndex": 0,
               "fileName": "test/sources/autoload/file-one.js",
@@ -969,6 +975,7 @@
     "decorate": [
       {
         "name": "decorApp",
+        "type": "string",
         "source": {
           "stackIndex": 0,
           "fileName": "test/sources/autoload.js",
@@ -984,6 +991,7 @@
     "decorateRequest": [
       {
         "name": "decorApp",
+        "type": "string",
         "source": {
           "stackIndex": 0,
           "fileName": "test/sources/autoload.js",
@@ -999,6 +1007,7 @@
     "decorateReply": [
       {
         "name": "decorApp",
+        "type": "string",
         "source": {
           "stackIndex": 0,
           "fileName": "test/sources/autoload.js",
