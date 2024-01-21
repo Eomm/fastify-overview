@@ -27,6 +27,11 @@ test('routes', async t => {
     url: '/route-post-chain',
     handler: noop
   })
+  app.route({
+    method: ['GET', 'POST', 'PROPPATCH'],
+    url: '/array',
+    handler () {}
+  })
 
   app.register(function register1 (instance, opts, next) {
     instance.get('/get', noop)
@@ -66,7 +71,7 @@ test('routes', async t => {
   t.equal(root.children.length, 2)
   t.equal(root.children[0].name, 'register1')
   t.equal(root.children[1].name, 'sibling')
-  t.equal(root.routes.length, 8)
+  t.equal(root.routes.length, 9)
   t.same(root.routes, require('./fixture/routes.00.json'))
 
   const reg1 = root.children[0]
