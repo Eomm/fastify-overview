@@ -59,13 +59,25 @@ test('routes', async t => {
   app.register(function sibling (instance, opts, next) {
     next()
   })
+  app.register(function routes (instance, opts, next) {
+    ['propfind', 'proppatch', 'mkcol', 'copy', 'move', 'lock', 'unlock', 'trace', 'search'].forEach(method => {
+      instance.route({
+        method,
+        url: '/test',
+        handler () {}
+      })
+    })
+
+    next()
+  }, { prefix: '/api' })
 
   await app.ready()
   const root = app.overview()
 
-  t.equal(root.children.length, 2)
+  t.equal(root.children.length, 3)
   t.equal(root.children[0].name, 'register1')
   t.equal(root.children[1].name, 'sibling')
+  t.equal(root.children[2].name, 'routes')
   t.equal(root.routes.length, 8)
   t.same(root.routes, require('./fixture/routes.00.json'))
 
@@ -76,4 +88,8 @@ test('routes', async t => {
   const reg2 = reg1.children[0]
   t.same(reg2.routes.length, 2)
   t.same(reg2.routes, require('./fixture/routes.02.json'))
+
+  const reg3 = root.children[2]
+  t.same(reg3.routes.length, 9)
+  t.same(reg3.routes, require('./fixture/routes.03.json'))
 })
