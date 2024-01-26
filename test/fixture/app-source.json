@@ -459,6 +459,7 @@
     "decorate": [
       {
         "name": "decorApp",
+        "type": "string",
         "source": {
           "stackIndex": 0,
           "fileName": "test/sources/app.js",
@@ -474,6 +475,7 @@
     "decorateRequest": [
       {
         "name": "decorApp",
+        "type": "string",
         "source": {
           "stackIndex": 0,
           "fileName": "test/sources/app.js",
@@ -489,6 +491,7 @@
     "decorateReply": [
       {
         "name": "decorApp",
+        "type": "string",
         "source": {
           "stackIndex": 0,
           "fileName": "test/sources/app.js",

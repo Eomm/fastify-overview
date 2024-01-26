@@ -288,17 +288,20 @@
   "decorators": {
     "decorate": [
       {
-        "name": "decorApp"
+        "name": "decorApp",
+        "type": "string"
       }
     ],
     "decorateRequest": [
       {
-        "name": "decorApp"
+        "name": "decorApp",
+        "type": "string"
       }
     ],
     "decorateReply": [
       {
-        "name": "decorApp"
+        "name": "decorApp",
+        "type": "string"
       }
     ]
   },

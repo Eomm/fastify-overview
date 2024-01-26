@@ -43,9 +43,9 @@ test('basic test', async t => {
   t.type(structure.id, 'number')
   t.equal(structure.children.length, 3)
   t.same(structure.decorators.decorate, [
-    { name: 'test' },
-    { name: 'testObject' },
-    { name: 'testArray' }
+    { name: 'test', type: 'function' },
+    { name: 'testObject', type: 'object' },
+    { name: 'testArray', type: 'array' }
   ])
   t.same(structure.hooks, require('./fixture/index.00.json'))
 })
@@ -76,7 +76,7 @@ test('register', async t => {
 
   t.equal(root.children.length, 1)
   t.equal(root.children[0].name, 'register1')
-  t.same(root.decorators.decorate, [{ name: 'foo-bar' }])
+  t.same(root.decorators.decorate, [{ name: 'foo-bar', type: 'function' }])
   t.equal(root.hooks.onRequest.length, 0)
   t.equal(root.hooks.preParsing.length, 0)
   t.equal(root.hooks.preValidation.length, 0)
@@ -121,11 +121,11 @@ test('hide empty', async t => {
 
   t.strictSame(structure.decorators, {
     decorate: [
-      { name: 'emptyObject' },
-      { name: 'emptyArray' }
+      { name: 'emptyObject', type: 'object' },
+      { name: 'emptyArray', type: 'array' }
     ],
     decorateRequest: [
-      { name: 'oneReqDecor' }
+      { name: 'oneReqDecor', type: 'array' }
     ]
   })
 
@@ -145,7 +145,7 @@ test('hide empty', async t => {
 
   t.strictSame(structure.children[1].children[0].decorators, {
     decorateReply: [
-      { name: 'oneRep' }
+      { name: 'oneRep', type: 'object' }
     ]
   })
 })
