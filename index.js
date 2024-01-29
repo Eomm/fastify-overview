@@ -18,7 +18,14 @@ const {
 
 function fastifyOverview (fastify, options, next) {
   const opts = Object.assign({
-    addSource: false
+    addSource: false,
+    transformRouteOptions: (routeOptions) => {
+      return {
+        method: routeOptions.method,
+        url: routeOptions.url,
+        prefix: routeOptions.prefix
+      }
+    }
   }, options)
 
   const contextMap = new Map()
@@ -31,7 +38,7 @@ function fastifyOverview (fastify, options, next) {
   })
 
   fastify.addHook('onRoute', function markRoute (routeOpts) {
-    const routeNode = transformRoute(routeOpts)
+    const routeNode = transformRoute(routeOpts, opts.transformRouteOptions)
     if (opts.addSource) {
       routeNode.source = routeOpts.handler[kSourceRoute]
 

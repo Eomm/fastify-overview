@@ -1,4 +1,4 @@
-import { expectType } from 'tsd'
+import { expectError, expectType } from 'tsd'
 
 import fastify from 'fastify'
 import fastifyOverview, { OverviewStructure } from '../../index'
@@ -16,5 +16,21 @@ app
   .after((_) => {
     const data = app.overview()
     expectType<OverviewStructure>(data)
+  })
+  .ready()
+
+app
+  .register(fastifyOverview, {
+    transformRouteOptions: (routeOptions) => {
+      return {
+        bodySchema: routeOptions.schema?.body,
+        headerNames: Object.keys(routeOptions.schema?.headers ?? {})
+      }
+    }
+  })
+  .after((_) => {
+    const data = app.overview<{ bodySchema: {}, headerNames: string[] }>()
+    expectType<OverviewStructure<{ bodySchema: {}, headerNames: string[] }>>(data)
+    expectError<OverviewStructure>(data)
   })
   .ready()

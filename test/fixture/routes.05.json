@@ -1,0 +1,20 @@
+[
+  {
+    "method": "PUT",
+    "url":"/api/plugin",
+    "prefix":"/api",
+    "bodySchema": null,
+    "hooks":{
+      "onRequest":[ ],
+      "preParsing":[ ],
+      "preValidation":[ ],
+      "preHandler":[ ],
+      "preSerialization":[ ],
+      "onError":[ ],
+      "onSend":[ ],
+      "onResponse":[ ],
+      "onTimeout":[ ],
+      "onRequestAbort":[ ]
+    }
+  }
+]

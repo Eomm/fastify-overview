@@ -176,6 +176,13 @@ app.register(require('fastify-overview'), {
   exposeRouteOptions: {
     method: 'POST', // default: 'GET'
     url: '/customUrl', // default: '/json-overview'
+  }, 
+  transformRouteOptions: (opts) => {
+    return {
+      method: opts.method,
+      url: opts.url,
+      schema: opts.schema
+    }
   }
 })
 
@@ -293,6 +300,23 @@ By default the route is exposed at `GET /json-overview`.
 
 You can customize the route's options when `exposeRoute` is set to `true`.
 You can provide all the [fastify route's options](https://www.fastify.io/docs/latest/Reference/Routes/#routes-options) except the `handler`.
+
+### transformRouteOptions
+
+This option can be used to determine which properties of the route options are included in the overview. 
+The function receives the [RouteOption](https://github.com/fastify/fastify/blob/62f564d965949bc123184a27a610f214f23e9a49/types/hooks.d.ts#L695) 
+object as the only parameter and must return an object with the desired properties. 
+The hooks and, depending on the [configuration](#addsource), the source are then also appended to the final object.
+The default value if no function is given is:
+```js
+ transformRouteOptions: (routeOptions) => {
+   return {
+     method: routeOptions.method,
+     url: routeOptions.url,
+     prefix: routeOptions.prefix
+   }
+ }
+```
 
 ## License
 
