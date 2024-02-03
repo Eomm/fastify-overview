@@ -50,7 +50,7 @@ interface RouteItem {
   source?: OverviewStructureSource,
 }
 
-export interface OverviewStructure<T = RouteItem> {
+export interface OverviewStructure<T = {}> {
   id: Number,
   name: string,
   source?: OverviewStructureSource,
@@ -61,7 +61,7 @@ export interface OverviewStructure<T = RouteItem> {
     decorateReply: OverviewStructureDecorator[]
   },
   hooks?: OverviewStructureHooks,
-  routes?: (T & { hooks: OverviewStructureHooks, source?: OverviewStructureSource }) []
+  routes?: (Omit<RouteItem, keyof T> & T)[]
 }
 
 export interface FastifyOverviewOptions {
@@ -86,7 +86,7 @@ export interface FastifyOverviewOptions {
   /**
    * Customise which properties of the route options will be included in the overview
    */
-   transformRouteOptions?: (routeOptions: RouteOptions & { routePath: string; path: string; prefix: string }) => Record<string, unknown>
+  onRouteDefinition?: (routeOptions: RouteOptions & { routePath: string; path: string; prefix: string }) => Record<string, unknown>
 }
 
 export interface FastifyOverviewDecoratorOptions {
@@ -103,7 +103,7 @@ export interface FastifyOverviewDecoratorOptions {
 
 declare module 'fastify' {
   export interface FastifyInstance {
-    overview: <T = RouteItem>(opts?: FastifyOverviewDecoratorOptions) => OverviewStructure<T>;
+    overview: <T = {}>(opts?: FastifyOverviewDecoratorOptions) => OverviewStructure<T>;
   }
 }
 

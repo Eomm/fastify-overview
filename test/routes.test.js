@@ -94,15 +94,12 @@ test('routes', async t => {
   t.same(reg3.routes, require('./fixture/routes.03.json'))
 })
 
-test('custom transformRouteOptions', async t => {
+test('custom onRouteDefinition', async t => {
   const app = fastify({ exposeHeadRoutes: false })
 
   await app.register(plugin, {
-    transformRouteOptions: (opts) => {
+    onRouteDefinition: (opts) => {
       return {
-        url: opts.url,
-        prefix: opts.prefix,
-        method: opts.method,
         bodySchema: opts.schema ? opts.schema.body : undefined
       }
     }
@@ -147,4 +144,28 @@ test('custom transformRouteOptions', async t => {
   t.equal(root.children[0].children[0].routes.length, 1)
   t.equal(root.children[0].children[0].children.length, 0)
   t.same(root.children[0].children[0].routes, require('./fixture/routes.06.json'))
+})
+
+test('custom onRouteDefinition with overriding', async t => {
+  const app = fastify({ exposeHeadRoutes: false })
+
+  await app.register(plugin, {
+    onRouteDefinition: (opts) => {
+      return {
+        url: 'static url',
+        method: opts.method + opts.method
+      }
+    }
+  })
+
+  app.get('/get', noop)
+  app.post('/post', { schema: { body: { test: { type: 'string' } } } }, noop)
+
+  await app.ready()
+
+  const root = app.overview()
+
+  t.equal(root.children.length, 0)
+  t.equal(root.routes.length, 2)
+  t.same(root.routes, require('./fixture/routes.07.json'))
 })

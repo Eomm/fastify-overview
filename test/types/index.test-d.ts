@@ -21,7 +21,7 @@ app
 
 app
   .register(fastifyOverview, {
-    transformRouteOptions: (routeOptions) => {
+    onRouteDefinition: (routeOptions) => {
       return {
         bodySchema: routeOptions.schema?.body,
         headerNames: Object.keys(routeOptions.schema?.headers ?? {})
@@ -31,6 +31,20 @@ app
   .after((_) => {
     const data = app.overview<{ bodySchema: {}, headerNames: string[] }>()
     expectType<OverviewStructure<{ bodySchema: {}, headerNames: string[] }>>(data)
-    expectError<OverviewStructure>(data)
+  })
+  .ready()
+
+app
+  .register(fastifyOverview, {
+    onRouteDefinition: (routeOptions) => {
+      return {
+        url: routeOptions.url.length
+      }
+    }
+  })
+  .after((_) => {
+    const data = app.overview<{ url: number }>()
+    expectType<OverviewStructure<{ url: number }>>(data)
+    expectType<number>(data.routes![0].url)
   })
   .ready()
