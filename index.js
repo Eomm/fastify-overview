@@ -31,7 +31,7 @@ function fastifyOverview (fastify, options, next) {
   })
 
   fastify.addHook('onRoute', function markRoute (routeOpts) {
-    const routeNode = transformRoute(routeOpts)
+    const routeNode = Object.assign(transformRoute(routeOpts), opts.onRouteDefinition?.(routeOpts))
     if (opts.addSource) {
       routeNode.source = routeOpts.handler[kSourceRoute]
 
