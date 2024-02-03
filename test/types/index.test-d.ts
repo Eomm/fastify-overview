@@ -1,4 +1,4 @@
-import { expectError, expectType } from 'tsd'
+import { expectType } from 'tsd'
 
 import fastify from 'fastify'
 import fastifyOverview, { OverviewStructure } from '../../index'
