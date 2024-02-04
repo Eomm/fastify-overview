@@ -1,6 +1,6 @@
 import { expectType } from 'tsd'
 
-import fastify from 'fastify'
+import fastify, { HTTPMethods } from 'fastify'
 import fastifyOverview, { OverviewStructure } from '../../index'
 
 const app = fastify()
@@ -16,6 +16,7 @@ app
   .after((_) => {
     const data = app.overview()
     expectType<OverviewStructure>(data)
+    expectType<HTTPMethods | HTTPMethods[]>(data.routes![0].method)
   })
   .ready()
 

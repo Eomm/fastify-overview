@@ -43,7 +43,7 @@ interface OverviewStructureHooks {
 }
 
 interface RouteItem {
-  method: HTTPMethods,
+  method: HTTPMethods | HTTPMethods[],
   url: string,
   prefix: string,
   hooks: OverviewStructureHooks,
