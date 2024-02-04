@@ -31,7 +31,7 @@ function fastifyOverview (fastify, options, next) {
   })
 
   fastify.addHook('onRoute', function markRoute (routeOpts) {
-    const routeNode = transformRoute(routeOpts)
+    const routeNode = Object.assign(transformRoute(routeOpts), opts.onRouteDefinition?.(routeOpts))
     if (opts.addSource) {
       routeNode.source = routeOpts.handler[kSourceRoute]
 
@@ -170,7 +170,7 @@ function wrapFastify (instance, pluginOpts) {
 function wrapDecorator (instance, type, { addSource }) {
   const originalDecorate = instance[type]
   instance[type] = function wrapDecorate (name, value) {
-    const decoratorNode = getDecoratorNode(name)
+    const decoratorNode = getDecoratorNode(name, value)
     if (addSource) {
       decoratorNode.source = getSource()[0]
     }

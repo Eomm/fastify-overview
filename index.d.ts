@@ -13,6 +13,7 @@ interface OverviewStructureSource {
 
 interface OverviewStructureDecorator {
   name: string;
+  type: 'undefined' | 'object' | 'boolean' | 'number' | 'bigint' | 'string' | 'symbol' | 'function' | 'array'
   source?: OverviewStructureSource,
 }
 
@@ -49,18 +50,18 @@ interface RouteItem {
   source?: OverviewStructureSource,
 }
 
-export interface OverviewStructure {
+export interface OverviewStructure<T = {}> {
   id: Number,
   name: string,
   source?: OverviewStructureSource,
-  children?: OverviewStructure[],
+  children?: OverviewStructure<T>[],
   decorators?: {
     decorate: OverviewStructureDecorator[],
     decorateRequest: OverviewStructureDecorator[],
     decorateReply: OverviewStructureDecorator[]
   },
   hooks?: OverviewStructureHooks,
-  routes?: RouteItem[]
+  routes?: (Omit<RouteItem, keyof T> & T)[]
 }
 
 export interface FastifyOverviewOptions {
@@ -81,6 +82,11 @@ export interface FastifyOverviewOptions {
    * Customize the route's options when `exposeRoute` is set to `true`
    */
    exposeRouteOptions?: Partial<RouteOptions>,
+
+  /**
+   * Customise which properties of the route options will be included in the overview
+   */
+  onRouteDefinition?: (routeOptions: RouteOptions & { routePath: string; path: string; prefix: string }) => Record<string, unknown>
 }
 
 export interface FastifyOverviewDecoratorOptions {
@@ -97,7 +103,7 @@ export interface FastifyOverviewDecoratorOptions {
 
 declare module 'fastify' {
   export interface FastifyInstance {
-    overview: (opts?: FastifyOverviewDecoratorOptions) => OverviewStructure;
+    overview: <T = {}>(opts?: FastifyOverviewDecoratorOptions) => OverviewStructure<T>;
   }
 }
 

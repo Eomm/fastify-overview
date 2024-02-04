@@ -64,13 +64,25 @@ test('routes', async t => {
   app.register(function sibling (instance, opts, next) {
     next()
   })
+  app.register(function routes (instance, opts, next) {
+    ['propfind', 'proppatch', 'mkcol', 'copy', 'move', 'lock', 'unlock', 'trace', 'search'].forEach(method => {
+      instance.route({
+        method,
+        url: '/test',
+        handler () {}
+      })
+    })
+
+    next()
+  }, { prefix: '/api' })
 
   await app.ready()
   const root = app.overview()
 
-  t.equal(root.children.length, 2)
+  t.equal(root.children.length, 3)
   t.equal(root.children[0].name, 'register1')
   t.equal(root.children[1].name, 'sibling')
+  t.equal(root.children[2].name, 'routes')
   t.equal(root.routes.length, 9)
   t.same(root.routes, require('./fixture/routes.00.json'))
 
@@ -81,4 +93,84 @@ test('routes', async t => {
   const reg2 = reg1.children[0]
   t.same(reg2.routes.length, 2)
   t.same(reg2.routes, require('./fixture/routes.02.json'))
+
+  const reg3 = root.children[2]
+  t.same(reg3.routes.length, 9)
+  t.same(reg3.routes, require('./fixture/routes.03.json'))
+})
+
+test('custom onRouteDefinition', async t => {
+  const app = fastify({ exposeHeadRoutes: false })
+
+  await app.register(plugin, {
+    onRouteDefinition: (opts) => {
+      return {
+        bodySchema: opts.schema ? opts.schema.body : undefined
+      }
+    }
+  })
+
+  app.get('/get', noop)
+  app.post('/post', { schema: { body: { test: { type: 'string' } } } }, noop)
+
+  app.register(async (instance) => {
+    instance.put('/plugin', { schema: { querystring: { size: { type: 'integer' } } } }, noop)
+
+    instance.register(async function (instance2) {
+      instance2.patch('/patch/:param', {
+        schema: {
+          params: {
+            param: {
+              type: 'string'
+            }
+          },
+          body: {
+            text: {
+              type: 'boolean'
+            }
+          }
+        }
+      }, noop)
+    })
+  }, { prefix: 'api' })
+
+  await app.ready()
+
+  const root = app.overview()
+
+  t.equal(root.children.length, 1)
+  t.equal(root.routes.length, 2)
+  t.same(root.routes, require('./fixture/routes.04.json'))
+
+  t.equal(root.children[0].routes.length, 1)
+  t.equal(root.children[0].children.length, 1)
+  t.same(root.children[0].routes, require('./fixture/routes.05.json'))
+
+  t.equal(root.children[0].children[0].routes.length, 1)
+  t.equal(root.children[0].children[0].children.length, 0)
+  t.same(root.children[0].children[0].routes, require('./fixture/routes.06.json'))
+})
+
+test('custom onRouteDefinition with overriding', async t => {
+  const app = fastify({ exposeHeadRoutes: false })
+
+  await app.register(plugin, {
+    onRouteDefinition: (opts) => {
+      return {
+        url: 'static url',
+        method: opts.method + opts.method
+      }
+    }
+  })
+
+  app.get('/get', noop)
+  app.post('/post', { schema: { body: { test: { type: 'string' } } } }, noop)
+
+  await app.ready()
+
+  const root = app.overview()
+
+  t.equal(root.children.length, 0)
+  t.equal(root.routes.length, 2)
+  t.same(root.routes, require('./fixture/routes.07.json'))
 })

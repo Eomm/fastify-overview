@@ -18,7 +18,7 @@ Doing so you will get a complete overview of your application and you can:
 
 - optimize your code
 - optimize your application structure
-- find out the application structure (expecially if you have joined a new team)
+- find out the application structure (especially if you have joined a new team)
 - automate some documentation tasks
 
 This plugin is intended to be run only for _development_ purposes.
@@ -103,7 +103,7 @@ The JSON structure returned by the `overview` method is like the following:
     // it contains the same structure we are describing
   ], 
   "decorators": { // all the instance decorators | app.decorate('foo-bar', 42)
-    "decorate": [ { "name": "foo-bar" } ], // the decorators' name
+    "decorate": [ { "name": "foo-bar", "type": "number" } ], // the decorators' name
     "decorateRequest": [], // app.decorateRequest('foo-bar', 42)
     "decorateReply": [] // app.decorateReply('foo-bar', 42)
   },
@@ -176,6 +176,11 @@ app.register(require('fastify-overview'), {
   exposeRouteOptions: {
     method: 'POST', // default: 'GET'
     url: '/customUrl', // default: '/json-overview'
+  },
+   onRouteDefinition: (opts) => {
+    return {
+      schema: opts.schema
+    }
   }
 })
 
@@ -248,7 +253,7 @@ Here an example of the cleaned output:
           "name": "async function (instance, opts) { -- instance.decorateReply('oneRep', {})",
           "decorators": {
             "decorateReply": [
-              { "name": "oneRep" }
+              { "name": "oneRep", "type": "object" }
             ]
           }
         }
@@ -293,6 +298,25 @@ By default the route is exposed at `GET /json-overview`.
 
 You can customize the route's options when `exposeRoute` is set to `true`.
 You can provide all the [fastify route's options](https://www.fastify.io/docs/latest/Reference/Routes/#routes-options) except the `handler`.
+
+### onRouteDefinition
+
+This option can be used to determine which properties of the route options are additional included in the overview. 
+The function receives the [RouteOptions](https://github.com/fastify/fastify/blob/62f564d965949bc123184a27a610f214f23e9a49/types/hooks.d.ts#L695) 
+object as the only parameter and must return an object with the desired properties. You can also overwrite the properties 
+that are included in the route overview by default (namely `url`, `method`, `prefix` and `hooks`). You cannot
+override the `source` property.
+```js
+ onRouteDefinition: (routeOptions) => {
+   return {
+     method: routeOptions.method,
+     url: routeOptions.url.length,
+     prefix: routeOptions.prefix,
+     schema: routeOptions.schema
+   }
+ }
+```
+In this example, the `url` property is overridden and the `url` length is returned instead of the `url`.
 
 ## License
 
