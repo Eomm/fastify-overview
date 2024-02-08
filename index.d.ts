@@ -64,9 +64,9 @@ export interface OverviewStructure<T = {}, D extends Record<PropertyKey, unknown
   source?: OverviewStructureSource,
   children?: OverviewStructure<T>[],
   decorators?: {
-    decorate: (Omit<OverviewStructureDecorator, keyof ExtractDecoratorType<D, 'instance'>> & ExtractDecoratorType<D, 'instance'> )[],
-    decorateRequest: (Omit<OverviewStructureDecorator, keyof ExtractDecoratorType<D, 'request'>> & ExtractDecoratorType<D, 'request'> )[],
-    decorateReply: (Omit<OverviewStructureDecorator, keyof ExtractDecoratorType<D, 'reply'>> & ExtractDecoratorType<D, 'reply'> )[]
+    decorate: (Omit<OverviewStructureDecorator, keyof ExtractDecoratorType<D, 'instance'>> & ExtractDecoratorType<D, 'instance'>)[],
+    decorateRequest: (Omit<OverviewStructureDecorator, keyof ExtractDecoratorType<D, 'request'>> & ExtractDecoratorType<D, 'request'>)[],
+    decorateReply: (Omit<OverviewStructureDecorator, keyof ExtractDecoratorType<D, 'reply'>> & ExtractDecoratorType<D, 'reply'>)[]
   },
   hooks?: OverviewStructureHooks,
   routes?: (Omit<RouteItem, keyof T> & T)[]

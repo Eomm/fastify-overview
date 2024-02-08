@@ -59,12 +59,12 @@ app
       } else {
         return {}
       }
-  }
+    }
   })
   .after((_) => {
     const data = app.overview<{}, { embedded: string[] }>()
 
-    expectType<OverviewStructure<{},{ embedded: string[] }>>(data)
+    expectType<OverviewStructure<{}, { embedded: string[] }>>(data)
     expectAssignable<{ type: string, name: string, embedded: string[] }>(data.decorators!.decorate[0]!)
     expectAssignable<{ type: string, name: string, embedded: string[] }>(data.decorators!.decorateRequest[0]!)
     expectAssignable<{ type: string, name: string, embedded: string[] }>(data.decorators!.decorateReply[0]!)
@@ -75,17 +75,17 @@ app
   .register(fastifyOverview, {
     onDecorateDefinition: (type, name, value) => {
       if (type === 'decorate') {
-        if (typeof value === 'object' && !Array.isArray( value )) {
+        if (typeof value === 'object' && !Array.isArray(value)) {
           return {
-            embedded: Object.keys( value ?? {} )
+            embedded: Object.keys(value ?? {})
           }
         } else {
           return {}
         }
       } else if (type === 'decorateRequest') {
-        if (typeof value === 'object' && !Array.isArray( value )) {
+        if (typeof value === 'object' && !Array.isArray(value)) {
           return {
-            recursiveNum: Object.keys( value ?? {} ).length
+            recursiveNum: Object.keys(value ?? {}).length
           }
         } else {
           return {}
