@@ -52,7 +52,7 @@ declare namespace fastifyOverview {
   }
 
   export interface RouteItem {
-    method: HTTPMethods,
+    method: HTTPMethods | HTTPMethods[],
     url: string,
     prefix: string,
     hooks: OverviewStructureHooks,
