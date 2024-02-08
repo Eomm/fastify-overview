@@ -50,15 +50,23 @@ interface RouteItem {
   source?: OverviewStructureSource,
 }
 
-export interface OverviewStructure<T = {}> {
+export interface Decorators {
+  instance?: Record<string, unknown>
+  request?: Record<string, unknown>
+  reply?: Record<string, unknown>
+}
+
+type ExtractDecoratorType<T extends Record<PropertyKey, unknown>, K extends keyof Decorators> = T extends Decorators ? T[K] : T
+
+export interface OverviewStructure<T = {}, D extends Record<PropertyKey, unknown> = {}> {
   id: Number,
   name: string,
   source?: OverviewStructureSource,
   children?: OverviewStructure<T>[],
   decorators?: {
-    decorate: OverviewStructureDecorator[],
-    decorateRequest: OverviewStructureDecorator[],
-    decorateReply: OverviewStructureDecorator[]
+    decorate: (Omit<OverviewStructureDecorator, keyof ExtractDecoratorType<D, 'instance'>> & ExtractDecoratorType<D, 'instance'> )[],
+    decorateRequest: (Omit<OverviewStructureDecorator, keyof ExtractDecoratorType<D, 'request'>> & ExtractDecoratorType<D, 'request'> )[],
+    decorateReply: (Omit<OverviewStructureDecorator, keyof ExtractDecoratorType<D, 'reply'>> & ExtractDecoratorType<D, 'reply'> )[]
   },
   hooks?: OverviewStructureHooks,
   routes?: (Omit<RouteItem, keyof T> & T)[]
@@ -87,6 +95,11 @@ export interface FastifyOverviewOptions {
    * Customise which properties of the route options will be included in the overview
    */
   onRouteDefinition?: (routeOptions: RouteOptions & { routePath: string; path: string; prefix: string }) => Record<string, unknown>
+
+  /**
+   * Customise which information from decorators should be added to the overview
+   */
+  onDecorateDefinition?: (type: 'decorate' | 'decorateRequest' | 'decorateReply', name: string, value: unknown) => Record<string, unknown>
 }
 
 export interface FastifyOverviewDecoratorOptions {
@@ -103,7 +116,7 @@ export interface FastifyOverviewDecoratorOptions {
 
 declare module 'fastify' {
   export interface FastifyInstance {
-    overview: <T = {}>(opts?: FastifyOverviewDecoratorOptions) => OverviewStructure<T>;
+    overview: <T = {}, D extends Record<PropertyKey, unknown> = {}>(opts?: FastifyOverviewDecoratorOptions) => OverviewStructure<T, D>;
   }
 }
 

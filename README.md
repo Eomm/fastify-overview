@@ -176,11 +176,25 @@ app.register(require('fastify-overview'), {
   exposeRouteOptions: {
     method: 'POST', // default: 'GET'
     url: '/customUrl', // default: '/json-overview'
-  },
-   onRouteDefinition: (opts) => {
+  }, 
+  onRouteDefinition: (opts) => {
     return {
       schema: opts.schema
     }
+  }, 
+  onDecorateDefinition: (type, name, value) => {
+     if (value && typeof value === 'object' && !Array.isArray(value)) {
+        return {
+           recursive: Object.entries(value).map(([key, val]) => {
+              return {
+                 name: key,
+                 type: Array.isArray(val) ? 'array' : typeof val
+              }
+           })
+        }
+     } else {
+        return {}
+     }
   }
 })
 
@@ -317,6 +331,31 @@ override the `source` property.
  }
 ```
 In this example, the `url` property is overridden and the `url` length is returned instead of the `url`.
+
+### onDecorateDefinition
+
+Similar to `onRouteDefinition`, this option allows you to control which information about decorators is included in the overview.
+The passed function is called for `instance`, `request` and `reply` decorators but the decorator type is passed to the function as parameter.
+For the decorator ```app.decorateReply('db', { query: () => {} })```js the `onDecorateDefinition` function will be called like
+`onDecorateDefinition('decorateReply', 'db', { query: () => {} })`. The default properties `name` and `type` can also be overwritten here.
+
+As an example, the function below returns the nested properties for object values.
+```js
+onDecorateDefinition: (type, name, value) => {
+   if (value && typeof value === 'object' && !Array.isArray(value)) {
+      return {
+         recursive: Object.entries(value).map(([key, val]) => {
+            return {
+               name: key,
+               type: Array.isArray(val) ? 'array' : typeof val
+            }
+         })
+      }
+   } else {
+      return {}
+   }
+}
+```
 
 ## License
 
