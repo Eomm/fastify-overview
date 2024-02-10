@@ -333,11 +333,11 @@ The passed function is called for `instance`, `request` and `reply` decorators b
 The default properties `name` and `type` can also be overwritten here. See the table below for an overview of exactly 
 how the function `onDecorateDefinition(decoratorType, decoratorName, decoratorValue)` is called for the different decorators.
 
-|                   Decorator                   | decoratorType   | decoratorName | decoratorValue      |
-|:---------------------------------------------:|-----------------|---------------|---------------------|
-| `app.decorate('db', { query: () => {} })`     | decorate        | db            | { query: () => {} } |
-| `app.decorateRequest('verifyUser', () => {})` | decorateRequest | verifyUser    | () => {}            |
-| `app.decorateReply('num', 42)`                | decorateReply   | num           | 42                  |
+|                 Decorator                 | decoratorType   | decoratorName | decoratorValue    |
+|:-----------------------------------------:|-----------------|---------------|-------------------|
+| `app.decorate('db', {query: () => {}})`   | decorate        | db            | {query: () => {}} |
+| `app.decorateRequest('verify', () => {})` | decorateRequest | verify        | () => {}          |
+| `app.decorateReply('num', 42)`            | decorateReply   | num           | 42                |
 
 As an example, the function below returns the nested properties for object values.
 ```js
