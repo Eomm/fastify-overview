@@ -330,8 +330,14 @@ In this example, the `url` property is overridden and the `url` length is return
 
 Similar to `onRouteDefinition`, this option allows you to control which information about decorators is included in the overview.
 The passed function is called for `instance`, `request` and `reply` decorators but the decorator type is passed to the function as parameter.
-For the decorator ```app.decorateReply('db', { query: () => {} })```js the `onDecorateDefinition` function will be called like
-`onDecorateDefinition('decorateReply', 'db', { query: () => {} })`. The default properties `name` and `type` can also be overwritten here.
+The default properties `name` and `type` can also be overwritten here. See the table below for an overview of exactly 
+how the function `onDecorateDefinition(decoratorType, decoratorName, decoratorValue)` is called for the different decorators.
+
+|                  Decorator                  | `decoratorType` | `decoratorName` | `decoratorValue`    |
+|:-------------------------------------------:|-----------------|-----------------|---------------------|
+| app.decorate('db', { query: () => {} })     | decorate        | db              | { query: () => {} } |
+| app.decorateRequest('verifyUser', () => {}) | decorateRequest | verifyUser      | () => {}            |
+| app.decorateReply('num', 42)                | decorateReply   | num             | 42                  |
 
 As an example, the function below returns the nested properties for object values.
 ```js
