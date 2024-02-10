@@ -185,16 +185,10 @@ app.register(require('fastify-overview'), {
   onDecorateDefinition: (decoratorType, decoratorName, decoratorValue) => {
      if (value && typeof value === 'object' && !Array.isArray(value)) {
         return {
-           recursive: Object.entries(value).map(([key, val]) => {
-              return {
-                 name: key,
-                 type: Array.isArray(val) ? 'array' : typeof val
-              }
-           })
+           staticData: true
         }
-     } else {
-        return {}
      }
+     return { utilityFunction: true }
   }
 })
 
