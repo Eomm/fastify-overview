@@ -182,7 +182,7 @@ app.register(require('fastify-overview'), {
       schema: opts.schema
     }
   }, 
-  onDecorateDefinition: (type, name, value) => {
+  onDecorateDefinition: (decoratorType, decoratorName, decoratorValue) => {
      if (value && typeof value === 'object' && !Array.isArray(value)) {
         return {
            recursive: Object.entries(value).map(([key, val]) => {
