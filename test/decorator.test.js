@@ -63,3 +63,56 @@ test('decorator', async t => {
   t.same(reg3.decorators.decorateRequest, [{ name: 'sub-object', type: 'object' }])
   t.same(reg3.decorators.decorateReply, [{ name: 'sub', type: 'number' }])
 })
+
+test('onDecorateDefinition', async t => {
+  const app = fastify()
+  await app.register(plugin, {
+    onDecorateDefinition: (type, name, value) => {
+      if (value && typeof value === 'object' && !Array.isArray(value)) {
+        return {
+          recursive: Object.entries(value).map(([key, val]) => {
+            return {
+              name: key,
+              type: Array.isArray(val) ? 'array' : typeof val
+            }
+          })
+        }
+      } else {
+        return {}
+      }
+    }
+  })
+
+  app.decorate('emptyObj', {})
+  app.decorate('obj1', {
+    run: () => {}
+  })
+  app.decorateRequest('emptyObj', {})
+  app.decorateReply('obj2', {
+    test: 'str'
+  })
+
+  app.register(async function child1 (instance) {
+    instance.decorate('encapsulatedObj', {
+      a: () => {},
+      b: 'str',
+      c: false,
+      d: 42
+    })
+  })
+
+  await app.ready()
+
+  const root = app.overview()
+
+  t.equal(root.children.length, 1)
+  t.same(root.decorators.decorate, [{ name: 'emptyObj', type: 'object', recursive: [] }, { name: 'obj1', type: 'object', recursive: [{ name: 'run', type: 'function' }] }])
+  t.same(root.decorators.decorateReply, [{ name: 'obj2', type: 'object', recursive: [{ name: 'test', type: 'string' }] }])
+  t.same(root.decorators.decorateRequest, [{ name: 'emptyObj', type: 'object', recursive: [] }])
+
+  t.equal(root.children[0].name, 'child1')
+  const child1 = root.children[0]
+  t.same(child1.decorators.decorate, [{ name: 'encapsulatedObj', type: 'object', recursive: [{ name: 'a', type: 'function' }, { name: 'b', type: 'string' }, { name: 'c', type: 'boolean' }, { name: 'd', type: 'number' }] }])
+  t.equal(child1.decorators.decorateRequest.length, 0)
+  t.equal(child1.decorators.decorateReply.length, 0)
+})

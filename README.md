@@ -176,11 +176,19 @@ app.register(require('fastify-overview'), {
   exposeRouteOptions: {
     method: 'POST', // default: 'GET'
     url: '/customUrl', // default: '/json-overview'
-  },
-   onRouteDefinition: (opts) => {
+  }, 
+  onRouteDefinition: (opts) => {
     return {
       schema: opts.schema
     }
+  }, 
+  onDecorateDefinition: (decoratorType, decoratorName, decoratorValue) => {
+     if (value && typeof value === 'object' && !Array.isArray(value)) {
+        return {
+           staticData: true
+        }
+     }
+     return { utilityFunction: true }
   }
 })
 
@@ -317,6 +325,37 @@ override the `source` property.
  }
 ```
 In this example, the `url` property is overridden and the `url` length is returned instead of the `url`.
+
+### onDecorateDefinition
+
+Similar to `onRouteDefinition`, this option allows you to control which information about decorators is included in the overview.
+The passed function is called for `instance`, `request` and `reply` decorators but the decorator type is passed to the function as parameter.
+The default properties `name` and `type` can also be overwritten here. See the table below for an overview of exactly 
+how the function `onDecorateDefinition(decoratorType, decoratorName, decoratorValue)` is called for the different decorators.
+
+|                 Decorator                 | decoratorType   | decoratorName | decoratorValue    |
+|:-----------------------------------------:|-----------------|---------------|-------------------|
+| `app.decorate('db', {query: () => {}})`   | decorate        | db            | {query: () => {}} |
+| `app.decorateRequest('verify', () => {})` | decorateRequest | verify        | () => {}          |
+| `app.decorateReply('num', 42)`            | decorateReply   | num           | 42                |
+
+As an example, the function below returns the nested properties for object values.
+```js
+onDecorateDefinition: (type, name, value) => {
+   if (value && typeof value === 'object' && !Array.isArray(value)) {
+      return {
+         recursive: Object.entries(value).map(([key, val]) => {
+            return {
+               name: key,
+               type: Array.isArray(val) ? 'array' : typeof val
+            }
+         })
+      }
+   } else {
+      return {}
+   }
+}
+```
 
 ## License
 

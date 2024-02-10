@@ -167,10 +167,10 @@ function wrapFastify (instance, pluginOpts) {
   }
 }
 
-function wrapDecorator (instance, type, { addSource }) {
+function wrapDecorator (instance, type, { addSource, onDecorateDefinition }) {
   const originalDecorate = instance[type]
   instance[type] = function wrapDecorate (name, value) {
-    const decoratorNode = getDecoratorNode(name, value)
+    const decoratorNode = Object.assign(getDecoratorNode(name, value), onDecorateDefinition?.(type, name, value))
     if (addSource) {
       decoratorNode.source = getSource()[0]
     }
