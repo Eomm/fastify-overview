@@ -35,7 +35,7 @@
     "@fastify/autoload": "^5.0.0",
     "@types/node": "^20.1.0",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
-    "@typescript-eslint/parser": "^6.0.0",
+    "@typescript-eslint/parser": "^7.0.2",
     "fastify": "^4.23.0",
     "standard": "^17.0.0",
     "tap": "^16.0.1",
