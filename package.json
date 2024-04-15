@@ -8,7 +8,7 @@
     "lint": "standard && npm run lint:typescript",
     "lint:fix": "standard --fix && npm run lint:typescript -- --fix",
     "lint:typescript": "standard --parser @typescript-eslint/parser --plugin @typescript-eslint/eslint-plugin *.ts test/**/*.ts",
-    "test": "tap test/**/*.test.js && npm run test:typescript",
+    "test": "tap test/**/*.test.{js,mjs} && npm run test:typescript",
     "test:typescript": "tsd"
   },
   "repository": {

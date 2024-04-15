@@ -118,6 +118,15 @@ function wrapFastify (instance, pluginOpts) {
   // *** register
   const originalRegister = instance.register
   instance.register = function wrapRegister (pluginFn, opts) {
+    if (isPromiseLike(pluginFn)) {
+      instance.log.warn('Promise like plugin functions are not supported by fastify-overview.')
+      return originalRegister.call(this, pluginFn, opts)
+    }
+
+    if (isBundledOrTypescriptPlugin(pluginFn)) {
+      pluginFn = pluginFn.default
+    }
+
     if (pluginOpts.addSource) {
       // this Symbol is processed by the `onRegister` hook if necessary
       pluginFn[kSourceRegister] = getSource()[0]
@@ -165,6 +174,24 @@ function wrapFastify (instance, pluginOpts) {
     this[kStructure].hooks[name].push(hookNode)
     return originalHook.call(this, name, hook)
   }
+}
+
+// From https://github.com/fastify/avvio/blob/a153be8358ece6a1ed970d0bee2c28a8230175b9/lib/is-bundled-or-typescript-plugin.js#L13-L19
+function isBundledOrTypescriptPlugin (maybeBundledOrTypescriptPlugin) {
+  return (
+    maybeBundledOrTypescriptPlugin !== null &&
+    typeof maybeBundledOrTypescriptPlugin === 'object' &&
+    typeof maybeBundledOrTypescriptPlugin.default === 'function'
+  )
+}
+
+// From https://github.com/fastify/avvio/blob/a153be8358ece6a1ed970d0bee2c28a8230175b9/lib/is-promise-like.js#L7-L13
+function isPromiseLike (maybePromiseLike) {
+  return (
+    maybePromiseLike !== null &&
+    typeof maybePromiseLike === 'object' &&
+    typeof maybePromiseLike.then === 'function'
+  )
 }
 
 function wrapDecorator (instance, type, { addSource, onDecorateDefinition }) {
