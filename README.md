@@ -1,7 +1,8 @@
 # fastify-overview
 
+[![Build Status](https://github.com/Eomm/fastify-overview/workflows/ci/badge.svg)](https://github.com/Eomm/fastify-overview/actions)
+[![npm](https://img.shields.io/npm/v/fastify-overview)](https://www.npmjs.com/package/fastify-overview)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-[![ci](https://github.com/Eomm/fastify-overview/actions/workflows/ci.yml/badge.svg)](https://github.com/Eomm/fastify-overview/actions/workflows/ci.yml)
 [![runkit](https://img.shields.io/badge/try%20on-runkit-blue)](https://runkit.com/eomm/fastify-overview-readme)
 
 Get a complete overview of your fastify application!  
