@@ -111,3 +111,4 @@ test/
 .github/
 test-app/
 .eslintrc
+.tap/

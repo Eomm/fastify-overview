@@ -3,11 +3,6 @@
     "method": "PATCH",
     "url":"/api/patch/:param",
     "prefix":"/api",
-    "bodySchema": {
-      "text": {
-        "type": "boolean"
-      }
-    },
     "hooks":{
       "onRequest":[ ],
       "preParsing":[ ],
@@ -19,6 +14,14 @@
       "onResponse":[ ],
       "onTimeout":[ ],
       "onRequestAbort":[ ]
+    },
+    "bodySchema": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "boolean"
+        }
+      }
     }
   }
 ]

@@ -21,11 +21,6 @@
     "method": "POST",
     "url":"/post",
     "prefix":"",
-    "bodySchema": {
-        "test": {
-          "type": "string"
-        }
-    },
     "hooks":{
       "onRequest":[ ],
       "preParsing":[ ],
@@ -37,6 +32,14 @@
       "onResponse":[ ],
       "onTimeout":[ ],
       "onRequestAbort":[ ]
+    },
+    "bodySchema": {
+      "type": "object",
+      "properties": {
+        "test": {
+          "type": "string"
+        }
+      }
     }
   }
 ]

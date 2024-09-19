@@ -107,3 +107,4 @@ dist
 package-lock.json
 
 example.js
+.tap/

@@ -14,7 +14,7 @@ test('decorator', async t => {
   app.decorateReply('root-reply', function () {})
 
   app.decorate('root-symbol', Symbol('testSymbol'))
-  app.decorateReply('root-reply-array', [])
+  app.decorateReply('root-reply-array', { getter () { return [] } })
   app.decorateRequest('root-req-boolean', true)
 
   app.register(function register1 (instance, opts, next) {
@@ -28,7 +28,7 @@ test('decorator', async t => {
     instance.register(function register3 (sub, opts, next) {
       sub.decorate('sub-instance', 50)
       sub.decorateReply('sub', 50)
-      sub.decorateRequest('sub-object', {})
+      sub.decorateRequest('sub-object', { getter () { return {} } })
       next()
     })
     next()
@@ -45,7 +45,7 @@ test('decorator', async t => {
   t.equal(root.children[1].name, 'sibling')
   t.same(root.decorators.decorate, [{ name: 'root-func', type: 'function' }, { name: 'root-symbol', type: 'symbol' }])
   t.same(root.decorators.decorateRequest, [{ name: 'root-req', type: 'function' }, { name: 'root-req-two', type: 'function' }, { name: 'root-req-boolean', type: 'boolean' }])
-  t.same(root.decorators.decorateReply, [{ name: 'root-reply', type: 'function' }, { name: 'root-reply-array', type: 'array' }])
+  t.same(root.decorators.decorateReply, [{ name: 'root-reply', type: 'function' }, { name: 'root-reply-array', type: 'object' }])
 
   const reg1 = root.children[0]
   t.same(reg1.decorators.decorate, [{ name: 'child-1-bigint', type: 'bigint' }, { name: 'child-1-undefined', type: 'undefined' }])
@@ -83,14 +83,12 @@ test('onDecorateDefinition', async t => {
     }
   })
 
-  app.decorate('emptyObj', {})
+  app.decorate('emptyObj', { getter () { return {} } })
   app.decorate('obj1', {
     run: () => {}
   })
-  app.decorateRequest('emptyObj', {})
-  app.decorateReply('obj2', {
-    test: 'str'
-  })
+  app.decorateRequest('emptyObj', { getter () { return {} } })
+  app.decorateReply('obj2', { getter () { return { test: 'string' } } })
 
   app.register(async function child1 (instance) {
     instance.decorate('encapsulatedObj', {
@@ -106,9 +104,9 @@ test('onDecorateDefinition', async t => {
   const root = app.overview()
 
   t.equal(root.children.length, 1)
-  t.same(root.decorators.decorate, [{ name: 'emptyObj', type: 'object', recursive: [] }, { name: 'obj1', type: 'object', recursive: [{ name: 'run', type: 'function' }] }])
-  t.same(root.decorators.decorateReply, [{ name: 'obj2', type: 'object', recursive: [{ name: 'test', type: 'string' }] }])
-  t.same(root.decorators.decorateRequest, [{ name: 'emptyObj', type: 'object', recursive: [] }])
+  t.same(root.decorators.decorate, [{ name: 'emptyObj', type: 'object', recursive: [{ name: 'getter', type: 'function' }] }, { name: 'obj1', type: 'object', recursive: [{ name: 'run', type: 'function' }] }])
+  t.same(root.decorators.decorateReply, [{ name: 'obj2', type: 'object', recursive: [{ name: 'getter', type: 'function' }] }])
+  t.same(root.decorators.decorateRequest, [{ name: 'emptyObj', type: 'object', recursive: [{ name: 'getter', type: 'function' }] }])
 
   t.equal(root.children[0].name, 'child1')
   const child1 = root.children[0]

@@ -27,6 +27,11 @@ test('routes', async t => {
     url: '/route-post-chain',
     handler: noop
   })
+
+  const extraMethods = ['propfind', 'proppatch', 'mkcol', 'copy', 'move', 'lock', 'unlock', 'trace', 'search']
+  extraMethods.forEach(method => {
+    app.addHttpMethod(method.toUpperCase())
+  })
   app.route({
     method: ['GET', 'POST', 'PROPPATCH'],
     url: '/array',
@@ -65,7 +70,7 @@ test('routes', async t => {
     next()
   })
   app.register(function routes (instance, opts, next) {
-    ['propfind', 'proppatch', 'mkcol', 'copy', 'move', 'lock', 'unlock', 'trace', 'search'].forEach(method => {
+    extraMethods.forEach(method => {
       instance.route({
         method,
         url: '/test',
@@ -111,24 +116,16 @@ test('custom onRouteDefinition', async t => {
   })
 
   app.get('/get', noop)
-  app.post('/post', { schema: { body: { test: { type: 'string' } } } }, noop)
+  app.post('/post', { schema: { body: short({ test: { type: 'string' } }) } }, noop)
 
   app.register(async (instance) => {
-    instance.put('/plugin', { schema: { querystring: { size: { type: 'integer' } } } }, noop)
+    instance.put('/plugin', { schema: { querystring: short({ size: { type: 'integer' } }) } }, noop)
 
     instance.register(async function (instance2) {
       instance2.patch('/patch/:param', {
         schema: {
-          params: {
-            param: {
-              type: 'string'
-            }
-          },
-          body: {
-            text: {
-              type: 'boolean'
-            }
-          }
+          params: short({ param: { type: 'string' } }),
+          body: short({ text: { type: 'boolean' } })
         }
       }, noop)
     })
@@ -164,7 +161,7 @@ test('custom onRouteDefinition with overriding', async t => {
   })
 
   app.get('/get', noop)
-  app.post('/post', { schema: { body: { test: { type: 'string' } } } }, noop)
+  app.post('/post', { schema: { body: short({ test: { type: 'string' } }) } }, noop)
 
   await app.ready()
 
@@ -174,3 +171,10 @@ test('custom onRouteDefinition with overriding', async t => {
   t.equal(root.routes.length, 2)
   t.same(root.routes, require('./fixture/routes.07.json'))
 })
+
+function short (schema) {
+  return {
+    type: 'object',
+    properties: schema
+  }
+}

@@ -100,9 +100,9 @@ test('hide empty', async t => {
   const app = fastify()
   await app.register(plugin)
 
-  app.decorate('emptyObject', {})
+  app.decorate('emptyObject', { getter () { return {} } })
   app.decorate('emptyArray', [])
-  app.decorateRequest('oneReqDecor', [])
+  app.decorateRequest('oneReqDecor', { getter () { return [] } })
 
   app.addHook('onRequest', function hook1 () {})
   app.addHook('preParsing', function hook2 () {})
@@ -112,7 +112,7 @@ test('hide empty', async t => {
   app.register(function (instance, opts, next) { next() })
   app.register(async function (instance, opts) {
     instance.register(async function (instance, opts) {
-      instance.decorateReply('oneRep', {})
+      instance.decorateReply('oneRep', { getter () { return {} } })
     })
   })
 
@@ -125,7 +125,7 @@ test('hide empty', async t => {
       { name: 'emptyArray', type: 'array' }
     ],
     decorateRequest: [
-      { name: 'oneReqDecor', type: 'array' }
+      { name: 'oneReqDecor', type: 'object' }
     ]
   })
 
