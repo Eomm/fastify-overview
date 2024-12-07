@@ -1,6 +1,6 @@
 'use strict'
 
-const { test } = require('tap')
+const { test } = require('node:test')
 const fastify = require('fastify')
 const plugin = require('../index')
 
@@ -79,24 +79,24 @@ test('routes', async t => {
   await app.ready()
   const root = app.overview()
 
-  t.equal(root.children.length, 3)
-  t.equal(root.children[0].name, 'register1')
-  t.equal(root.children[1].name, 'sibling')
-  t.equal(root.children[2].name, 'routes')
-  t.equal(root.routes.length, 9)
-  t.same(root.routes, require('./fixture/routes.00.json'))
+  t.assert.deepEqual(root.children.length, 3)
+  t.assert.deepEqual(root.children[0].name, 'register1')
+  t.assert.deepEqual(root.children[1].name, 'sibling')
+  t.assert.deepEqual(root.children[2].name, 'routes')
+  t.assert.deepEqual(root.routes.length, 9)
+  t.assert.deepStrictEqual(root.routes, require('./fixture/routes.00.json'))
 
   const reg1 = root.children[0]
-  t.same(reg1.routes.length, 7)
-  t.same(reg1.routes, require('./fixture/routes.01.json'))
+  t.assert.deepStrictEqual(reg1.routes.length, 7)
+  t.assert.deepStrictEqual(reg1.routes, require('./fixture/routes.01.json'))
 
   const reg2 = reg1.children[0]
-  t.same(reg2.routes.length, 2)
-  t.same(reg2.routes, require('./fixture/routes.02.json'))
+  t.assert.deepStrictEqual(reg2.routes.length, 2)
+  t.assert.deepStrictEqual(reg2.routes, require('./fixture/routes.02.json'))
 
   const reg3 = root.children[2]
-  t.same(reg3.routes.length, 9)
-  t.same(reg3.routes, require('./fixture/routes.03.json'))
+  t.assert.deepStrictEqual(reg3.routes.length, 9)
+  t.assert.deepStrictEqual(reg3.routes, require('./fixture/routes.03.json'))
 })
 
 test('custom onRouteDefinition', async t => {
@@ -138,17 +138,17 @@ test('custom onRouteDefinition', async t => {
 
   const root = app.overview()
 
-  t.equal(root.children.length, 1)
-  t.equal(root.routes.length, 2)
-  t.same(root.routes, require('./fixture/routes.04.json'))
+  t.assert.deepEqual(root.children.length, 1)
+  t.assert.deepEqual(root.routes.length, 2)
+  t.assert.deepEqual(root.routes, require('./fixture/routes.04.json'))
 
-  t.equal(root.children[0].routes.length, 1)
-  t.equal(root.children[0].children.length, 1)
-  t.same(root.children[0].routes, require('./fixture/routes.05.json'))
+  t.assert.deepEqual(root.children[0].routes.length, 1)
+  t.assert.deepEqual(root.children[0].children.length, 1)
+  t.assert.deepEqual(root.children[0].routes, require('./fixture/routes.05.json'))
 
-  t.equal(root.children[0].children[0].routes.length, 1)
-  t.equal(root.children[0].children[0].children.length, 0)
-  t.same(root.children[0].children[0].routes, require('./fixture/routes.06.json'))
+  t.assert.deepEqual(root.children[0].children[0].routes.length, 1)
+  t.assert.deepEqual(root.children[0].children[0].children.length, 0)
+  t.assert.deepEqual(root.children[0].children[0].routes, require('./fixture/routes.06.json'))
 })
 
 test('custom onRouteDefinition with overriding', async t => {
@@ -170,7 +170,7 @@ test('custom onRouteDefinition with overriding', async t => {
 
   const root = app.overview()
 
-  t.equal(root.children.length, 0)
-  t.equal(root.routes.length, 2)
-  t.same(root.routes, require('./fixture/routes.07.json'))
+  t.assert.deepEqual(root.children.length, 0)
+  t.assert.deepEqual(root.routes.length, 2)
+  t.assert.deepStrictEqual(root.routes, require('./fixture/routes.07.json'))
 })
