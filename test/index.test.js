@@ -102,7 +102,7 @@ test('hide empty', async t => {
 
   app.decorate('emptyObject', {})
   app.decorate('emptyArray', [])
-  app.decorateRequest('oneReqDecor', [])
+  app.decorateRequest('oneReqDecor', () => ({ getter: [] }))
 
   app.addHook('onRequest', function hook1 () {})
   app.addHook('preParsing', function hook2 () {})
@@ -112,7 +112,7 @@ test('hide empty', async t => {
   app.register(function (instance, opts, next) { next() })
   app.register(async function (instance, opts) {
     instance.register(async function (instance, opts) {
-      instance.decorateReply('oneRep', {})
+      instance.decorateReply('oneRep', () => ({ getter: {} }))
     })
   })
 
@@ -125,7 +125,7 @@ test('hide empty', async t => {
       { name: 'emptyArray', type: 'array' }
     ],
     decorateRequest: [
-      { name: 'oneReqDecor', type: 'array' }
+      { name: 'oneReqDecor', type: 'function' }
     ]
   })
 
@@ -145,7 +145,7 @@ test('hide empty', async t => {
 
   t.assert.deepStrictEqual(structure.children[1].children[0].decorators, {
     decorateReply: [
-      { name: 'oneRep', type: 'object' }
+      { name: 'oneRep', type: 'function' }
     ]
   })
 })

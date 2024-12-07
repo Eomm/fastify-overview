@@ -22,8 +22,11 @@
     "url":"/post",
     "prefix":"",
     "bodySchema": {
-        "test": {
-          "type": "string"
+        "type": "object",
+        "properties": {
+          "test": {
+            "type": "string"
+          }
         }
     },
     "hooks":{

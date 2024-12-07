@@ -32,17 +32,17 @@
   },
   "homepage": "https://github.com/Eomm/fastify-overview#readme",
   "devDependencies": {
-    "@fastify/autoload": "^5.0.0",
-    "@types/node": "^20.1.0",
-    "@typescript-eslint/eslint-plugin": "^6.2.1",
-    "@typescript-eslint/parser": "^6.0.0",
-    "fastify": "^4.23.0",
-    "standard": "^17.0.0",
-    "tsd": "^0.31.0"
+    "@fastify/autoload": "^6.0.2",
+    "@types/node": "^22.10.1",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "fastify": "^5.1.0",
+    "standard": "^17.1.2",
+    "tsd": "^0.31.2"
   },
   "dependencies": {
-    "fastify-plugin": "^4.0.0",
-    "object-hash": "^2.2.0"
+    "fastify-plugin": "^5.0.1",
+    "object-hash": "^3.0.0"
   },
   "tsd": {
     "directory": "test/types"

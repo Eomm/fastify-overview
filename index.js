@@ -192,7 +192,7 @@ function getJsonOverview (request, reply) {
 
 const plugin = fp(fastifyOverview, {
   name: 'fastify-overview',
-  fastify: '^4.23.x'
+  fastify: '5.x'
 })
 
 module.exports = plugin

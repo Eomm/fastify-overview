@@ -4,8 +4,11 @@
     "url":"/api/patch/:param",
     "prefix":"/api",
     "bodySchema": {
-      "text": {
-        "type": "boolean"
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "boolean"
+        }
       }
     },
     "hooks":{

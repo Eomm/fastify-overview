@@ -28,7 +28,7 @@ test('routes', async t => {
     handler: noop
   })
   app.route({
-    method: ['GET', 'POST', 'PROPPATCH'],
+    method: ['GET', 'POST'],
     url: '/array',
     handler () {}
   })
@@ -64,25 +64,13 @@ test('routes', async t => {
   app.register(function sibling (instance, opts, next) {
     next()
   })
-  app.register(function routes (instance, opts, next) {
-    ['propfind', 'proppatch', 'mkcol', 'copy', 'move', 'lock', 'unlock', 'trace', 'search'].forEach(method => {
-      instance.route({
-        method,
-        url: '/test',
-        handler () {}
-      })
-    })
-
-    next()
-  }, { prefix: '/api' })
 
   await app.ready()
   const root = app.overview()
 
-  t.assert.deepEqual(root.children.length, 3)
+  t.assert.deepEqual(root.children.length, 2)
   t.assert.deepEqual(root.children[0].name, 'register1')
   t.assert.deepEqual(root.children[1].name, 'sibling')
-  t.assert.deepEqual(root.children[2].name, 'routes')
   t.assert.deepEqual(root.routes.length, 9)
   t.assert.deepStrictEqual(root.routes, require('./fixture/routes.00.json'))
 
@@ -93,10 +81,6 @@ test('routes', async t => {
   const reg2 = reg1.children[0]
   t.assert.deepStrictEqual(reg2.routes.length, 2)
   t.assert.deepStrictEqual(reg2.routes, require('./fixture/routes.02.json'))
-
-  const reg3 = root.children[2]
-  t.assert.deepStrictEqual(reg3.routes.length, 9)
-  t.assert.deepStrictEqual(reg3.routes, require('./fixture/routes.03.json'))
 })
 
 test('custom onRouteDefinition', async t => {
@@ -111,22 +95,28 @@ test('custom onRouteDefinition', async t => {
   })
 
   app.get('/get', noop)
-  app.post('/post', { schema: { body: { test: { type: 'string' } } } }, noop)
+  app.post('/post', { schema: { body: { type: 'object', properties: { test: { type: 'string' } } } } }, noop)
 
   app.register(async (instance) => {
-    instance.put('/plugin', { schema: { querystring: { size: { type: 'integer' } } } }, noop)
+    instance.put('/plugin', { schema: { querystring: { type: 'object', properties: { size: { type: 'integer' } } } } }, noop)
 
     instance.register(async function (instance2) {
       instance2.patch('/patch/:param', {
         schema: {
           params: {
-            param: {
-              type: 'string'
+            type: 'object',
+            properties: {
+              param: {
+                type: 'string'
+              }
             }
           },
           body: {
-            text: {
-              type: 'boolean'
+            type: 'object',
+            properties: {
+              text: {
+                type: 'boolean'
+              }
             }
           }
         }
@@ -164,7 +154,7 @@ test('custom onRouteDefinition with overriding', async t => {
   })
 
   app.get('/get', noop)
-  app.post('/post', { schema: { body: { test: { type: 'string' } } } }, noop)
+  app.post('/post', { schema: { body: { type: 'object', properties: { test: { type: 'string' } } } } }, noop)
 
   await app.ready()
 
