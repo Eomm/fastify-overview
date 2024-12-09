@@ -21,10 +21,11 @@ test('simple app', async t => {
     .replace(removeLocalPath, '')
     .replace(removeRelativePath, '')
     .replace(removeRandomId, '42')
-  t.assert.deepStrictEqual(JSON.parse(result), require('./fixture/app-source.json'), { skip: isWindows })
+
+  t.assert.deepStrictEqual(root.hooks.preHandler.length, 1)
 
   if (!isWindows) {
-    t.assert.deepStrictEqual(root.hooks.preHandler.length, 1)
+    t.assert.deepStrictEqual(JSON.parse(result), require('./fixture/app-source.json'))
     t.assert.deepStrictEqual(root.hooks.preHandler[0].source.stackIndex, 0)
     t.assert.match(root.hooks.preHandler[0].source.fileName, /test\/sources\/app\.js$/)
     t.assert.deepStrictEqual(root.hooks.preHandler[0].source.lineNumber, 17)
@@ -54,7 +55,10 @@ test('coverage: simple app', async t => {
   const structure = JSON.stringify(root, null, 2)
   const removeRandomId = /(?<="id": ).*(?=,)/gmi
   const result = structure.replace(removeRandomId, '42')
-  t.assert.deepStrictEqual(JSON.parse(result), require('./fixture/app-no-source.json'), { skip: isWindows })
+
+  if (!isWindows) {
+    t.assert.deepStrictEqual(JSON.parse(result), require('./fixture/app-no-source.json'))
+  }
 
   t.assert.deepStrictEqual(root.hooks.preHandler.length, 1)
   t.assert.ok(!root.hooks.preHandler[0].source)
