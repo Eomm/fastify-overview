@@ -89,10 +89,7 @@ test('expose the route within more options', async t => {
         onResponse: [],
         onSend: [],
         onTimeout: [],
-        preHandler: [{
-          name: 'hook',
-          hash: '1994f633554c479b3ffceeebdb7328ddf56d0234'
-        }],
+        preHandler: [],
         preParsing: [],
         preSerialization: [],
         preValidation: []
