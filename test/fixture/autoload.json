@@ -151,16 +151,6 @@
             "onClose": [],
             "onRoute": [],
             "onRegister": []
-          },
-          "source": {
-            "stackIndex": 0,
-            "fileName": "test/sources/autoload/file-one.js",
-            "relativeFileName": "test/sources/autoload/file-one.js",
-            "lineNumber": 27,
-            "columnNumber": 12,
-            "functionName": "fileOne",
-            "typeName": null,
-            "methodName": null
           }
         }
       ],
@@ -305,16 +295,6 @@
         "onClose": [],
         "onRoute": [],
         "onRegister": []
-      },
-      "source": {
-        "stackIndex": 0,
-        "fileName": "test/sources/autoload.js",
-        "relativeFileName": "test/sources/autoload.js",
-        "lineNumber": 16,
-        "columnNumber": 7,
-        "functionName": "buildTheSourceApp",
-        "typeName": null,
-        "methodName": null
       }
     },
     {
@@ -372,16 +352,6 @@
         "onClose": [],
         "onRoute": [],
         "onRegister": []
-      },
-      "source": {
-        "stackIndex": 0,
-        "fileName": "test/sources/autoload.js",
-        "relativeFileName": "test/sources/autoload.js",
-        "lineNumber": 16,
-        "columnNumber": 7,
-        "functionName": "buildTheSourceApp",
-        "typeName": null,
-        "methodName": null
       }
     },
     {
@@ -439,16 +409,6 @@
         "onClose": [],
         "onRoute": [],
         "onRegister": []
-      },
-      "source": {
-        "stackIndex": 0,
-        "fileName": "test/sources/autoload.js",
-        "relativeFileName": "test/sources/autoload.js",
-        "lineNumber": 16,
-        "columnNumber": 7,
-        "functionName": "buildTheSourceApp",
-        "typeName": null,
-        "methodName": null
       }
     },
     {
@@ -506,16 +466,6 @@
         "onClose": [],
         "onRoute": [],
         "onRegister": []
-      },
-      "source": {
-        "stackIndex": 0,
-        "fileName": "test/sources/autoload.js",
-        "relativeFileName": "test/sources/autoload.js",
-        "lineNumber": 16,
-        "columnNumber": 7,
-        "functionName": "buildTheSourceApp",
-        "typeName": null,
-        "methodName": null
       }
     },
     {
@@ -663,16 +613,6 @@
             "onClose": [],
             "onRoute": [],
             "onRegister": []
-          },
-          "source": {
-            "stackIndex": 0,
-            "fileName": "test/sources/autoload.js",
-            "relativeFileName": "test/sources/autoload.js",
-            "lineNumber": 37,
-            "columnNumber": 14,
-            "functionName": "register1",
-            "typeName": null,
-            "methodName": null
           }
         }
       ],
@@ -781,16 +721,6 @@
         "onClose": [],
         "onRoute": [],
         "onRegister": []
-      },
-      "source": {
-        "stackIndex": 0,
-        "fileName": "test/sources/autoload.js",
-        "relativeFileName": "test/sources/autoload.js",
-        "lineNumber": 33,
-        "columnNumber": 7,
-        "functionName": "buildTheSourceApp",
-        "typeName": null,
-        "methodName": null
       }
     },
     {
@@ -848,16 +778,6 @@
         "onClose": [],
         "onRoute": [],
         "onRegister": []
-      },
-      "source": {
-        "stackIndex": 0,
-        "fileName": "test/sources/autoload.js",
-        "relativeFileName": "test/sources/autoload.js",
-        "lineNumber": 50,
-        "columnNumber": 7,
-        "functionName": "buildTheSourceApp",
-        "typeName": null,
-        "methodName": null
       }
     }
   ],

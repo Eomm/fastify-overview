@@ -86,9 +86,6 @@ function fastifyOverview (fastify, options, next) {
     instance[kTrackerMe] = trackingToken
 
     const trackStructure = getPluginNode(trackingToken, instance.pluginName)
-    if (opts.addSource && this) {
-      trackStructure.source = this._current.find(loadPipe => loadPipe.func[kSourceRegister] !== undefined).func[kSourceRegister]
-    }
     contextMap.set(trackingToken, trackStructure)
     instance[kStructure] = trackStructure
 
@@ -192,7 +189,7 @@ function getJsonOverview (request, reply) {
 
 const plugin = fp(fastifyOverview, {
   name: 'fastify-overview',
-  fastify: '^4.23.x'
+  fastify: '5.x'
 })
 
 module.exports = plugin

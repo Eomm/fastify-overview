@@ -147,16 +147,6 @@
             "onClose": [],
             "onRoute": [],
             "onRegister": []
-          },
-          "source": {
-            "stackIndex": 0,
-            "fileName": "test/sources/app.js",
-            "relativeFileName": "test/sources/app.js",
-            "lineNumber": 30,
-            "columnNumber": 14,
-            "functionName": "register1",
-            "typeName": null,
-            "methodName": null
           }
         }
       ],
@@ -265,16 +255,6 @@
         "onClose": [],
         "onRoute": [],
         "onRegister": []
-      },
-      "source": {
-        "stackIndex": 0,
-        "fileName": "test/sources/app.js",
-        "relativeFileName": "test/sources/app.js",
-        "lineNumber": 26,
-        "columnNumber": 7,
-        "functionName": "buildTheSourceApp",
-        "typeName": null,
-        "methodName": null
       }
     },
     {
@@ -332,16 +312,6 @@
         "onClose": [],
         "onRoute": [],
         "onRegister": []
-      },
-      "source": {
-        "stackIndex": 0,
-        "fileName": "test/sources/app.js",
-        "relativeFileName": "test/sources/app.js",
-        "lineNumber": 43,
-        "columnNumber": 7,
-        "functionName": "buildTheSourceApp",
-        "typeName": null,
-        "methodName": null
       }
     }
   ],

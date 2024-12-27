@@ -1,6 +1,6 @@
 'use strict'
 
-const { test } = require('tap')
+const { test } = require('node:test')
 const fastify = require('fastify')
 const plugin = require('../index')
 
@@ -14,7 +14,7 @@ test('decorator', async t => {
   app.decorateReply('root-reply', function () {})
 
   app.decorate('root-symbol', Symbol('testSymbol'))
-  app.decorateReply('root-reply-array', [])
+  app.decorateReply('root-reply-array', () => ({ getter: [] }))
   app.decorateRequest('root-req-boolean', true)
 
   app.register(function register1 (instance, opts, next) {
@@ -28,7 +28,7 @@ test('decorator', async t => {
     instance.register(function register3 (sub, opts, next) {
       sub.decorate('sub-instance', 50)
       sub.decorateReply('sub', 50)
-      sub.decorateRequest('sub-object', {})
+      sub.decorateRequest('sub-object', () => ({ getter: {} }))
       next()
     })
     next()
@@ -40,28 +40,28 @@ test('decorator', async t => {
   await app.ready()
   const root = app.overview()
 
-  t.equal(root.children.length, 2)
-  t.equal(root.children[0].name, 'register1')
-  t.equal(root.children[1].name, 'sibling')
-  t.same(root.decorators.decorate, [{ name: 'root-func', type: 'function' }, { name: 'root-symbol', type: 'symbol' }])
-  t.same(root.decorators.decorateRequest, [{ name: 'root-req', type: 'function' }, { name: 'root-req-two', type: 'function' }, { name: 'root-req-boolean', type: 'boolean' }])
-  t.same(root.decorators.decorateReply, [{ name: 'root-reply', type: 'function' }, { name: 'root-reply-array', type: 'array' }])
+  t.assert.deepEqual(root.children.length, 2)
+  t.assert.deepEqual(root.children[0].name, 'register1')
+  t.assert.deepEqual(root.children[1].name, 'sibling')
+  t.assert.deepStrictEqual(root.decorators.decorate, [{ name: 'root-func', type: 'function' }, { name: 'root-symbol', type: 'symbol' }])
+  t.assert.deepStrictEqual(root.decorators.decorateRequest, [{ name: 'root-req', type: 'function' }, { name: 'root-req-two', type: 'function' }, { name: 'root-req-boolean', type: 'boolean' }])
+  t.assert.deepStrictEqual(root.decorators.decorateReply, [{ name: 'root-reply', type: 'function' }, { name: 'root-reply-array', type: 'function' }])
 
   const reg1 = root.children[0]
-  t.same(reg1.decorators.decorate, [{ name: 'child-1-bigint', type: 'bigint' }, { name: 'child-1-undefined', type: 'undefined' }])
-  t.same(reg1.decorators.decorateRequest, [{ name: 'child-1', type: 'number' }])
-  t.same(reg1.decorators.decorateReply, [])
-  t.equal(reg1.children.length, 2)
+  t.assert.deepStrictEqual(reg1.decorators.decorate, [{ name: 'child-1-bigint', type: 'bigint' }, { name: 'child-1-undefined', type: 'undefined' }])
+  t.assert.deepStrictEqual(reg1.decorators.decorateRequest, [{ name: 'child-1', type: 'number' }])
+  t.assert.deepStrictEqual(reg1.decorators.decorateReply, [])
+  t.assert.deepEqual(reg1.children.length, 2)
 
   const reg2 = reg1.children[0]
-  t.same(reg2.decorators.decorate, [])
-  t.same(reg2.decorators.decorateRequest, [])
-  t.same(reg2.decorators.decorateReply, [{ name: 'sub', type: 'number' }])
+  t.assert.deepStrictEqual(reg2.decorators.decorate, [])
+  t.assert.deepStrictEqual(reg2.decorators.decorateRequest, [])
+  t.assert.deepStrictEqual(reg2.decorators.decorateReply, [{ name: 'sub', type: 'number' }])
 
   const reg3 = reg1.children[1]
-  t.same(reg3.decorators.decorate, [{ name: 'sub-instance', type: 'number' }])
-  t.same(reg3.decorators.decorateRequest, [{ name: 'sub-object', type: 'object' }])
-  t.same(reg3.decorators.decorateReply, [{ name: 'sub', type: 'number' }])
+  t.assert.deepStrictEqual(reg3.decorators.decorate, [{ name: 'sub-instance', type: 'number' }])
+  t.assert.deepStrictEqual(reg3.decorators.decorateRequest, [{ name: 'sub-object', type: 'function' }])
+  t.assert.deepStrictEqual(reg3.decorators.decorateReply, [{ name: 'sub', type: 'number' }])
 })
 
 test('onDecorateDefinition', async t => {
@@ -83,14 +83,14 @@ test('onDecorateDefinition', async t => {
     }
   })
 
-  app.decorate('emptyObj', {})
+  app.decorate('emptyObj', () => ({ getter: {} }))
   app.decorate('obj1', {
     run: () => {}
   })
-  app.decorateRequest('emptyObj', {})
-  app.decorateReply('obj2', {
-    test: 'str'
-  })
+  app.decorateRequest('emptyObj', () => ({ getter: {} }))
+  app.decorateReply('obj2', () => ({
+    getter: { test: 'str' }
+  }))
 
   app.register(async function child1 (instance) {
     instance.decorate('encapsulatedObj', {
@@ -105,14 +105,14 @@ test('onDecorateDefinition', async t => {
 
   const root = app.overview()
 
-  t.equal(root.children.length, 1)
-  t.same(root.decorators.decorate, [{ name: 'emptyObj', type: 'object', recursive: [] }, { name: 'obj1', type: 'object', recursive: [{ name: 'run', type: 'function' }] }])
-  t.same(root.decorators.decorateReply, [{ name: 'obj2', type: 'object', recursive: [{ name: 'test', type: 'string' }] }])
-  t.same(root.decorators.decorateRequest, [{ name: 'emptyObj', type: 'object', recursive: [] }])
+  t.assert.deepEqual(root.children.length, 1)
+  t.assert.deepStrictEqual(root.decorators.decorate, [{ name: 'emptyObj', type: 'function' }, { name: 'obj1', type: 'object', recursive: [{ name: 'run', type: 'function' }] }])
+  t.assert.deepStrictEqual(root.decorators.decorateReply, [{ name: 'obj2', type: 'function' }])
+  t.assert.deepStrictEqual(root.decorators.decorateRequest, [{ name: 'emptyObj', type: 'function' }])
 
-  t.equal(root.children[0].name, 'child1')
+  t.assert.deepEqual(root.children[0].name, 'child1')
   const child1 = root.children[0]
-  t.same(child1.decorators.decorate, [{ name: 'encapsulatedObj', type: 'object', recursive: [{ name: 'a', type: 'function' }, { name: 'b', type: 'string' }, { name: 'c', type: 'boolean' }, { name: 'd', type: 'number' }] }])
-  t.equal(child1.decorators.decorateRequest.length, 0)
-  t.equal(child1.decorators.decorateReply.length, 0)
+  t.assert.deepStrictEqual(child1.decorators.decorate, [{ name: 'encapsulatedObj', type: 'object', recursive: [{ name: 'a', type: 'function' }, { name: 'b', type: 'string' }, { name: 'c', type: 'boolean' }, { name: 'd', type: 'number' }] }])
+  t.assert.deepEqual(child1.decorators.decorateRequest.length, 0)
+  t.assert.deepEqual(child1.decorators.decorateReply.length, 0)
 })

@@ -1,6 +1,6 @@
 'use strict'
 
-const { test } = require('tap')
+const { test } = require('node:test')
 const fastify = require('fastify')
 const plugin = require('../index')
 
@@ -29,5 +29,5 @@ test('should track all the application hooks', {
   await app.ready()
   const structure = app.overview({ hideEmpty: true })
 
-  t.same(structure.hooks, require('./fixture/app-hooks.json').hooks)
+  t.assert.deepStrictEqual(structure.hooks, require('./fixture/app-hooks.json').hooks)
 })
