@@ -58,7 +58,7 @@ test('expose the route to the the json', async t => {
 })
 
 test('expose the route within more options', async t => {
-  t.plan(6)
+  t.plan(7)
   const app = fastify()
   await app.register(plugin,
     {
@@ -77,25 +77,25 @@ test('expose the route within more options', async t => {
 
   t.assert.deepStrictEqual(responseContent.name, 'fastify -> fastify-overview')
   t.assert.deepStrictEqual(responseContent.children, [])
-  t.assert.deepEqual(responseContent.routes, [
-    {
-      method: 'GET',
-      url: '/foo',
-      prefix: '',
-      hooks: {
-        onError: [],
-        onRequest: [],
-        onRequestAbort: [],
-        onResponse: [],
-        onSend: [],
-        onTimeout: [],
-        preHandler: [],
-        preParsing: [],
-        preSerialization: [],
-        preValidation: []
-      }
+  t.assert.strictEqual(responseContent.routes.length, 1)
+  delete responseContent.routes[0].hooks.preHandler[0].hash
+  t.assert.deepStrictEqual(responseContent.routes[0], {
+    method: 'GET',
+    url: '/foo',
+    prefix: '',
+    hooks: {
+      onError: [],
+      onRequest: [],
+      onRequestAbort: [],
+      onResponse: [],
+      onSend: [],
+      onTimeout: [],
+      preHandler: [{ name: 'hook' }],
+      preParsing: [],
+      preSerialization: [],
+      preValidation: []
     }
-  ])
+  })
   t.assert.deepStrictEqual(responseContent.decorators, {
     decorate: [],
     decorateRequest: [],
