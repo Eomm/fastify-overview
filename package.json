@@ -33,7 +33,7 @@
   "homepage": "https://github.com/Eomm/fastify-overview#readme",
   "devDependencies": {
     "@fastify/autoload": "^6.0.2",
-    "@types/node": "^22.10.1",
+    "@types/node": "^25.0.0",
     "@typescript-eslint/eslint-plugin": "^8.17.0",
     "@typescript-eslint/parser": "^8.17.0",
     "fastify": "^5.1.0",
