@@ -150,6 +150,30 @@ test('hide empty', async t => {
   })
 })
 
+test('hide empty with no routes filter', async t => {
+  const app = fastify({ exposeHeadRoutes: false })
+  await app.register(plugin)
+
+  app.get('/get', function noop () {})
+  app.get('/post', function noop () {})
+
+  await app.ready()
+  const root = app.overview({ hideEmpty: true })
+
+  t.assert.deepStrictEqual(root.routes, [
+    {
+      method: 'GET',
+      prefix: '',
+      url: '/get'
+    },
+    {
+      method: 'GET',
+      prefix: '',
+      url: '/post'
+    }
+  ])
+})
+
 test('filter routes with hide', async t => {
   const app = fastify({ exposeHeadRoutes: false })
   await app.register(plugin)
