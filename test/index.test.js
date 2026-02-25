@@ -333,5 +333,5 @@ test('empty routes with no opts', async t => {
 
   const result = handleRoutes(value, opts)
 
-  t.assert.deepEqual(result, undefined)
+  t.assert.deepEqual(result, [])
 })
