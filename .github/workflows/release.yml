@@ -1,21 +1,25 @@
-name: Release
+name: Release the package
+
 on:
   workflow_dispatch:
     inputs:
       semver:
-        description: 'The semver to use'
+        description: "Release bump type"
         required: true
-        default: 'patch'
-  pull_request:
-    types: [closed]
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions: {}
 
 jobs:
   release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: nearform/optic-release-automation-action@v4
-        with:
-          github-token: ${{ secrets.github_token }}
-          npm-token: ${{ secrets.NPM_TOKEN }}
-          optic-token: ${{ secrets.OPTIC_TOKEN }}
-          semver: ${{ github.event.inputs.semver }}
+    permissions:
+      id-token: write # required for npm provenance via OIDC
+      contents: write # required to push the release commit and the tag
+    uses: fastify/workflows/.github/workflows/reusable-release.yml@v7
+    with:
+      semver: ${{ inputs.semver }}
+      environment: ''
