@@ -77,19 +77,19 @@ export interface FastifyOverviewOptions {
    * Add a `source` property to each node of the tree.
    * @default false
    */
-   addSource?: boolean,
+  addSource?: boolean,
 
   /**
    * Expose a route that will return the JSON structure.
    * By default the route is exposed at `GET /json-overview`.
    * @default false
    */
-   exposeRoute?: boolean,
+  exposeRoute?: boolean,
 
   /**
    * Customize the route's options when `exposeRoute` is set to `true`
    */
-   exposeRouteOptions?: Partial<RouteOptions>,
+  exposeRouteOptions?: Partial<RouteOptions>,
 
   /**
    * Customise which properties of the route options will be included in the overview
@@ -106,12 +106,12 @@ export interface FastifyOverviewDecoratorOptions {
   /**
    * Filters routes based on the provided predicate
    */
-   routesFilter?: (routeItem: RouteItem) => boolean,
+  routesFilter?: (routeItem: RouteItem) => boolean,
   /**
    * To keep the structure light and clean, you can hide empty properties
    * @default false
    */
-   hideEmpty?: boolean,
+  hideEmpty?: boolean,
 }
 
 declare module 'fastify' {
